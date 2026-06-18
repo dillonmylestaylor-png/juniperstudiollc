@@ -71,7 +71,9 @@ exports.handler = async (event) => {
       cancel_url: 'https://juniperstudiollc.com/services.html',
       custom_text: {
         submit: {
-          message: 'Applicable taxes will be calculated based on your location.',
+          message: isSubscription
+            ? 'Subscription automatically cancels after 16 weeks. Applicable taxes calculated based on your location.'
+            : 'Applicable taxes will be calculated based on your location.',
         },
       },
     });
