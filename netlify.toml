@@ -1,0 +1,13 @@
+[build]
+  functions = "netlify/functions"
+  publish = "."
+
+[[redirects]]
+  from = "/checkout"
+  to = "/.netlify/functions/checkout"
+  status = 302
+
+[[redirects]]
+  from = "/finalize"
+  to = "/.netlify/functions/finalize"
+  status = 200

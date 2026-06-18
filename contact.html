@@ -109,5 +109,15 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+const params = new URLSearchParams(window.location.search);
+const sid = params.get('session_id');
+if (sid) {
+  fetch('/finalize?session_id=' + encodeURIComponent(sid))
+    .then(r => r.json())
+    .then(d => { if (d.ok) console.log('Subscription scheduled to cancel after 16 weeks'); })
+    .catch(() => {});
+}
+</script>
 </body>
 </html>
