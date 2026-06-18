@@ -69,6 +69,11 @@ exports.handler = async (event) => {
       mode,
       success_url: 'https://juniperstudiollc.com/contact?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: 'https://juniperstudiollc.com/services.html',
+      custom_text: {
+        submit: {
+          message: 'Applicable taxes will be calculated based on your location.',
+        },
+      },
     });
 
     return {
