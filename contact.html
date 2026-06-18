@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Juniper Studio LLC</title>
+  <meta name="description" content="Book a session or get in touch with Juniper Studio LLC.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="index.html" class="logo">Juniper<span>Studio</span></a>
+    <div class="links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="gear.html">Gear</a>
+      <a href="audio.html">Audio</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+  <section class="page-banner page-banner-16x9 hero-bg-4">
+    <h1>Book a Session</h1>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="subtitle">Ready to get started? Fill out the form below or reach out directly. We'll get back to you within 24 hours.</p>
+
+      <div class="contact-grid">
+        <div>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name or band name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="service">Service Interested In</label>
+              <select id="service" name="service">
+                <option value="">Select...</option>
+                <option value="recording">Recording</option>
+                <option value="mixing">Mixing</option>
+                <option value="mastering">Mastering</option>
+                <option value="production">Production</option>
+                <option value="album">Album Package</option>
+                <option value="reamp">Re-amping / Tone Services</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your project — genre, timeline, number of tracks, etc."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+
+        <div class="contact-info">
+          <div class="info-block">
+            <h4>📍 Location</h4>
+            <p>City, State<br>By appointment only</p>
+          </div>
+          <div class="info-block">
+            <h4>📧 Email</h4>
+            <p><a href="mailto:studio@juniper.studio">studio@juniper.studio</a></p>
+          </div>
+          <div class="info-block">
+            <h4>📱 Phone / Text</h4>
+            <p>(555) 000-0000</p>
+          </div>
+          <div class="info-block">
+            <h4>💳 Pay Online</h4>
+            <p>Secure payments accepted via Stripe, Square, and PayPal.</p>
+            <a href="https://buy.stripe.com/5kQ14p63H7h1aBs6zgdIA00" class="payment-link btn btn-outline" target="_blank">Pay with Stripe</a>
+            <a href="#" class="payment-link btn btn-outline" style="margin-left: 0.5rem;" target="_blank">Pay with Square</a>
+            <a href="#" class="payment-link btn btn-outline" style="margin-left: 0.5rem;" target="_blank">Pay with PayPal</a>
+          </div>
+          <div class="info-block">
+            <h4>🕐 Hours</h4>
+            <p>Mon–Sat: 10am – 10pm<br>Sunday: By arrangement</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="socials">
+    <a href="#" target="_blank">Instagram</a>
+    <a href="#" target="_blank">SoundCloud</a>
+    <a href="mailto:studio@juniper.studio">Email</a>
+  </div>
+  <p>&copy; 2026 Juniper Studio LLC. All rights reserved.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
