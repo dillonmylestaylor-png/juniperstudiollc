@@ -43,29 +43,32 @@
           <h3>Recording</h3>
           <p><strong>$100/hr</strong> (2hr min, then $50/hr)</p>
           <p>Tracking in a treated room with a premium signal chain. DI, amp, and vocal capture available. Includes basic editing and comping.</p>
-          <a href="https://buy.stripe.com/5kQ14p63H7h1aBs6zgdIA00" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
+          <div style="display:flex;gap:0.5rem;align-items:center;margin-top:0.75rem;flex-wrap:wrap;">
+            <input type="number" id="recAmount" placeholder="Enter amount ($)" min="200" step="50" value="200" style="width:140px;padding:0.5rem;border:1px solid #444;border-radius:4px;background:#1a1a1a;color:#fff;">
+            <a href="#" onclick="event.preventDefault();var a=document.getElementById('recAmount').value*100;if(a>=20000)window.open('/checkout?amount='+a,'_blank');else alert('Minimum $200');" class="btn btn-primary">Pay Now</a>
+          </div>
         </div>
         <div class="card">
           <span class="icon">🎛️</span>
           <h3>Mixing</h3>
           <p><strong>$200/song</strong></p>
           <p>Full mix from tracked or raw stems. EQ, compression, automation, spatial processing, and reference mastering. Unlimited revisions.</p>
-          <a href="https://buy.stripe.com/eVq9AV1Nr58TeRI4r8dIA01" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
+          <a href="/checkout?price=price_1TjTDJRreoLOc5siE6SeoNIx" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
         </div>
         <div class="card">
           <span class="icon">🔊</span>
           <h3>Mastering</h3>
           <p><strong>$75/song</strong></p>
           <p>Stereo mastering optimized for streaming, vinyl, and broadcast. Includes DDP export if needed.</p>
-          <a href="https://buy.stripe.com/5kQfZjfEh7h1gZQe1IdIA02" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
-          <p style="margin-top:0.5rem;"><a href="https://buy.stripe.com/7sY4gBbo16cX7pg2j0dIA03" target="_blank">Mix + Master Bundle ($250)</a></p>
+          <a href="/checkout?price=price_1TjTDKRreoLOc5siU3I3iHCd" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
+          <p style="margin-top:0.5rem;"><a href="/checkout?price=price_1TjTDKRreoLOc5sitJtoztP3" target="_blank">Mix + Master Bundle ($250)</a></p>
         </div>
         <div class="card">
           <span class="icon">🎹</span>
           <h3>Production</h3>
           <p><strong>$750/song</strong></p>
           <p>Beat-making, arrangement, sound design, and full production from scratch or based on your reference tracks.</p>
-          <a href="https://buy.stripe.com/5kQeVf3Vz9p94d44r8dIA09" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
+          <a href="/checkout?price=price_1TjTFhRreoLOc5siaKzN8VL0" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
         </div>
         <div class="card">
           <span class="icon">📦</span>
@@ -73,10 +76,10 @@
           <p><strong>3 songs $1,500</strong> &middot; <strong>5 songs $2,000</strong> &middot; <strong>10 songs $3,000</strong></p>
           <p>Discounted bundles for EPs and full-length albums. Includes recording, mixing, mastering, and project management.</p>
           <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.75rem;">
-            <a href="https://buy.stripe.com/eVq9AVcs5fNxaBs5vcdIA0a" class="btn btn-primary" target="_blank">3 Songs</a>
-            <a href="https://buy.stripe.com/7sYfZj2RvgRB5h87DkdIA0b" class="btn btn-primary" target="_blank">5 Songs</a>
-            <a href="https://buy.stripe.com/eVqdRbajXcBlgZQg9QdIA0c" class="btn btn-primary" target="_blank">10 Songs</a>
-            <a href="/checkout" class="btn btn-outline" target="_blank">Custom ($80/wk for 16 wks)</a>
+            <a href="/checkout?price=price_1TjTJcRreoLOc5si7kHUNgJk" class="btn btn-primary" target="_blank">3 Songs</a>
+            <a href="/checkout?price=price_1TjTJdRreoLOc5sirKEd7ncD" class="btn btn-primary" target="_blank">5 Songs</a>
+            <a href="/checkout?price=price_1TjTJfRreoLOc5si61zBca4u" class="btn btn-primary" target="_blank">10 Songs</a>
+            <a href="/checkout?price=price_1TjTiqRreoLOc5si9ucP4vv5" class="btn btn-outline" target="_blank">Custom ($80/wk for 16 wks)</a>
           </div>
         </div>
         <div class="card">
@@ -84,7 +87,7 @@
           <h3>Re-amping &amp; Tone Services</h3>
           <p><strong>$25/hr</strong></p>
           <p>Re-amp DI tracks through boutique amps and cabs. Amp profiling (NAM / Kemper) available for consistent live or session tones.</p>
-          <a href="https://buy.stripe.com/dRmeVfajX0SD9xo6zgdIA08" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
+          <a href="/checkout?price=price_1TjTDMRreoLOc5sihBBNPlli" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
         </div>
       </div>
     </div>
