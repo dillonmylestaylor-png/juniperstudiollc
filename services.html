@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Services &amp; Rates — Juniper Studio LLC</title>
-  <meta name="description" content="Recording $100/hr, mixing $200/song, mastering $75/song, and full production at Juniper Studio LLC. Transparent pricing, professional results.">
+  <meta name="description" content="Recording $100 (2hr min) then $50/hr, mixing $200/song, mastering $75/song, and full production at Juniper Studio LLC. Transparent pricing, professional results.">
   <link rel="canonical" href="https://juniperstudiollc.com/services.html">
 
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
@@ -43,14 +43,14 @@
           "name": "Recording",
           "price": "100.00",
           "priceCurrency": "USD",
-          "description": "Tracking in a treated room with a premium signal chain, per hour (2hr minimum)."
+          "description": "Tracking in a treated room with a premium signal chain. $100 for a 2-hour minimum session, then $50/hr after."
         },
         {
           "@type": "Offer",
           "name": "Mixing",
           "price": "200.00",
           "priceCurrency": "USD",
-          "description": "Full mix from tracked or raw stems, per song."
+          "description": "Full mix from multitracks (stems accepted if that's all you have), per song. Includes up to 5 rounds of revisions."
         },
         {
           "@type": "Offer",
@@ -88,7 +88,7 @@
         "name": "How much does it cost to record a song at Juniper Studio?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Recording is $100/hr with a 2-hour minimum, then $50/hr after that. Most singles take 4-8 hours to track. Mixing is a flat $200/song and mastering is $75/song, so a typical single runs $400-800 all-in depending on complexity."
+          "text": "Recording is $100 for a 2-hour minimum session, then $50/hr after that. Most singles take 4-8 hours to track (roughly $200-400). Mixing is a flat $200/song and mastering is $75/song, so a typical single runs $475-675 all-in depending on complexity."
         }
       },
       {
@@ -112,7 +112,7 @@
         "name": "What's included in a mixing session?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Mixing is $200/song and includes a full mix from your tracked or raw stems — EQ, compression, automation, spatial processing, and reference mastering — with unlimited revisions until you're happy with the result."
+          "text": "Mixing is $200/song and includes a full mix from your multitracks (stems accepted if that's all you have) — EQ, compression, automation, spatial processing, and reference mastering — with up to 5 rounds of revisions."
         }
       },
       {
@@ -158,19 +158,23 @@
         <div class="card">
           <span class="icon">🎤</span>
           <h3>Recording</h3>
-          <p><strong>$100/hr</strong> (2hr min, then $50/hr)</p>
+          <p><strong>$100</strong> for a 2hr minimum session, then $50/hr after</p>
           <p>Tracking in a treated room with a premium signal chain. DI, amp, and vocal capture available. Includes basic editing and comping.</p>
           <div style="display:flex;gap:0.5rem;align-items:center;margin-top:0.75rem;flex-wrap:wrap;">
-            <input type="number" id="recAmount" placeholder="Enter amount ($)" min="200" step="50" value="200" style="width:140px;padding:0.5rem;border:1px solid #444;border-radius:4px;background:#1a1a1a;color:#fff;">
-            <a href="#" onclick="event.preventDefault();var a=document.getElementById('recAmount').value*100;if(a>=20000)window.open('/checkout?amount='+a,'_blank');else alert('Minimum $200');" class="btn btn-primary">Pay Now</a>
+            <label for="recHours" style="font-size:0.85rem;color:var(--muted);">Hours:</label>
+            <input type="number" id="recHours" min="2" step="1" value="2" style="width:70px;padding:0.5rem;border:1px solid #444;border-radius:4px;background:#1a1a1a;color:#fff;">
+            <span id="recTotal" style="font-size:0.9rem;color:var(--text);">Total: $100</span>
           </div>
+          <a href="#" id="recPayBtn" class="btn btn-primary" style="margin-top:0.75rem;">Pay Now</a>
+          <p style="margin-top:0.5rem;"><a href="service-recording.html">What's included →</a></p>
         </div>
         <div class="card">
           <span class="icon">🎛️</span>
           <h3>Mixing</h3>
           <p><strong>$200/song</strong></p>
-          <p>Full mix from tracked or raw stems. EQ, compression, automation, spatial processing, and reference mastering. Unlimited revisions.</p>
+          <p>Full mix from your multitracks (stems accepted if that's all you have). EQ, compression, automation, spatial processing, and reference mastering. Up to 5 rounds of revisions.</p>
           <a href="/checkout?price=price_1TjTDJRreoLOc5siE6SeoNIx" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
+          <p style="margin-top:0.5rem;"><a href="service-mixing.html">What's included →</a></p>
         </div>
         <div class="card">
           <span class="icon">🔊</span>
@@ -178,7 +182,7 @@
           <p><strong>$75/song</strong></p>
           <p>Stereo mastering optimized for streaming, vinyl, and broadcast. Includes DDP export if needed.</p>
           <a href="/checkout?price=price_1TjTDKRreoLOc5siU3I3iHCd" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
-          <p style="margin-top:0.5rem;"><a href="/checkout?price=price_1TjTDKRreoLOc5sitJtoztP3" target="_blank">Mix + Master Bundle ($250)</a></p>
+          <p style="margin-top:0.5rem;"><a href="/checkout?price=price_1TjTDKRreoLOc5sitJtoztP3" target="_blank">Mix + Master Bundle ($250)</a> &middot; <a href="service-mastering.html">What's included →</a></p>
         </div>
         <div class="card">
           <span class="icon">🎹</span>
@@ -186,6 +190,7 @@
           <p><strong>$750/song</strong></p>
           <p>Beat-making, arrangement, sound design, and full production from scratch or based on your reference tracks.</p>
           <a href="/checkout?price=price_1TjTFhRreoLOc5siaKzN8VL0" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
+          <p style="margin-top:0.5rem;"><a href="service-production.html">What's included →</a></p>
         </div>
         <div class="card">
           <span class="icon">📦</span>
@@ -198,6 +203,7 @@
             <a href="/checkout?price=price_1TjTJfRreoLOc5si61zBca4u" class="btn btn-primary" target="_blank">10 Songs</a>
             <a href="/checkout?price=price_1TjU0ARreoLOc5siTfMlzEHp" class="btn btn-outline" target="_blank">Custom ($78.13/wk for 16 wks)</a>
           </div>
+          <p style="margin-top:0.5rem;"><a href="service-album.html">What's included →</a></p>
         </div>
         <div class="card">
           <span class="icon">🎸</span>
@@ -205,6 +211,7 @@
           <p><strong>$25/hr</strong></p>
           <p>Re-amp DI tracks through boutique amps and cabs. Amp profiling (NAM / Kemper) available for consistent live or session tones.</p>
           <a href="/checkout?price=price_1TjTDMRreoLOc5sihBBNPlli" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
+          <p style="margin-top:0.5rem;"><a href="service-reamp.html">See available amps &amp; cabs →</a></p>
         </div>
       </div>
     </div>
@@ -216,7 +223,7 @@
       <div class="cards" style="grid-template-columns: 1fr;">
         <div class="card">
           <h3>How much does it cost to record a song at Juniper Studio?</h3>
-          <p>Recording is $100/hr with a 2-hour minimum, then $50/hr after that. Most singles take 4-8 hours to track. Mixing is a flat $200/song and mastering is $75/song, so a typical single runs $400-800 all-in depending on complexity.</p>
+          <p>Recording is $100 for a 2-hour minimum session, then $50/hr after that. Most singles take 4-8 hours to track (roughly $200-400). Mixing is a flat $200/song and mastering is $75/song, so a typical single runs $475-675 all-in depending on complexity.</p>
         </div>
         <div class="card">
           <h3>Do I need to bring my own instruments or gear?</h3>
@@ -228,7 +235,7 @@
         </div>
         <div class="card">
           <h3>What's included in a mixing session?</h3>
-          <p>Mixing is $200/song and includes a full mix from your tracked or raw stems — EQ, compression, automation, spatial processing, and reference mastering — with unlimited revisions until you're happy with the result.</p>
+          <p>Mixing is $200/song and includes a full mix from your multitracks (stems accepted if that's all you have) — EQ, compression, automation, spatial processing, and reference mastering — with up to 5 rounds of revisions.</p>
         </div>
         <div class="card">
           <h3>Do you offer discounts for a full album or EP?</h3>
@@ -259,5 +266,33 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+(function() {
+  var hoursInput = document.getElementById('recHours');
+  var totalEl = document.getElementById('recTotal');
+  var payBtn = document.getElementById('recPayBtn');
+  if (!hoursInput) return;
+
+  function calcTotal(hours) {
+    hours = Math.max(2, Math.round(hours) || 2);
+    return 100 + (hours - 2) * 50;
+  }
+
+  function update() {
+    var hours = Math.max(2, parseInt(hoursInput.value, 10) || 2);
+    hoursInput.value = hours;
+    var total = calcTotal(hours);
+    totalEl.textContent = 'Total: $' + total;
+    payBtn.href = '/checkout?amount=' + (total * 100);
+  }
+
+  hoursInput.addEventListener('input', update);
+  payBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    window.open(payBtn.href, '_blank');
+  });
+  update();
+})();
+</script>
 </body>
 </html>
