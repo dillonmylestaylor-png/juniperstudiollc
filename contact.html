@@ -56,7 +56,9 @@
 
       <div class="contact-grid">
         <div>
-          <form id="contactForm">
+          <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact">
+            <p style="display:none;"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" placeholder="Your name or band name" required>
@@ -83,6 +85,7 @@
               <textarea id="message" name="message" placeholder="Tell us about your project — genre, timeline, number of tracks, etc."></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Send Message</button>
+            <p id="formStatus" style="margin-top:1rem;"></p>
           </form>
         </div>
 
@@ -131,6 +134,36 @@
 
 <script src="js/main.js"></script>
 <script>
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const status = document.getElementById('formStatus');
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const data = new FormData(contactForm);
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString()
+    })
+      .then(() => {
+        status.textContent = "Thanks! We'll get back to you within 24 hours.";
+        status.style.color = 'var(--accent)';
+        contactForm.reset();
+        submitBtn.textContent = 'Send Message';
+        submitBtn.disabled = false;
+      })
+      .catch(() => {
+        status.textContent = 'Something went wrong — please email or text us directly.';
+        status.style.color = '#e05555';
+        submitBtn.textContent = 'Send Message';
+        submitBtn.disabled = false;
+      });
+  });
+}
+
 const params = new URLSearchParams(window.location.search);
 const sid = params.get('session_id');
 if (sid) {
