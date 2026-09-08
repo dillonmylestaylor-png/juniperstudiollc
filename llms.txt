@@ -1,0 +1,37 @@
+# Juniper Studio LLC
+
+> Professional recording studio near Fort Smith, Arkansas (Central City, AR), offering tracking, mixing, mastering, and full production for artists and bands. By-appointment, with a full in-house guitar/amp/keys/drums backline and live sound rig.
+
+Juniper Studio LLC is a professional recording facility built around a high-end signal chain (API, BAE, Purple Audio, Fairchild, Neumann, Royer, Coles, AEA) and a comfortable, creative environment. Artists can walk in with nothing but their songs — guitars, amps, a Steinway piano, and a full drum kit are all available in-house.
+
+## Location & Contact
+- Location: Central City, Arkansas, near Fort Smith, AR. By appointment only.
+- Phone / Text: (615) 664-9985
+- Email: Info@JuniperStudioLLC.com
+- Hours: Mon–Sat 10am–10pm, Sunday by arrangement
+- Booking: https://juniperstudiollc.com/contact.html
+
+## Services & Rates
+- [Recording](https://juniperstudiollc.com/services.html): $100/hr (2hr minimum, then $50/hr) — tracking in a treated room with a premium signal chain, includes basic editing and comping.
+- [Mixing](https://juniperstudiollc.com/services.html): $200/song — full mix from tracked or raw stems, unlimited revisions.
+- [Mastering](https://juniperstudiollc.com/services.html): $75/song — stereo mastering for streaming, vinyl, and broadcast.
+- [Mix + Master Bundle](https://juniperstudiollc.com/services.html): $250/song.
+- [Production](https://juniperstudiollc.com/services.html): $750/song — beat-making, arrangement, sound design, full production.
+- [Album Packages](https://juniperstudiollc.com/services.html): 3 songs $1,500, 5 songs $2,000, 10 songs $3,000 — includes recording, mixing, mastering, and project management.
+- [Re-amping & Tone Services](https://juniperstudiollc.com/services.html): $25/hr — re-amp DI tracks through boutique amps/cabs, amp profiling (NAM/Kemper) available.
+
+## Gear Highlights
+Full list: https://juniperstudiollc.com/gear.html
+- Microphones: Royer R-121, Coles 4038, AEA R44, AEA R88, Beyerdynamic M160, Neumann U47 FET, Lewitt LCT 1040, Sennheiser MD 421, Shure SM57, AKG D12VR
+- Preamps & Outboard: API 512c, API 3124V, 2x BAE 1073, loaded API 8-slot rack, Purple Audio MC77, Black Lion Audio "Bluey", BBB Fairchild 670, Audioscape LA2A
+- Monitoring: Barefoot MicroMain27
+- Interfaces: 2x Universal Audio Apollo x16, Universal Audio Apollo Twin
+- DAWs: Universal Audio Luna, Avid Pro Tools, Reaper
+- Backline: custom shop Gibsons, vintage Marshall/Fender amps, Steinway upright piano, full drum kit, in-house PA for live sound
+
+## Pages
+- [Home](https://juniperstudiollc.com/): overview and studio philosophy
+- [Services & Rates](https://juniperstudiollc.com/services.html): full pricing and online booking/payment
+- [Studio Gear](https://juniperstudiollc.com/gear.html): complete equipment list
+- [Audio Samples](https://juniperstudiollc.com/audio.html): example tracked/mixed/produced work
+- [Contact](https://juniperstudiollc.com/contact.html): booking form, location, phone, email
