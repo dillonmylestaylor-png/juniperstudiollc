@@ -3,3 +3,6 @@ node_modules
 
 # Local Netlify folder
 .netlify
+
+# Original uncompressed source photos (kept locally only)
+images_backup_original

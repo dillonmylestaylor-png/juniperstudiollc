@@ -114,19 +114,20 @@ h3 { font-size: 1.25rem; margin-bottom: 1rem; }
 
 .hero::before {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.1) 60%, rgba(10,10,10,0) 100%);
+  background: linear-gradient(100deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.6) 45%, rgba(0,0,0,0.35) 100%);
   z-index: 1;
 }
 
 .hero .container { position: relative; z-index: 2; }
+.hero h1, .hero p { text-shadow: 0 2px 12px rgba(0,0,0,0.6); }
 
-.hero-bg-1 { background-image: url('../images/JS LCL-1.jpg'); }
-.hero-bg-2 { background-image: url('../images/JS LCL-2.jpg'); }
-.hero-bg-3 { background-image: url('../images/JS LCL-3.jpg'); }
-.hero-bg-4 { background-image: url('../images/JS LCL-4.jpg'); }
-.hero-bg-5 { background-image: url('../images/JS LCL-5.jpg'); }
-.hero-bg-6 { background-image: url('../images/JS LCL-6.jpg'); }
-.hero-bg-7 { background-image: url('../images/JS LCL-7.jpg'); }
+.hero-bg-1 { background-image: url('../images/JS-LCL-1.webp'); }
+.hero-bg-2 { background-image: url('../images/JS-LCL-2.webp'); }
+.hero-bg-3 { background-image: url('../images/JS-LCL-3.webp'); }
+.hero-bg-4 { background-image: url('../images/JS-LCL-4.webp'); }
+.hero-bg-5 { background-image: url('../images/JS-LCL-5.webp'); }
+.hero-bg-6 { background-image: url('../images/JS-LCL-6.webp'); }
+.hero-bg-7 { background-image: url('../images/JS-LCL-7.webp'); }
 
 /* Page banner for inner pages */
 .page-banner {
