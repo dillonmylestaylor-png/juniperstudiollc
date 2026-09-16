@@ -83,8 +83,19 @@ exports.handler = async (event) => {
       }
     }
 
+    const { hasUsedProduction50, findCustomerId } = require('./utils/promo');
     const allowedCoupons = ['JUNIPER10', 'PRODUCTION50'];
     const requestedCoupon = allowedCoupons.includes(params.coupon) ? params.coupon : null;
+    const email = (params.email || '').trim().toLowerCase();
+
+    if (requestedCoupon === 'PRODUCTION50') {
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        return { statusCode: 302, headers: { Location: '/coupon-error.html' } };
+      }
+      if (await hasUsedProduction50(email)) {
+        return { statusCode: 302, headers: { Location: '/coupon-error.html' } };
+      }
+    }
 
     const sessionParams = {
       line_items: lineItems,
@@ -101,12 +112,18 @@ exports.handler = async (event) => {
       },
     };
 
-    if (mode === 'payment') sessionParams.customer_creation = 'always';
+    if (email) {
+      const existing = await findCustomerId(stripe, email);
+      if (existing) sessionParams.customer = existing;
+      else sessionParams.customer_email = email;
+    } else if (mode === 'payment') {
+      sessionParams.customer_creation = 'always';
+    }
 
     if (requestedCoupon) {
       sessionParams.discounts = [{ coupon: requestedCoupon }];
-      if (requestedCoupon === 'PRODUCTION50') {
-        sessionParams.metadata = { coupon: 'PRODUCTION50' };
+      if (requestedCoupon === 'PRODUCTION50' && email) {
+        sessionParams.metadata = { coupon: 'PRODUCTION50', email };
       }
     } else {
       sessionParams.allow_promotion_codes = true;

@@ -70,10 +70,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.querySelectorAll('a[href*="/checkout"]').forEach(a => {
-    a.addEventListener('click', () => {
+    a.addEventListener('click', (e) => {
       try {
         const url = new URL(a.getAttribute('href'), window.location.origin);
         if (url.searchParams.get('plugin')) return;
+        if (url.searchParams.get('coupon') === 'PRODUCTION50' && !url.searchParams.get('email')) {
+          e.preventDefault();
+          const saved = localStorage.getItem('juniper_checkout_email') || '';
+          const email = saved || window.prompt('Email for this checkout (saved on this device):');
+          if (!email) return;
+          localStorage.setItem('juniper_checkout_email', email.trim());
+          url.searchParams.set('email', email.trim());
+          window.location.href = url.pathname + url.search;
+          return;
+        }
         if (hasListSignup() && url.searchParams.get('coupon') !== 'PRODUCTION50') {
           url.searchParams.set('coupon', COUPON);
           a.href = url.pathname + url.search;
