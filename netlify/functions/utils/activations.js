@@ -26,4 +26,22 @@ async function activate({ key, machine, master }) {
   return { ok: true, remaining: MAX_ACTIVATIONS - machines.length };
 }
 
-module.exports = { activate };
+async function deactivate({ key, machine, master }) {
+  if (master) return { ok: true, remaining: null, master: true, deactivated: true };
+  if (!machine) return { ok: false, reason: 'missing_machine' };
+
+  const id = licenseId(key);
+  const s = await store();
+  const current = (await s.get(id, { type: 'json' })) || { machines: [] };
+  const before = Array.isArray(current.machines) ? current.machines : [];
+  const machines = before.filter((m) => m !== machine);
+  await s.setJSON(id, { machines, updated: Date.now() });
+  return {
+    ok: true,
+    remaining: MAX_ACTIVATIONS - machines.length,
+    deactivated: true,
+    found: before.length !== machines.length,
+  };
+}
+
+module.exports = { activate, deactivate };

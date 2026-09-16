@@ -23,7 +23,8 @@ async function sendLicenseEmail({ to, pluginName, license }) {
       `Thanks for grabbing ${pluginName}. Means a lot.\n\n` +
       `Here's your license key — paste it in the plugin and you're good:\n\n` +
       `${license}\n\n` +
-      `It works on up to 10 machines, so studio / laptop / a spare is covered.\n\n` +
+      `It works on up to 10 machines, so studio / laptop / a spare is covered. ` +
+      `To move it, open License in the plugin and hit Deactivate on this computer first.\n\n` +
       `If anything's weird, just reply to this email. I actually read it.\n\n` +
       `— Dillon\n` +
       `Juniper Studio LLC\n` +
