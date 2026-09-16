@@ -11,3 +11,13 @@
   from = "/finalize"
   to = "/.netlify/functions/finalize"
   status = 200
+
+[[redirects]]
+  from = "/stripe-webhook"
+  to = "/.netlify/functions/stripe-webhook"
+  status = 200
+
+[[redirects]]
+  from = "/license"
+  to = "/.netlify/functions/license"
+  status = 200

@@ -7,8 +7,8 @@ exports.handler = async (event) => {
     const customAmount = params.amount ? parseInt(params.amount, 10) : null;
     const plugin = params.plugin;
 
-    if (plugin === 'chorus505') {
-      return { statusCode: 404, body: 'Chorus505 is not live yet.' };
+    if (plugin) {
+      return { statusCode: 404, body: 'Plugin is not live yet.' };
     }
 
     let price;
