@@ -146,8 +146,8 @@ h3 { font-size: 1.25rem; margin-bottom: 1rem; }
   background-size: cover; background-position: center; background-repeat: no-repeat;
 }
 
-.page-banner-16x9 { aspect-ratio: 16 / 9; max-height: none; min-height: 300px; }
-.page-banner-square { aspect-ratio: 1 / 1; max-height: none; min-height: 300px; }
+.page-banner-16x9 { aspect-ratio: 16 / 9; max-height: 420px; min-height: 240px; }
+.page-banner-square { aspect-ratio: 16 / 9; max-height: 420px; min-height: 240px; }
 
 .page-banner::before {
   content: ''; position: absolute; inset: 0;
@@ -359,6 +359,50 @@ footer .socials a:hover { color: var(--accent); }
 .review cite { color: var(--muted); font-style: normal; font-size: 0.85rem; font-weight: 600; display: block; }
 .review .source { color: var(--muted); font-size: 0.75rem; font-weight: 400; margin-top: 0.15rem; }
 
+.include-list {
+  margin: 1.5rem 0 0; padding: 0; list-style: none;
+  display: grid; gap: 0.65rem;
+}
+
+.include-list li {
+  padding-left: 1.4rem; position: relative; color: var(--muted);
+}
+
+.include-list li::before {
+  content: ''; position: absolute; left: 0; top: 0.55em;
+  width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+}
+
+.steps {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem; margin: 1.5rem 0 0;
+}
+
+.step {
+  border: 1px solid var(--light); border-radius: 12px; padding: 1.5rem;
+}
+
+.step .n { color: var(--accent); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.step h3 { margin: 0.4rem 0 0.5rem; font-size: 1.05rem; }
+.step p { color: var(--muted); font-size: 0.9rem; margin: 0; }
+
+.quote-pull {
+  border-left: 3px solid var(--accent); padding: 0.25rem 0 0.25rem 1.25rem;
+  margin: 2rem 0 0; max-width: 720px;
+}
+
+.quote-pull p { color: var(--text); font-size: 1.05rem; line-height: 1.65; margin: 0 0 0.6rem; }
+.quote-pull cite { color: var(--muted); font-style: normal; font-size: 0.85rem; font-weight: 600; }
+
+.photo-strip {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.photo-strip img {
+  width: 100%; height: 180px; object-fit: cover; border-radius: 10px;
+}
+
 .sticky-call {
   display: none;
   position: fixed; right: 1rem; bottom: 1rem; z-index: 200;
@@ -387,6 +431,8 @@ footer .socials a:hover { color: var(--accent); }
   .btn { text-align: center; }
   .sticky-call { display: inline-flex; align-items: center; }
   body { padding-bottom: 5rem; }
+  .photo-strip { grid-template-columns: 1fr; }
+  .photo-strip img { height: 200px; }
 }
 
 @media (max-width: 480px) {
