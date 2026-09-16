@@ -31,6 +31,25 @@ a:hover { color: #fff; }
 img { max-width: 100%; height: auto; display: block; }
 
 /* Navigation */
+.sale-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 110;
+  background: var(--accent); color: var(--black);
+  text-align: center; font-size: 0.85rem; font-weight: 600;
+  padding: 0.55rem 2.5rem 0.55rem 1rem; line-height: 1.4;
+}
+
+.sale-banner a { color: var(--black); text-decoration: underline; }
+.sale-banner strong { letter-spacing: 0.04em; }
+.sale-banner-close {
+  position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%);
+  background: none; border: none; font-size: 1.2rem; cursor: pointer;
+  color: var(--black); line-height: 1;
+}
+
+body.has-sale-banner { padding-top: 36px; }
+body.has-sale-banner nav { top: 36px; }
+body.has-sale-banner main { padding-top: 100px; }
+
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   background: #000000;

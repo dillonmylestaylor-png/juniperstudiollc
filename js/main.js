@@ -15,6 +15,20 @@
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (!sessionStorage.getItem('juniper_sale_hide') && !document.querySelector('.sale-banner')) {
+    const banner = document.createElement('div');
+    banner.className = 'sale-banner';
+    banner.innerHTML = '50% off production — code <strong>PRODUCTION50</strong> (one use per email) · <a href="services.html">See rates</a>' +
+      '<button type="button" class="sale-banner-close" aria-label="Dismiss">&times;</button>';
+    document.body.prepend(banner);
+    document.body.classList.add('has-sale-banner');
+    banner.querySelector('.sale-banner-close').addEventListener('click', () => {
+      banner.remove();
+      document.body.classList.remove('has-sale-banner');
+      sessionStorage.setItem('juniper_sale_hide', '1');
+    });
+  }
+
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
 
@@ -56,14 +70,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.querySelectorAll('a[href*="/checkout"]').forEach(a => {
-    a.addEventListener('click', () => {
-      if (!hasListSignup()) return;
+    a.addEventListener('click', (e) => {
       try {
-        const url = new URL(a.href, window.location.origin);
+        const url = new URL(a.getAttribute('href'), window.location.origin);
         if (url.searchParams.get('plugin')) return;
-        url.searchParams.set('coupon', COUPON);
-        a.href = url.pathname + url.search;
-      } catch (e) {}
+        if (url.searchParams.get('coupon') === 'PRODUCTION50' && !url.searchParams.get('email')) {
+          e.preventDefault();
+          const email = window.prompt('Email for PRODUCTION50 (one use per customer):');
+          if (!email) return;
+          url.searchParams.set('email', email.trim());
+          window.open(url.pathname + url.search, '_blank');
+          return;
+        }
+        if (hasListSignup() && url.searchParams.get('coupon') !== 'PRODUCTION50') {
+          url.searchParams.set('coupon', COUPON);
+          a.href = url.pathname + url.search;
+        }
+      } catch (err) {}
     });
   });
 
