@@ -359,6 +359,17 @@ footer .socials a:hover { color: var(--accent); }
 .review cite { color: var(--muted); font-style: normal; font-size: 0.85rem; font-weight: 600; display: block; }
 .review .source { color: var(--muted); font-size: 0.75rem; font-weight: 400; margin-top: 0.15rem; }
 
+.sticky-call {
+  display: none;
+  position: fixed; right: 1rem; bottom: 1rem; z-index: 200;
+  background: var(--accent); color: var(--black);
+  padding: 0.85rem 1.25rem; border-radius: 999px;
+  font-weight: 700; font-size: 0.9rem; letter-spacing: 0.02em;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+}
+
+.sticky-call:hover { background: var(--accent-dim); color: var(--black); }
+
 @media (max-width: 768px) {
   nav .links { display: none; flex-direction: column; background: var(--black); position: absolute; top: 64px; left: 0; right: 0; padding: 1rem; border-bottom: 1px solid var(--light); }
   nav .links.open { display: flex; }
@@ -374,6 +385,8 @@ footer .socials a:hover { color: var(--accent); }
   .audio-track audio { max-width: 100%; }
   .btn-group { flex-direction: column; }
   .btn { text-align: center; }
+  .sticky-call { display: inline-flex; align-items: center; }
+  body { padding-bottom: 5rem; }
 }
 
 @media (max-width: 480px) {

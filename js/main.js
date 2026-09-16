@@ -16,4 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const href = a.getAttribute('href');
     if (href === current) a.classList.add('active');
   });
+
+  if (!document.querySelector('.sticky-call')) {
+    const call = document.createElement('a');
+    call.href = 'tel:+16156649985';
+    call.className = 'sticky-call';
+    call.textContent = 'Call / Text';
+    document.body.appendChild(call);
+  }
 });
