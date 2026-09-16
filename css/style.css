@@ -436,6 +436,38 @@ footer .socials a:hover { color: var(--accent); }
 
 .sticky-call:hover { background: var(--accent-dim); color: var(--black); }
 
+.list-modal {
+  display: none; position: fixed; inset: 0; z-index: 300;
+  align-items: center; justify-content: center;
+  padding: 1.25rem;
+  background: rgba(0,0,0,0.72);
+}
+
+.list-modal.open { display: flex; }
+
+.list-modal-card {
+  background: #111; border: 1px solid var(--light); border-radius: 14px;
+  padding: 2rem 1.75rem 1.5rem; max-width: 400px; width: 100%;
+  position: relative;
+}
+
+.list-modal-card h3 { margin-bottom: 0.5rem; font-size: 1.35rem; }
+.list-modal-card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.25rem; }
+.list-modal-card input[type="email"] {
+  width: 100%; padding: 0.85rem 1rem; border-radius: 8px;
+  background: transparent; border: 1px solid rgba(255,255,255,0.25); color: #fff;
+  font-family: var(--font); font-size: 0.95rem; margin-bottom: 0.85rem;
+}
+.list-modal-card input:focus { outline: none; border-color: var(--accent); }
+.list-modal-card .btn { width: 100%; text-align: center; }
+.list-modal-close {
+  position: absolute; top: 0.75rem; right: 0.9rem;
+  background: none; border: none; color: var(--muted); font-size: 1.4rem;
+  cursor: pointer; line-height: 1;
+}
+.list-modal-close:hover { color: #fff; }
+.list-modal-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.75rem; margin-bottom: 0; }
+
 @media (max-width: 768px) {
   nav .links { display: none; flex-direction: column; background: var(--black); position: absolute; top: 64px; left: 0; right: 0; padding: 1rem; border-bottom: 1px solid var(--light); }
   nav .links.open { display: flex; }

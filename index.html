@@ -169,6 +169,12 @@
 </head>
 <body>
 
+<form name="email-list" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="email-list">
+  <p><label>Don't fill this out: <input name="bot-field"></label></p>
+  <input type="email" name="email">
+</form>
+
 <nav>
   <div class="inner">
     <a href="index.html" class="logo">Juniper<span>Studio</span></a>

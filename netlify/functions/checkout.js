@@ -5,6 +5,40 @@ exports.handler = async (event) => {
     const params = event.queryStringParameters || {};
     const priceId = params.price;
     const customAmount = params.amount ? parseInt(params.amount, 10) : null;
+    const plugin = params.plugin;
+
+    if (plugin === 'chorus505') {
+      const donation = customAmount && customAmount >= 100 ? customAmount : 500;
+      const products = await stripe.products.list({ limit: 100 });
+      let product = products.data.find((p) => p.metadata && p.metadata.plugin === 'chorus505');
+      if (!product) {
+        product = await stripe.products.create({
+          name: 'Chorus505',
+          description: 'Donation-based chorus plugin from Juniper Studio LLC. Pay what you want.',
+          metadata: { plugin: 'chorus505' },
+        });
+      }
+      const session = await stripe.checkout.sessions.create({
+        line_items: [
+          {
+            price_data: {
+              currency: 'usd',
+              product: product.id,
+              unit_amount: donation,
+            },
+            quantity: 1,
+          },
+        ],
+        mode: 'payment',
+        submit_type: 'donate',
+        success_url: 'https://juniperstudiollc.com/plugins.html?donated=1',
+        cancel_url: 'https://juniperstudiollc.com/plugins.html',
+        custom_text: {
+          submit: { message: 'Chorus505 is donation-based — thank you for supporting Juniper Studio LLC.' },
+        },
+      });
+      return { statusCode: 302, headers: { Location: session.url } };
+    }
 
     let price;
     let unitAmount;
@@ -64,19 +98,41 @@ exports.handler = async (event) => {
     const baseAmount = unitAmount / 100;
     const feeDisplay = (feeAmount / 100).toFixed(2);
 
-    const session = await stripe.checkout.sessions.create({
+    const couponId = 'JUNIPER10';
+    try {
+      await stripe.coupons.retrieve(couponId);
+    } catch (couponErr) {
+      if (couponErr && couponErr.code === 'resource_missing') {
+        await stripe.coupons.create({
+          id: couponId,
+          percent_off: 10,
+          duration: 'once',
+          name: 'Email list 10% off',
+        });
+      }
+    }
+
+    const sessionParams = {
       line_items: lineItems,
       mode,
-      success_url: 'https://juniperstudiollc.com/contact?session_id={CHECKOUT_SESSION_ID}',
+      success_url: 'https://juniperstudiollc.com/contact.html?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: 'https://juniperstudiollc.com/services.html',
       custom_text: {
         submit: {
           message: isSubscription
-            ? 'Subscription automatically cancels after 16 weeks. Applicable taxes calculated based on your location.'
-            : 'Applicable taxes will be calculated based on your location.',
+            ? 'Subscription automatically cancels after 16 weeks. Applicable taxes calculated based on your location. Email-list code JUNIPER10 is 10% off.'
+            : 'Applicable taxes will be calculated based on your location. Email-list code JUNIPER10 is 10% off.',
         },
       },
-    });
+    };
+
+    if (params.coupon === couponId) {
+      sessionParams.discounts = [{ coupon: couponId }];
+    } else {
+      sessionParams.allow_promotion_codes = true;
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     return {
       statusCode: 302,

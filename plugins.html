@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plugins — Coming Soon | Juniper Studio LLC</title>
-  <meta name="description" content="Juniper Studio LLC plugins coming soon — NAM A2 amp models and studio tools, donation-based pricing.">
+  <title>Chorus505 &amp; Plugins | Juniper Studio LLC</title>
+  <meta name="description" content="Chorus505 — donation-based chorus plugin from Juniper Studio LLC. NAM A2 amp models and studio tools coming soon. Pay what you want.">
   <link rel="canonical" href="https://juniperstudiollc.com/plugins.html">
 
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
@@ -13,13 +13,13 @@
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Juniper Studio LLC">
-  <meta property="og:title" content="Plugins — Coming Soon | Juniper Studio LLC">
-  <meta property="og:description" content="NAM A2 amp models and studio tools. Donation-based. Coming soon.">
+  <meta property="og:title" content="Chorus505 &amp; Plugins | Juniper Studio LLC">
+  <meta property="og:description" content="Chorus505 chorus plugin — donation-based. NAM A2 amp models coming soon.">
   <meta property="og:url" content="https://juniperstudiollc.com/plugins.html">
   <meta property="og:image" content="https://juniperstudiollc.com/images/JS-LCL-3.webp">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Plugins — Coming Soon | Juniper Studio LLC">
-  <meta name="twitter:description" content="NAM A2 amp models and studio tools. Donation-based. Coming soon.">
+  <meta name="twitter:title" content="Chorus505 &amp; Plugins | Juniper Studio LLC">
+  <meta name="twitter:description" content="Chorus505 chorus plugin — donation-based. NAM A2 amp models coming soon.">
   <meta name="twitter:image" content="https://juniperstudiollc.com/images/JS-LCL-3.webp">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,20 +55,30 @@
 
   <section class="section">
     <div class="container" style="text-align:center;">
-      <h2>Coming soon</h2>
-      <p class="subtitle" style="margin: 0 auto 2rem;">New plugins built on NAM A2, plus studio tools from the same room. Donation-based pricing — pay what you want when they drop.</p>
+      <p class="subtitle" style="margin: 0 auto 2rem;">Studio tools from Juniper. Donation-based — pay what you want.</p>
+      <p id="donateThanks" class="offer" style="display:none;text-align:left;max-width:640px;margin:0 auto 2rem;">Thanks for supporting Chorus505. Download will be here when the plugin ships — we'll email list members first.</p>
       <div class="cards" style="text-align:left;max-width:860px;margin:0 auto 2rem;">
         <div class="card">
+          <h3>Chorus505</h3>
+          <p>Analog-style chorus. Donation-based — pay what you want. Download coming soon; donations keep the lights on now.</p>
+          <div class="card-actions">
+            <a href="/checkout?plugin=chorus505&amp;amount=500" class="btn btn-primary">Donate $5</a>
+            <a href="/checkout?plugin=chorus505&amp;amount=1000" class="btn btn-outline btn-sm">$10</a>
+            <a href="/checkout?plugin=chorus505&amp;amount=2500" class="btn btn-outline btn-sm">$25</a>
+          </div>
+          <form id="chorusDonate" style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
+            <label for="chorusAmt" style="font-size:0.85rem;color:var(--muted);">Custom $</label>
+            <input type="number" id="chorusAmt" min="1" step="1" value="15" style="width:80px;padding:0.5rem;border:1px solid #444;border-radius:4px;background:#1a1a1a;color:#fff;">
+            <button type="submit" class="btn btn-outline btn-sm">Donate</button>
+          </form>
+        </div>
+        <div class="card">
           <h3>NAM A2 amp models</h3>
-          <p>New plugins built on Neural Amp Modeler A2 — captures from the Juniper amp locker (Plexi, Bassman, Friedman, Dumble-style, and more).</p>
+          <p>Coming soon. New plugins built on Neural Amp Modeler A2 — captures from the Juniper amp locker (Plexi, Bassman, Friedman, Dumble-style, and more). Donation-based.</p>
         </div>
         <div class="card">
-          <h3>Studio tools</h3>
-          <p>Utility plugins from the same workflow we use on sessions — mixing and production helpers, not just amp sims.</p>
-        </div>
-        <div class="card">
-          <h3>Donation-based</h3>
-          <p>Every plugin will be donation-based. Download, use it, contribute what you can.</p>
+          <h3>More studio tools</h3>
+          <p>Coming soon. Mixing and production helpers from the same workflow we use on sessions.</p>
         </div>
       </div>
       <div class="btn-group" style="justify-content:center;">
@@ -99,5 +109,20 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+(function() {
+  if (new URLSearchParams(window.location.search).get('donated') === '1') {
+    var el = document.getElementById('donateThanks');
+    if (el) el.style.display = 'block';
+  }
+  var form = document.getElementById('chorusDonate');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var n = Math.max(1, parseInt(document.getElementById('chorusAmt').value, 10) || 15);
+    window.location.href = '/checkout?plugin=chorus505&amount=' + (n * 100);
+  });
+})();
+</script>
 </body>
 </html>
