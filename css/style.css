@@ -386,6 +386,14 @@ footer .socials a:hover { color: var(--accent); }
 .review cite { color: var(--muted); font-style: normal; font-size: 0.85rem; font-weight: 600; display: block; }
 .review .source { color: var(--muted); font-size: 0.75rem; font-weight: 400; margin-top: 0.15rem; }
 
+.reviews.collapsed .review:nth-child(n+4) { display: none; }
+.reviews-toggle {
+  display: inline-block; margin-top: 1.25rem; background: none; border: none;
+  color: var(--accent); font-family: var(--font); font-size: 0.95rem;
+  font-weight: 600; cursor: pointer; padding: 0;
+}
+.reviews-toggle:hover { color: #fff; }
+
 .include-list {
   margin: 1.5rem 0 0; padding: 0; list-style: none;
   display: grid; gap: 0.65rem;

@@ -24,6 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const reviews = document.getElementById('reviews');
+  const reviewsToggle = document.getElementById('reviewsToggle');
+  if (reviews && reviewsToggle) {
+    reviewsToggle.addEventListener('click', () => {
+      reviews.classList.toggle('collapsed');
+      const open = !reviews.classList.contains('collapsed');
+      reviewsToggle.textContent = open ? 'Show fewer reviews' : 'Show more reviews';
+      reviewsToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
   // Highlight active page
   const current = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.links a').forEach(a => {

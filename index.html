@@ -30,6 +30,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" as="image" href="images/JS-LCL-7.webp">
+  <link rel="preload" as="image" href="images/dillon-taylor.webp">
 
   <script type="application/ld+json">
   {
@@ -260,7 +262,7 @@
     <div class="container">
       <h2>What artists say</h2>
       <p class="subtitle">Real Google and Facebook reviews from people who've recorded here.</p>
-      <div class="reviews">
+      <div class="reviews collapsed" id="reviews">
         <article class="review">
           <div class="stars" aria-label="5 stars">★★★★★</div>
           <blockquote>“Dillon from Juniper Studios shows some of the best engineer-to-artist / producer-to-artist communication you can find. Good patience with the artist, perfect amount of input given when needed, and a strong urgency to get work completed are all qualities I look for in an engineer/producer. And he delivered on that. Highly recommend!”</blockquote>
@@ -310,6 +312,7 @@
           <div class="source">Facebook · Feb 2024</div>
         </article>
       </div>
+      <button type="button" class="reviews-toggle" id="reviewsToggle" aria-expanded="false" aria-controls="reviews">Show more reviews</button>
       <p style="margin-top:1.5rem;"><a href="https://www.google.com/maps/search/?api=1&amp;query=Juniper+Studio+LLC+200+E+Central+Ave+Central+City+AR" target="_blank" rel="noopener">Read more on Google →</a></p>
     </div>
   </section>
