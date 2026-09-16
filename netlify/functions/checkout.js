@@ -106,8 +106,8 @@ exports.handler = async (event) => {
       custom_text: {
         submit: {
           message: isSubscription
-            ? 'Subscription automatically cancels after 16 weeks. PRODUCTION50 is 50% off production, one use per email. JUNIPER10 is 10% off.'
-            : 'PRODUCTION50 is 50% off production packages, one use per email. JUNIPER10 is 10% off.',
+            ? 'Subscription automatically cancels after 16 weeks. PRODUCTION50 is 50% off production, one use per email.'
+            : 'PRODUCTION50 is 50% off production packages, one use per email.',
         },
       },
     };

@@ -113,12 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.innerHTML = '<div class="list-modal-card">' +
         '<button type="button" class="list-modal-close" aria-label="Close">&times;</button>' +
         '<h3>10% off your next session</h3>' +
-        '<p>Join the list for studio news, plugin drops, and a code for 10% off recording, mixing, or mastering.</p>' +
+        '<p>Join the list for studio news and plugin drops. Enter a real email and we\'ll give you 10% off recording, mixing, or mastering.</p>' +
         '<form id="listForm">' +
         '<input type="email" name="email" placeholder="you@email.com" required autocomplete="email">' +
         '<button type="submit" class="btn btn-primary">Get 10% off</button>' +
         '</form>' +
-        '<p class="list-modal-note">Code: JUNIPER10 · applied at checkout</p>' +
+        '<p class="list-modal-note">The code only shows after you join.</p>' +
         '</div>';
       document.body.appendChild(modal);
 
