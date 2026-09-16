@@ -8,36 +8,7 @@ exports.handler = async (event) => {
     const plugin = params.plugin;
 
     if (plugin === 'chorus505') {
-      const donation = customAmount && customAmount >= 100 ? customAmount : 500;
-      const products = await stripe.products.list({ limit: 100 });
-      let product = products.data.find((p) => p.metadata && p.metadata.plugin === 'chorus505');
-      if (!product) {
-        product = await stripe.products.create({
-          name: 'Chorus505',
-          description: 'Donation-based chorus plugin from Juniper Studio LLC. Pay what you want.',
-          metadata: { plugin: 'chorus505' },
-        });
-      }
-      const session = await stripe.checkout.sessions.create({
-        line_items: [
-          {
-            price_data: {
-              currency: 'usd',
-              product: product.id,
-              unit_amount: donation,
-            },
-            quantity: 1,
-          },
-        ],
-        mode: 'payment',
-        submit_type: 'donate',
-        success_url: 'https://juniperstudiollc.com/plugins.html?donated=1',
-        cancel_url: 'https://juniperstudiollc.com/plugins.html',
-        custom_text: {
-          submit: { message: 'Chorus505 is donation-based — thank you for supporting Juniper Studio LLC.' },
-        },
-      });
-      return { statusCode: 302, headers: { Location: session.url } };
+      return { statusCode: 404, body: 'Chorus505 is not live yet.' };
     }
 
     let price;

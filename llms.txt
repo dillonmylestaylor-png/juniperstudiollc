@@ -47,7 +47,7 @@ Full list: https://juniperstudiollc.com/gear.html
 - [Home](https://juniperstudiollc.com/): overview, engineer, and samples
 - [Services & Rates](https://juniperstudiollc.com/services.html): full pricing and online booking/payment, with links to a detail page per service
 - [Studio Gear](https://juniperstudiollc.com/gear.html): complete equipment list
-- [Plugins](https://juniperstudiollc.com/plugins.html): Chorus505 chorus plugin (donation-based, pay what you want). NAM A2 amp models and more studio tools coming soon.
+- [Plugins](https://juniperstudiollc.com/plugins.html): Coming soon — NAM A2 amp models and studio tools, donation-based pricing
 - [FAQ](https://juniperstudiollc.com/faq.html): pricing, gear, location, and booking questions answered
 - [Audio Samples](https://juniperstudiollc.com/audio.html): embedded Apple Music, Spotify, and YouTube playlists of 90+ released songs tracked, mixed, or produced at the studio, featuring artists including 357, BABE, Bradyn Ketter, Jake Moffett, Oreo Blue, Robert Rauch, Saubrie, Stephen Boudreaux, and The Dryline
 - [Contact](https://juniperstudiollc.com/contact.html): booking form, location, phone, email
