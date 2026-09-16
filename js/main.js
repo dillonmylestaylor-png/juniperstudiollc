@@ -1,5 +1,19 @@
 /* Juniper Studio LLC - Main JS */
 
+(function loadAnalytics() {
+  const id = window.JUNIPER_GA_ID || 'G-XXXXXXXXXX';
+  if (!id || id.indexOf('XXXX') !== -1) return;
+  const s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', id, { anonymize_ip: true });
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
