@@ -17,13 +17,17 @@ async function sendLicenseEmail({ to, pluginName, license }) {
     from: `Juniper Studio LLC <${FROM}>`,
     to,
     replyTo: FROM,
-    subject: `Your ${pluginName} license`,
+    subject: `You're in — here's your ${pluginName} key`,
     text:
-      `Thanks for supporting Juniper Studio LLC.\n\n` +
-      `Plugin: ${pluginName}\n` +
-      `License key:\n${license}\n\n` +
-      `Paste this key in the plugin. It works on up to 10 machines.\n\n` +
-      `Questions: ${FROM}\n`,
+      `Hey,\n\n` +
+      `Thanks for grabbing ${pluginName}. Means a lot.\n\n` +
+      `Here's your license key — paste it in the plugin and you're good:\n\n` +
+      `${license}\n\n` +
+      `It works on up to 10 machines, so studio / laptop / a spare is covered.\n\n` +
+      `If anything's weird, just reply to this email. I actually read it.\n\n` +
+      `— Dillon\n` +
+      `Juniper Studio LLC\n` +
+      `${FROM}\n`,
   });
 }
 
