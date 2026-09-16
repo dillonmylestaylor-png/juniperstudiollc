@@ -83,25 +83,15 @@ exports.handler = async (event) => {
       }
     }
 
-    const { hasUsedProduction50, findCustomerId } = require('./utils/promo');
     const allowedCoupons = ['JUNIPER10', 'PRODUCTION50'];
     const requestedCoupon = allowedCoupons.includes(params.coupon) ? params.coupon : null;
-    const email = (params.email || '').trim().toLowerCase();
-
-    if (requestedCoupon === 'PRODUCTION50') {
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        return { statusCode: 400, body: 'PRODUCTION50 needs an email (one use per customer).' };
-      }
-      if (await hasUsedProduction50(email)) {
-        return { statusCode: 400, body: 'PRODUCTION50 was already used with this email.' };
-      }
-    }
 
     const sessionParams = {
       line_items: lineItems,
       mode,
       success_url: 'https://juniperstudiollc.com/contact.html?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: 'https://juniperstudiollc.com/services.html',
+      billing_address_collection: 'auto',
       custom_text: {
         submit: {
           message: isSubscription
@@ -111,18 +101,12 @@ exports.handler = async (event) => {
       },
     };
 
-    if (email) {
-      const existing = await findCustomerId(stripe, email);
-      if (existing) sessionParams.customer = existing;
-      else sessionParams.customer_email = email;
-    } else if (mode === 'payment') {
-      sessionParams.customer_creation = 'always';
-    }
+    if (mode === 'payment') sessionParams.customer_creation = 'always';
 
     if (requestedCoupon) {
       sessionParams.discounts = [{ coupon: requestedCoupon }];
-      if (requestedCoupon === 'PRODUCTION50' && email) {
-        sessionParams.metadata = { coupon: 'PRODUCTION50', email };
+      if (requestedCoupon === 'PRODUCTION50') {
+        sessionParams.metadata = { coupon: 'PRODUCTION50' };
       }
     } else {
       sessionParams.allow_promotion_codes = true;

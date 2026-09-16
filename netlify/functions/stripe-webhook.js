@@ -29,7 +29,7 @@ exports.handler = async (event) => {
 
   const session = stripeEvent.data.object;
   try {
-    const { markUsedProduction50 } = require('./utils/promo');
+    const { markUsedProduction50, hasUsedProduction50 } = require('./utils/promo');
     const full = await stripe.checkout.sessions.retrieve(session.id, { expand: ['discounts', 'discounts.coupon', 'discounts.promotion_code'] });
     const email = full.customer_details && full.customer_details.email;
     const usedCode = (full.discounts || []).some((d) => {
@@ -37,7 +37,16 @@ exports.handler = async (event) => {
       const promo = d.promotion_code || {};
       return coupon.id === 'PRODUCTION50' || promo.code === 'PRODUCTION50';
     });
-    if (email && usedCode) await markUsedProduction50(email, full.id);
+    if (email && usedCode) {
+      const already = await hasUsedProduction50(email);
+      if (already) {
+        if (full.payment_intent) {
+          await stripe.refunds.create({ payment_intent: full.payment_intent, reason: 'duplicate' });
+        }
+      } else {
+        await markUsedProduction50(email, full.id);
+      }
+    }
   } catch (err) {}
 
   const pluginId = session.metadata && session.metadata.plugin;

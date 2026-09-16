@@ -70,18 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.querySelectorAll('a[href*="/checkout"]').forEach(a => {
-    a.addEventListener('click', (e) => {
+    a.addEventListener('click', () => {
       try {
         const url = new URL(a.getAttribute('href'), window.location.origin);
         if (url.searchParams.get('plugin')) return;
-        if (url.searchParams.get('coupon') === 'PRODUCTION50' && !url.searchParams.get('email')) {
-          e.preventDefault();
-          const email = window.prompt('Email for PRODUCTION50 (one use per customer):');
-          if (!email) return;
-          url.searchParams.set('email', email.trim());
-          window.open(url.pathname + url.search, '_blank');
-          return;
-        }
         if (hasListSignup() && url.searchParams.get('coupon') !== 'PRODUCTION50') {
           url.searchParams.set('coupon', COUPON);
           a.href = url.pathname + url.search;
