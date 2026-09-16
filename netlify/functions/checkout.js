@@ -86,6 +86,7 @@ exports.handler = async (event) => {
     const sessionParams = {
       line_items: lineItems,
       mode,
+      customer_creation: mode === 'payment' ? 'always' : undefined,
       success_url: 'https://juniperstudiollc.com/contact.html?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: 'https://juniperstudiollc.com/services.html',
       custom_text: {
