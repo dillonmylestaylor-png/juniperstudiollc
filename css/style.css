@@ -190,6 +190,16 @@ h3 { font-size: 1.25rem; margin-bottom: 1rem; }
 
 .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
 
+.offer {
+  border: 1px solid var(--accent-dim); border-radius: 12px;
+  padding: 1.5rem 1.75rem; margin: 0 0 2.5rem;
+  background: rgba(200, 169, 110, 0.08);
+}
+
+.offer h3 { margin-bottom: 0.4rem; font-size: 1.15rem; }
+.offer p { color: var(--muted); font-size: 0.95rem; margin: 0; max-width: 640px; }
+.offer a { font-weight: 600; }
+
 /* Cards */
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
 
