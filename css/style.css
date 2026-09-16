@@ -287,6 +287,10 @@ footer {
   text-align: center; color: var(--muted); font-size: 0.85rem;
 }
 
+footer .nap { margin-bottom: 0.75rem; line-height: 1.6; }
+footer .nap a { color: var(--muted); }
+footer .nap a:hover { color: var(--accent); }
+
 footer .socials { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; }
 
 footer .socials a { color: var(--muted); font-size: 0.9rem; }
