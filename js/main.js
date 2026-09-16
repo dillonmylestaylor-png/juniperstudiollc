@@ -1,7 +1,7 @@
 /* Juniper Studio LLC - Main JS */
 
 (function loadAnalytics() {
-  const id = window.JUNIPER_GA_ID || 'G-XXXXXXXXXX';
+  const id = window.JUNIPER_GA_ID || 'G-QTT9R5C42B';
   if (!id || id.indexOf('XXXX') !== -1) return;
   const s = document.createElement('script');
   s.async = true;
