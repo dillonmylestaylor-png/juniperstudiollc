@@ -1,11 +1,13 @@
 const crypto = require('crypto');
 const { getPlugin, getPluginByPrefix } = require('./plugins');
 
+const MAX_ACTIVATIONS = 10;
+
 function signingSecret() {
   return process.env.LICENSE_SIGNING_SECRET || process.env.STRIPE_SECRET_KEY;
 }
 
-function generateLicense({ pluginId, email, amount, sessionId }) {
+function generateLicense({ pluginId, email, amount, sessionId, master, n }) {
   const plugin = getPlugin(pluginId);
   if (!plugin) throw new Error('Unknown plugin');
   const payload = Buffer.from(JSON.stringify({
@@ -14,6 +16,8 @@ function generateLicense({ pluginId, email, amount, sessionId }) {
     a: amount || 0,
     s: sessionId || '',
     t: Math.floor(Date.now() / 1000),
+    m: master ? 1 : 0,
+    n: n || 0,
   })).toString('base64url');
   const sig = crypto.createHmac('sha256', signingSecret()).update(payload).digest('hex').slice(0, 16);
   return `${plugin.prefix}.${payload}.${sig}`;
@@ -34,10 +38,23 @@ function verifyLicense(key, expectedPluginId) {
   try {
     const data = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'));
     if (data.p !== plugin.code) return { ok: false, reason: 'product' };
-    return { ok: true, plugin: plugin.id, name: plugin.name, email: data.e, amount: data.a, issued: data.t };
+    return {
+      ok: true,
+      plugin: plugin.id,
+      name: plugin.name,
+      email: data.e,
+      amount: data.a,
+      issued: data.t,
+      master: data.m === 1,
+      activations: data.m === 1 ? null : MAX_ACTIVATIONS,
+    };
   } catch (err) {
     return { ok: false, reason: 'payload' };
   }
 }
 
-module.exports = { generateLicense, verifyLicense };
+function licenseId(key) {
+  return crypto.createHash('sha256').update(key.trim()).digest('hex').slice(0, 32);
+}
+
+module.exports = { generateLicense, verifyLicense, licenseId, MAX_ACTIVATIONS };

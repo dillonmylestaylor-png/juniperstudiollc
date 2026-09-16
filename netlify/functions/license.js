@@ -1,6 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { verifyLicense } = require('./utils/license');
 const { getPlugin } = require('./utils/plugins');
+const { activate } = require('./utils/activations');
 
 const headers = {
   'Content-Type': 'application/json',
@@ -14,31 +15,33 @@ exports.handler = async (event) => {
   const key = params.key || body.key;
   const sessionId = params.session_id || body.session_id;
   const pluginId = params.plugin || body.plugin;
+  const machine = params.machine || body.machine;
 
   if (sessionId) {
-    try {
-      const session = await stripe.checkout.sessions.retrieve(sessionId);
-      if (session.payment_status !== 'paid' && session.status !== 'complete') {
-        return { statusCode: 402, headers, body: JSON.stringify({ ok: false, reason: 'unpaid' }) };
-      }
-      const license = session.metadata && session.metadata.license_key;
-      if (!license) {
-        return { statusCode: 202, headers, body: JSON.stringify({ ok: false, reason: 'pending' }) };
-      }
-      const check = verifyLicense(license, pluginId);
-      return { statusCode: 200, headers, body: JSON.stringify(Object.assign({ license }, check)) };
-    } catch (err) {
-      return { statusCode: 500, headers, body: JSON.stringify({ ok: false, reason: err.message }) };
-    }
+    return { statusCode: 404, headers, body: JSON.stringify({ ok: false, reason: 'use_email' }) };
   }
 
   if (key) {
-    return { statusCode: 200, headers, body: JSON.stringify(verifyLicense(key, pluginId)) };
+    const check = verifyLicense(key, pluginId);
+    if (!check.ok) return { statusCode: 200, headers, body: JSON.stringify(check) };
+    const act = await activate({ key, machine, master: check.master });
+    if (!act.ok) return { statusCode: 200, headers, body: JSON.stringify(act) };
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({
+        ok: true,
+        plugin: check.plugin,
+        name: check.name,
+        master: check.master,
+        remaining: act.remaining,
+      }),
+    };
   }
 
   if (pluginId && !getPlugin(pluginId)) {
     return { statusCode: 400, headers, body: JSON.stringify({ ok: false, reason: 'unknown_plugin' }) };
   }
 
-  return { statusCode: 400, headers, body: JSON.stringify({ ok: false, reason: 'missing key or session_id' }) };
+  return { statusCode: 400, headers, body: JSON.stringify({ ok: false, reason: 'missing key' }) };
 };

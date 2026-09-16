@@ -1,6 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { generateLicense } = require('./utils/license');
 const { getPlugin } = require('./utils/plugins');
+const { sendLicenseEmail, addToMailingList } = require('./utils/mail');
 
 function rawBody(event) {
   if (event.isBase64Encoded) return Buffer.from(event.body || '', 'base64').toString('utf8');
@@ -33,28 +34,38 @@ exports.handler = async (event) => {
     return { statusCode: 200, body: JSON.stringify({ received: true, skipped: true }) };
   }
 
-  if (session.metadata && session.metadata.license_key) {
-    return { statusCode: 200, body: JSON.stringify({ received: true, existing: true }) };
-  }
-
   const full = await stripe.checkout.sessions.retrieve(session.id);
-  const license = generateLicense({
-    pluginId: plugin.id,
-    email: full.customer_details && full.customer_details.email,
-    amount: full.amount_total,
-    sessionId: full.id,
-  });
+  const email = full.customer_details && full.customer_details.email;
+  let license = full.metadata && full.metadata.license_key;
 
-  await stripe.checkout.sessions.update(full.id, {
-    metadata: Object.assign({}, full.metadata || {}, { plugin: plugin.id, license_key: license }),
-  });
-
-  if (full.customer) {
-    const meta = {};
-    meta[plugin.id + '_license'] = license;
-    meta.plugin = plugin.id;
-    await stripe.customers.update(full.customer, { metadata: meta });
+  if (!license) {
+    license = generateLicense({
+      pluginId: plugin.id,
+      email,
+      amount: full.amount_total,
+      sessionId: full.id,
+    });
+    await stripe.checkout.sessions.update(full.id, {
+      metadata: Object.assign({}, full.metadata || {}, { plugin: plugin.id, license_key: license }),
+    });
+    if (full.customer) {
+      const meta = {};
+      meta[plugin.id + '_license'] = license;
+      meta.plugin = plugin.id;
+      await stripe.customers.update(full.customer, { metadata: meta });
+    }
   }
 
-  return { statusCode: 200, body: JSON.stringify({ received: true, licensed: true, plugin: plugin.id }) };
+  if (email) {
+    try {
+      await sendLicenseEmail({ to: email, pluginName: plugin.name, license });
+    } catch (err) {
+      return { statusCode: 500, body: JSON.stringify({ error: 'email_failed', detail: err.message }) };
+    }
+    try {
+      await addToMailingList(email);
+    } catch (err) {}
+  }
+
+  return { statusCode: 200, body: JSON.stringify({ received: true, licensed: true, emailed: !!email, plugin: plugin.id }) };
 };
