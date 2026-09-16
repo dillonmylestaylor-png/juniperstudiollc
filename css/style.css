@@ -332,7 +332,12 @@ footer .socials a:hover { color: var(--accent); }
 .proof-bar strong { color: var(--text); font-weight: 600; }
 
 .engineer {
-  display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: start;
+  display: grid; grid-template-columns: 220px 1fr; gap: 2rem; align-items: center;
+}
+
+.engineer-photo {
+  width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center top;
+  border-radius: 12px; border: 1px solid var(--light);
 }
 
 .engineer h2 { margin-bottom: 0.75rem; }
@@ -487,6 +492,8 @@ footer .socials a:hover { color: var(--accent); }
   body { padding-bottom: 5rem; }
   .photo-strip { grid-template-columns: 1fr; }
   .photo-strip img { height: 200px; }
+  .engineer { grid-template-columns: 1fr; }
+  .engineer-photo { max-width: 280px; }
 }
 
 @media (max-width: 480px) {
