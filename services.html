@@ -64,7 +64,7 @@
           "name": "Production",
           "price": "750.00",
           "priceCurrency": "USD",
-          "description": "Beat-making, arrangement, sound design, and full production, per song."
+          "description": "Start-to-finish song: recording, mixing, and mastering, plus arrangement, beat-making, and sound design as needed, per song."
         },
         {
           "@type": "Offer",
@@ -91,6 +91,7 @@
       <a href="audio.html">Audio</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
+      <a href="tel:+16156649985" class="nav-cta">Call / Text</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -105,56 +106,71 @@
 
   <section class="section">
     <div class="container">
-      <p class="subtitle">Transparent pricing, professional results. Every session includes setup, tear-down, and a collaborative production approach.</p>
+      <p class="subtitle">Transparent pricing. Prefer to talk first? Book a session — pay when you're ready. Every session includes setup, tear-down, and a collaborative production approach with Dillon Taylor.</p>
 
       <div class="cards">
         <div class="card">
           <span class="icon">🎤</span>
           <h3>Recording</h3>
           <p><strong>$100</strong> for a 2hr minimum session, then $50/hr after</p>
-          <p>Tracking in a treated room with a premium signal chain. DI, amp, and vocal capture available. Includes basic editing and comping.</p>
+          <p>Studio time only — tracking in a treated room with a premium signal chain. DI, amp, and vocal capture. Includes basic editing and comping. Mixing and mastering are separate unless you book Production or an Album Package.</p>
           <div style="display:flex;gap:0.5rem;align-items:center;margin-top:0.75rem;flex-wrap:wrap;">
             <label for="recHours" style="font-size:0.85rem;color:var(--muted);">Hours:</label>
             <input type="number" id="recHours" min="2" step="1" value="2" style="width:70px;padding:0.5rem;border:1px solid #444;border-radius:4px;background:#1a1a1a;color:#fff;">
             <span id="recTotal" style="font-size:0.9rem;color:var(--text);">Total: $100</span>
           </div>
-          <a href="#" id="recPayBtn" class="btn btn-primary" style="margin-top:0.75rem;">Pay Now</a>
+          <div class="card-actions">
+            <a href="contact.html?service=recording" class="btn btn-primary">Book a Session</a>
+            <a href="#" id="recPayBtn" class="btn btn-outline btn-sm">Pay Now</a>
+          </div>
           <p style="margin-top:0.5rem;"><a href="service-recording.html">What's included →</a></p>
         </div>
         <div class="card">
           <span class="icon">🎛️</span>
           <h3>Mixing</h3>
           <p><strong>$200/song</strong></p>
-          <p>Full mix from your multitracks (stems accepted if that's all you have). EQ, compression, automation, spatial processing, and reference mastering. Up to 5 rounds of revisions.</p>
-          <a href="/checkout?price=price_1TjTDJRreoLOc5siE6SeoNIx" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
+          <p>You already have tracks. Full mix from your multitracks (stems accepted if that's all you have). EQ, compression, automation, spatial processing, and reference mastering. Up to 5 rounds of revisions. Remote-friendly.</p>
+          <div class="card-actions">
+            <a href="contact.html?service=mixing" class="btn btn-primary">Book a Session</a>
+            <a href="/checkout?price=price_1TjTDJRreoLOc5siE6SeoNIx" class="btn btn-outline btn-sm" target="_blank">Pay Now</a>
+          </div>
           <p style="margin-top:0.5rem;"><a href="service-mixing.html">What's included →</a></p>
         </div>
         <div class="card">
           <span class="icon">🔊</span>
           <h3>Mastering</h3>
           <p><strong>$75/song</strong></p>
-          <p>Stereo mastering optimized for streaming, vinyl, and broadcast. Includes DDP export if needed.</p>
-          <a href="/checkout?price=price_1TjTDKRreoLOc5siU3I3iHCd" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
+          <p>You already have a mix. Stereo mastering optimized for streaming, vinyl, and broadcast. Includes DDP export if needed.</p>
+          <div class="card-actions">
+            <a href="contact.html?service=mastering" class="btn btn-primary">Book a Session</a>
+            <a href="/checkout?price=price_1TjTDKRreoLOc5siU3I3iHCd" class="btn btn-outline btn-sm" target="_blank">Pay Now</a>
+          </div>
           <p style="margin-top:0.5rem;"><a href="/checkout?price=price_1TjTDKRreoLOc5sitJtoztP3" target="_blank">Mix + Master Bundle ($250)</a> &middot; <a href="service-mastering.html">What's included →</a></p>
         </div>
         <div class="card">
           <span class="icon">🎹</span>
           <h3>Production</h3>
-          <p><strong>$750/song</strong></p>
-          <p>Beat-making, arrangement, sound design, and full production from scratch or based on your reference tracks.</p>
-          <a href="/checkout?price=price_1TjTFhRreoLOc5siaKzN8VL0" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
+          <p><strong>$750/song</strong> — one finished song</p>
+          <p>Start-to-finish: recording, mixing, and mastering included. Plus arrangement, beat-making, sound design, and session guitar as needed — from scratch or from your reference tracks. This is the “make me a record” option for a single.</p>
+          <div class="card-actions">
+            <a href="contact.html?service=production" class="btn btn-primary">Book a Session</a>
+            <a href="/checkout?price=price_1TjTFhRreoLOc5siaKzN8VL0" class="btn btn-outline btn-sm" target="_blank">Pay Now</a>
+          </div>
           <p style="margin-top:0.5rem;"><a href="service-production.html">What's included →</a></p>
         </div>
         <div class="card">
           <span class="icon">📦</span>
           <h3>Album Packages</h3>
           <p><strong>3 songs $1,500</strong> &middot; <strong>5 songs $2,000</strong> &middot; <strong>10 songs $3,000</strong></p>
-          <p>Discounted bundles for EPs and full-length albums. Includes recording, mixing, mastering, and project management.</p>
-          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.75rem;">
-            <a href="/checkout?price=price_1TjTJcRreoLOc5si7kHUNgJk" class="btn btn-primary" target="_blank">3 Songs</a>
-            <a href="/checkout?price=price_1TjTJdRreoLOc5sirKEd7ncD" class="btn btn-primary" target="_blank">5 Songs</a>
-            <a href="/checkout?price=price_1TjTJfRreoLOc5si61zBca4u" class="btn btn-primary" target="_blank">10 Songs</a>
-            <a href="/checkout?price=price_1TjU0ARreoLOc5siTfMlzEHp" class="btn btn-outline" target="_blank">Custom ($78.13/wk for 16 wks)</a>
+          <p>Same start-to-finish work as Production, bundled for an EP or album: recording, mixing, mastering, and project management — discounted vs. booking songs one at a time.</p>
+          <div class="card-actions">
+            <a href="contact.html?service=album" class="btn btn-primary">Book a Session</a>
+          </div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;">
+            <a href="/checkout?price=price_1TjTJcRreoLOc5si7kHUNgJk" class="btn btn-outline btn-sm" target="_blank">Pay 3 Songs</a>
+            <a href="/checkout?price=price_1TjTJdRreoLOc5sirKEd7ncD" class="btn btn-outline btn-sm" target="_blank">Pay 5 Songs</a>
+            <a href="/checkout?price=price_1TjTJfRreoLOc5si61zBca4u" class="btn btn-outline btn-sm" target="_blank">Pay 10 Songs</a>
+            <a href="/checkout?price=price_1TjU0ARreoLOc5siTfMlzEHp" class="btn btn-outline btn-sm" target="_blank">Payment plan ($78.13/wk × 16)</a>
           </div>
           <p style="margin-top:0.5rem;"><a href="service-album.html">What's included →</a></p>
         </div>
@@ -163,7 +179,10 @@
           <h3>Re-amping &amp; Tone Services</h3>
           <p><strong>$25/hr</strong></p>
           <p>Re-amp DI tracks through boutique amps and cabs. Amp profiling (NAM / Kemper) available for consistent live or session tones.</p>
-          <a href="/checkout?price=price_1TjTDMRreoLOc5sihBBNPlli" class="btn btn-primary" target="_blank" style="margin-top:0.75rem;">Pay Now</a>
+          <div class="card-actions">
+            <a href="contact.html?service=reamp" class="btn btn-primary">Book a Session</a>
+            <a href="/checkout?price=price_1TjTDMRreoLOc5sihBBNPlli" class="btn btn-outline btn-sm" target="_blank">Pay Now</a>
+          </div>
           <p style="margin-top:0.5rem;"><a href="service-reamp.html">See available amps &amp; cabs →</a></p>
         </div>
       </div>
@@ -179,8 +198,11 @@
   <section class="section section-alt">
     <div class="container" style="text-align: center;">
       <h2>Ready to book?</h2>
-      <p class="subtitle" style="margin: 0 auto 2rem;">Send us a message and we'll find a time that works for you.</p>
-      <a href="contact.html" class="btn btn-primary">Contact Us</a>
+      <p class="subtitle" style="margin: 0 auto 2rem;">Send a message or text — we'll find a time that works. No need to pay online first.</p>
+      <div class="btn-group" style="justify-content:center;">
+        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+        <a href="tel:+16156649985" class="btn btn-outline">Call / Text (615) 664-9985</a>
+      </div>
     </div>
   </section>
 </main>

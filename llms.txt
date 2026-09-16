@@ -1,15 +1,18 @@
 # Juniper Studio LLC
 
-> Professional recording studio near Fort Smith, Arkansas (Central City, AR), offering tracking, mixing, mastering, and full production for artists and bands. By-appointment, with a full in-house guitar/amp/keys/drums backline and live sound rig.
+> Professional recording studio near Fort Smith, Arkansas (Central City, AR), offering tracking, mixing, mastering, and full production. Engineered by Dillon Taylor — almost 20 years in the business, session guitarist. By-appointment, with a full in-house guitar/amp/keys/drums backline and live sound rig.
 
 Juniper Studio LLC is a professional recording facility built around a high-end signal chain (API, BAE, Purple Audio, Fairchild, Neumann, Royer, Coles, AEA) and a comfortable, creative environment. Artists can walk in with nothing but their songs — guitars, amps, a Steinway piano, and a full drum kit are all available in-house.
+
+## Who you'll work with
+Sessions are engineered by Dillon Taylor — almost 20 years in the business, engineer, producer, and session guitarist. Clients work with him directly.
 
 ## Location & Contact
 - Address: 200 E Central Ave, Central City, AR 72941 (Fort Smith, AR metro). By appointment only.
 - Phone / Text: (615) 664-9985
 - Email: Info@JuniperStudioLLC.com
-- Hours: Mon–Fri 6pm–10pm, Saturday 10am–10pm, Sunday closed
-- Booking: https://juniperstudiollc.com/contact.html
+- Hours: Sessions by appointment. Typical availability Mon–Fri 6pm–10pm, Saturday 10am–10pm, Sunday closed. Daytime and weekend blocks available on request.
+- Booking: https://juniperstudiollc.com/contact.html — no payment required to inquire.
 - Instagram: https://www.instagram.com/juniperstudiollc/
 - Facebook: https://www.facebook.com/JuniperStudioLLC
 - YouTube: https://www.youtube.com/@JuniperStudioLLC
@@ -18,18 +21,18 @@ Juniper Studio LLC is a professional recording facility built around a high-end 
 Central City & Fort Smith, AR (home base). Regularly serving artists from Fayetteville, Rogers, Bentonville, Little Rock, Conway, and Russellville, AR, plus Tulsa and Oklahoma City, OK, and Nashville, TN. Remote mixing and mastering available nationwide.
 
 ## Services & Rates
-A fully produced song (recording + mixing + mastering) is $750 via Production. Recording alone is a 2hr-minimum session for $100 (then $50/hr after), covering recording only — mixing and mastering are billed separately if booked on their own. Discounts run around holidays and other occasions — ask about current specials.
+A fully produced song (recording + mixing + mastering, plus arrangement/production as needed) is $750 via Production. Recording alone is a 2hr-minimum session for $100 (then $50/hr after), covering recording only — mixing and mastering are billed separately if booked on their own. Discounts run around holidays and other occasions — ask about current specials.
 - [Recording](https://juniperstudiollc.com/service-recording.html): $100 for a 2hr minimum session, then $50/hr after — tracking in a treated room with a premium signal chain, includes basic editing and comping. Does not include mixing or mastering.
 - [Mixing](https://juniperstudiollc.com/service-mixing.html): $200/song — full mix from multitracks (stems accepted if that's all you have), up to 5 rounds of revisions.
 - [Mastering](https://juniperstudiollc.com/service-mastering.html): $75/song — stereo mastering for streaming, vinyl, and broadcast.
 - [Mix + Master Bundle](https://juniperstudiollc.com/services.html): $250/song.
-- [Production](https://juniperstudiollc.com/service-production.html): $750/song — beat-making, arrangement, sound design, full production (recording + mixing + mastering).
-- [Album Packages](https://juniperstudiollc.com/service-album.html): 3 songs $1,500, 5 songs $2,000, 10 songs $3,000 — includes recording, mixing, mastering, and project management.
+- [Production](https://juniperstudiollc.com/service-production.html): $750/song — one finished song: recording + mixing + mastering included, plus beat-making, arrangement, sound design, and session guitar as needed.
+- [Album Packages](https://juniperstudiollc.com/service-album.html): 3 songs $1,500, 5 songs $2,000, 10 songs $3,000 — same start-to-finish work as Production, bundled with project management.
 - [Re-amping & Tone Services](https://juniperstudiollc.com/service-reamp.html): $25/hr — re-amp DI tracks through a real collection of vintage/boutique amps and cabs (1968 Marshall Plexi formerly owned by Tom Bukovac, 1963 Fender Bassman, Friedman BE-100, Dumble-style custom amp, and more), amp profiling (NAM/Kemper) available.
 
 ## Gear Highlights
 Full list: https://juniperstudiollc.com/gear.html
-- Microphones: Royer R-121, Coles 4038, AEA R44, AEA R88, Beyerdynamic M160, Neumann U47 FET, Lewitt LCT 1040, Sennheiser MD 421, Shure SM57, AKG D12VR
+- Microphones: Royer R-121, Coles 4038, AEA R44, AEA R88, Beyerdynamic M160, Neumann U47 FET (FET, not tube), Lewitt LCT 1040, Sennheiser MD 421, Shure SM57, AKG D12VR
 - Preamps & Outboard: API 512v, API 3124V, BAE 1073, loaded API 8-slot rack, Purple Audio MC77, Black Lion Audio "Bluey", BBB Fairchild 670, Audioscape LA2A
 - Monitoring: Barefoot MicroMain27
 - Interfaces: 2x Universal Audio Apollo x16, Universal Audio Apollo Twin
@@ -37,9 +40,9 @@ Full list: https://juniperstudiollc.com/gear.html
 - Backline: custom shop Gibsons, vintage Marshall/Fender amps, Steinway upright piano, full drum kit, in-house PA (4x JBL mains, 2x JBL subs) for live sound
 
 ## Pages
-- [Home](https://juniperstudiollc.com/): overview and studio philosophy
+- [Home](https://juniperstudiollc.com/): overview, engineer, and samples
 - [Services & Rates](https://juniperstudiollc.com/services.html): full pricing and online booking/payment, with links to a detail page per service
 - [Studio Gear](https://juniperstudiollc.com/gear.html): complete equipment list
 - [FAQ](https://juniperstudiollc.com/faq.html): pricing, gear, location, and booking questions answered
-- [Audio Samples](https://juniperstudiollc.com/audio.html): embedded Apple Music playlist of 90+ released songs tracked, mixed, or produced at the studio, featuring artists including 357, BABE, Bradyn Ketter, Jake Moffett, Oreo Blue, Robert Rauch, Saubrie, Stephen Boudreaux, and The Dryline
+- [Audio Samples](https://juniperstudiollc.com/audio.html): embedded Apple Music, Spotify, and YouTube playlists of 90+ released songs tracked, mixed, or produced at the studio, featuring artists including 357, BABE, Bradyn Ketter, Jake Moffett, Oreo Blue, Robert Rauch, Saubrie, Stephen Boudreaux, and The Dryline
 - [Contact](https://juniperstudiollc.com/contact.html): booking form, location, phone, email
