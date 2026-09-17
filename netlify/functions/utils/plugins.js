@@ -1,7 +1,7 @@
 const PLUGINS = {
   chorus505: {
     id: 'chorus505',
-    name: 'Chorus505',
+    name: 'JS-505',
     prefix: 'CH505',
     code: 'c505',
     stripeProductId: 'prod_VGguUq0fUI2knK',

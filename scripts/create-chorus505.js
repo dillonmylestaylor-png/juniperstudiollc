@@ -33,7 +33,7 @@ const stripe = Stripe(key);
 
   if (existing) {
     const updated = await stripe.products.update(existing.id, {
-      name: 'Chorus505',
+      name: 'JS-505',
       description: 'Donation-based chorus plugin from Juniper Studio LLC. Pay what you want. Not for public sale yet.',
       active: false,
       metadata: { plugin: 'chorus505', status: 'hidden' },
@@ -43,12 +43,12 @@ const stripe = Stripe(key);
   }
 
   const product = await stripe.products.create({
-    name: 'Chorus505',
+    name: 'JS-505',
     description: 'Donation-based chorus plugin from Juniper Studio LLC. Pay what you want. Not for public sale yet.',
     active: false,
     metadata: { plugin: 'chorus505', status: 'hidden' },
   });
-  console.log('Created Chorus505 in Stripe (inactive / not live):', product.id);
+  console.log('Created JS-505 in Stripe (inactive / not live):', product.id);
 })().catch((err) => {
   console.error(err.message);
   process.exit(1);
