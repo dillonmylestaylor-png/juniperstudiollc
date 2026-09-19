@@ -20,9 +20,30 @@ exports.handler = async (event) => {
       if (!product.active || !product.default_price) {
         return { statusCode: 404, body: 'Plugin is not live yet.' };
       }
+      // Optional promo code via ?promo=CODE. Only honoured when the code's coupon is restricted to THIS
+      // plugin's product in Stripe, so site-wide codes (e.g. PRODUCTION50) can never discount a plugin.
+      const discounts = [];
+      const promo = String(params.promo || '').trim();
+      if (promo) {
+        const found = await stripe.promotionCodes.list({ code: promo, active: true, limit: 1 });
+        const pc = found.data[0];
+        // applies_to is only returned when explicitly expanded, and is absent from the coupon nested in a promotion code.
+        const coupon = pc ? await stripe.coupons.retrieve(pc.coupon.id || pc.coupon, { expand: ['applies_to'] }) : null;
+        const products = coupon && coupon.applies_to && coupon.applies_to.products;
+        if (!pc || !Array.isArray(products) || !products.includes(info.stripeProductId)) {
+          return { statusCode: 400, body: 'That code is not valid for this plugin.' };
+        }
+        discounts.push({ promotion_code: pc.id });
+      }
+
       const session = await stripe.checkout.sessions.create({
         mode: 'payment',
-        line_items: [{ price: typeof product.default_price === 'string' ? product.default_price : product.default_price.id, quantity: 1 }],
+        // Stripe refuses discounts on pay-what-you-want prices, so a promo checkout uses a fixed $1 price on the
+        // same product (a 100%-off code then makes it $0 and the license webhook still runs end to end).
+        line_items: discounts.length
+          ? [{ price_data: { currency: 'usd', product: info.stripeProductId, unit_amount: 100 }, quantity: 1 }]
+          : [{ price: typeof product.default_price === 'string' ? product.default_price : product.default_price.id, quantity: 1 }],
+        ...(discounts.length ? { discounts } : {}),
         metadata: { plugin: info.id },
         customer_creation: 'always',
         billing_address_collection: 'auto',

@@ -118,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
         '<input type="email" name="email" placeholder="you@email.com" required autocomplete="email">' +
         '<button type="submit" class="btn btn-primary">Get 10% off</button>' +
         '</form>' +
-        '<p class="list-modal-note">The code only shows after you join.</p>' +
         '</div>';
       document.body.appendChild(modal);
 
