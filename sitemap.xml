@@ -56,6 +56,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://juniperstudiollc.com/js505</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://juniperstudiollc.com/plugins.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

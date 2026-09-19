@@ -30,7 +30,7 @@ exports.handler = async (event) => {
           submit: { message: 'Your license key is emailed to you right after payment. It works on up to 10 of your machines.' },
         },
         success_url: 'https://juniperstudiollc.com/plugin-thanks.html',
-        cancel_url: 'https://juniperstudiollc.com/plugins.html',
+        cancel_url: 'https://juniperstudiollc.com/js505',
       });
       return { statusCode: 302, headers: { Location: session.url } };
     }

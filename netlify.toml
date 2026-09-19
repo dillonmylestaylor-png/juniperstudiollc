@@ -23,6 +23,21 @@
   status = 200
 
 [[redirects]]
+  from = "/JS505"
+  to = "/js505"
+  status = 301
+
+[[redirects]]
+  from = "/JS-505"
+  to = "/js505"
+  status = 301
+
+[[redirects]]
+  from = "/js-505"
+  to = "/js505"
+  status = 301
+
+[[redirects]]
   from = "/*"
   to = "/404.html"
   status = 404
