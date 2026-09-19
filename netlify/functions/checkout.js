@@ -8,7 +8,31 @@ exports.handler = async (event) => {
     const plugin = params.plugin;
 
     if (plugin) {
-      return { statusCode: 404, body: 'Plugin is not live yet.' };
+      const { getPlugin } = require('./utils/plugins');
+      const info = getPlugin(plugin);
+      if (!info || !info.live) {
+        return { statusCode: 404, body: 'Plugin is not live yet.' };
+      }
+      // Pay-what-you-want price ($1 min, $10 suggested, $1,000 max) lives in
+      // Stripe on the plugin's product. The webhook reads metadata.plugin to
+      // mint and email the license key after payment.
+      const product = await stripe.products.retrieve(info.stripeProductId);
+      if (!product.active || !product.default_price) {
+        return { statusCode: 404, body: 'Plugin is not live yet.' };
+      }
+      const session = await stripe.checkout.sessions.create({
+        mode: 'payment',
+        line_items: [{ price: typeof product.default_price === 'string' ? product.default_price : product.default_price.id, quantity: 1 }],
+        metadata: { plugin: info.id },
+        customer_creation: 'always',
+        billing_address_collection: 'auto',
+        custom_text: {
+          submit: { message: 'Your license key is emailed to you right after payment. It works on up to 10 of your machines.' },
+        },
+        success_url: 'https://juniperstudiollc.com/plugin-thanks.html',
+        cancel_url: 'https://juniperstudiollc.com/plugins.html',
+      });
+      return { statusCode: 302, headers: { Location: session.url } };
     }
 
     let price;

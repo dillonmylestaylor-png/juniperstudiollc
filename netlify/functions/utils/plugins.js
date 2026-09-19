@@ -6,6 +6,7 @@ const PLUGINS = {
     code: 'c505',
     stripeProductId: 'prod_VGguUq0fUI2knK',
     description: 'Analog-style chorus. Donation-based.',
+    live: true,
   },
   aurum8200: {
     id: 'aurum8200',

@@ -60,11 +60,11 @@ async function findByPluginId(id) {
       const price = await stripe.prices.create({
         product: product.id,
         currency: 'usd',
-        custom_unit_amount: { enabled: true, minimum: 50, preset: 1000 },
+        custom_unit_amount: { enabled: true, minimum: 100, maximum: 100000, preset: 1000 },
         nickname: plugin.name + ' donation PWYW',
       });
       await stripe.products.update(product.id, { default_price: price.id, active: false });
-      console.log('  price', price.id, 'min $0.50 preset $10');
+      console.log('  price', price.id, 'min $1 preset $10 max $1000');
     } else {
       console.log('  price', pwyw.id);
     }
