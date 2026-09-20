@@ -12,5 +12,5 @@ exports.handler = async (event) => {
   try { body = JSON.parse(event.body || '{}'); } catch (e) {}
   const source = ALLOWED_SOURCES.includes(body.source) ? body.source : 'website';
   const result = await addToListOnce(body.email, source);
-  return { statusCode: result.ok ? 200 : 400, headers, body: JSON.stringify({ ok: result.ok }) };
+  return { statusCode: result.ok ? 200 : 400, headers, body: JSON.stringify({ ok: result.ok, added: result.added, storeError: result.storeError || undefined }) };
 };

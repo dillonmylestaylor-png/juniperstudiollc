@@ -22,11 +22,13 @@ async function addToListOnce(email, source) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(address) || address.length > 200) return { ok: false, reason: 'invalid_email' };
 
   let store = null;
+  let storeError = '';
   try {
-    store = getStore('mailing-list');
+    store = getStore({ name: 'mailing-list', consistency: 'strong' });
     if (await store.get(emailKey(address))) return { ok: true, added: false };
   } catch (err) {
-    console.error('mailing-list store read failed', err && err.message);
+    storeError = String((err && err.message) || err).slice(0, 160);
+    console.error('mailing-list store read failed', storeError);
     store = null;
   }
 
@@ -39,9 +41,9 @@ async function addToListOnce(email, source) {
 
   if (store) {
     try { await store.setJSON(emailKey(address), { source: source || '', added: Date.now() }); }
-    catch (err) { console.error('mailing-list store write failed', err && err.message); }
+    catch (err) { storeError = 'write: ' + String((err && err.message) || err).slice(0, 160); console.error('mailing-list store write failed', storeError); }
   }
-  return { ok: true, added: true };
+  return { ok: true, added: true, storeError };
 }
 
 module.exports = { addToListOnce };
