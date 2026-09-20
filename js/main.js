@@ -157,3 +157,80 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 8000);
   }
 });
+
+
+/* --- Thanks-for-downloading modal with optional email capture -----------------
+   Fires AFTER a download link is clicked; the download itself is never blocked or
+   gated. Reuses the .list-modal styling and the same `email-list` Netlify form as
+   the 10%-off popup, tagged source=download so the two are tellable apart. */
+(function () {
+  var links = document.querySelectorAll('a[href*="downloads/"]');
+  if (!links.length) return;
+
+  function show() {
+    if (document.querySelector('.list-modal')) return; // never stack on the 10%-off popup
+    var subscribed = false;
+    try { subscribed = localStorage.getItem('juniper_list') === '1'; } catch (e) {}
+
+    var modal = document.createElement('div');
+    modal.className = 'list-modal open';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-label', 'Thanks for downloading');
+    modal.innerHTML = '<div class="list-modal-card">' +
+      '<button type="button" class="list-modal-close" aria-label="Close">&times;</button>' +
+      '<h3>Thanks for downloading!</h3>' +
+      (subscribed
+        ? '<p>Your download is on its way. Run the installer, then open JS-505 in your DAW &mdash; it\'s free to use for 30 days.</p>' +
+          '<button type="button" class="btn btn-primary list-done">Got it</button>'
+        : '<p>Your download is on its way. Want an email when there\'s an update or a fix? Totally optional.</p>' +
+          '<form id="dlForm">' +
+          '<input type="email" name="email" placeholder="you@email.com" autocomplete="email" required>' +
+          '<button type="submit" class="btn btn-primary">Keep me posted</button>' +
+          '</form>' +
+          '<button type="button" class="btn btn-outline list-done" style="margin-top:0.6rem;">No thanks</button>'
+      ) +
+      '</div>';
+    document.body.appendChild(modal);
+
+    function close() {
+      modal.classList.remove('open');
+      if (modal.parentNode) modal.parentNode.removeChild(modal);
+    }
+    modal.querySelector('.list-modal-close').addEventListener('click', close);
+    modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+    var no = modal.querySelector('.list-done');
+    if (no) no.addEventListener('click', close);
+
+    var form = modal.querySelector('#dlForm');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = this.email.value.trim();
+      var btn = this.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ 'form-name': 'email-list', email: email, source: 'download' }).toString()
+      })
+        .then(function () {
+          try { localStorage.setItem('juniper_list', '1'); } catch (e) {}
+          modal.querySelector('.list-modal-card').innerHTML =
+            '<h3>You\'re on the list.</h3>' +
+            '<p>We\'ll email you when there\'s an update. Enjoy the plugin.</p>' +
+            '<button type="button" class="btn btn-primary list-done">Got it</button>';
+          modal.querySelector('.list-done').addEventListener('click', close);
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btn.textContent = 'Keep me posted';
+          alert('Couldn\'t sign up just now — email Info@JuniperStudioLLC.com and we\'ll add you.');
+        });
+    });
+  }
+
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', function () { setTimeout(show, 900); });
+  }
+})();
