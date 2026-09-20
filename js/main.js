@@ -135,11 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const btn = this.querySelector('button[type="submit"]');
         btn.disabled = true;
         btn.textContent = 'Sending...';
-        fetch('/', {
+        fetch('/.netlify/functions/subscribe', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({ 'form-name': 'email-list', email: email, source: 'discount-popup' }).toString()
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'discount-popup' })
         })
+          .then((r) => { if (!r.ok) throw new Error('subscribe failed'); })
           .then(() => {
             localStorage.setItem('juniper_list', '1');
             modal.querySelector('.list-modal-card').innerHTML =
@@ -209,11 +210,12 @@ document.addEventListener('DOMContentLoaded', () => {
       var btn = this.querySelector('button[type="submit"]');
       btn.disabled = true;
       btn.textContent = 'Sending...';
-      fetch('/', {
+      fetch('/.netlify/functions/subscribe', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ 'form-name': 'email-list', email: email, source: 'download' }).toString()
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: 'download' })
       })
+        .then(function (r) { if (!r.ok) throw new Error('subscribe failed'); })
         .then(function () {
           try { localStorage.setItem('juniper_list', '1'); } catch (e) {}
           modal.querySelector('.list-modal-card').innerHTML =

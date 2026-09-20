@@ -33,12 +33,9 @@ async function sendLicenseEmail({ to, pluginName, license }) {
 }
 
 async function addToMailingList(email) {
-  if (!email) return;
-  await fetch('https://juniperstudiollc.com/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({ 'form-name': 'email-list', email, source: 'plugin-purchase' }).toString(),
-  });
+  // Once per address across the whole site (see utils/mailing.js); the webhook has already called connectLambda.
+  const { addToListOnce } = require('./mailing');
+  return addToListOnce(email, 'plugin-purchase');
 }
 
 module.exports = { sendLicenseEmail, addToMailingList, FROM };
