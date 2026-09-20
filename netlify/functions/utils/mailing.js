@@ -24,7 +24,7 @@ async function addToListOnce(email, source) {
   let store = null;
   let storeError = '';
   try {
-    store = getStore({ name: 'mailing-list', consistency: 'strong' });
+    store = getStore('mailing-list');
     if (await store.get(emailKey(address))) return { ok: true, added: false };
   } catch (err) {
     storeError = String((err && err.message) || err).slice(0, 160);
