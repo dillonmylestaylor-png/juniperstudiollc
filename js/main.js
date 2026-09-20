@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({ 'form-name': 'email-list', email: email }).toString()
+          body: new URLSearchParams({ 'form-name': 'email-list', email: email, source: 'discount-popup' }).toString()
         })
           .then(() => {
             localStorage.setItem('juniper_list', '1');

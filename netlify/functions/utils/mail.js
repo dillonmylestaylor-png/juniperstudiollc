@@ -37,7 +37,7 @@ async function addToMailingList(email) {
   await fetch('https://juniperstudiollc.com/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({ 'form-name': 'email-list', email }).toString(),
+    body: new URLSearchParams({ 'form-name': 'email-list', email, source: 'plugin-purchase' }).toString(),
   });
 }
 
