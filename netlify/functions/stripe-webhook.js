@@ -9,6 +9,8 @@ function rawBody(event) {
 }
 
 exports.handler = async (event) => {
+  // Classic (Lambda-style) function: give Netlify Blobs its request context before any store is opened.
+  require('@netlify/blobs').connectLambda(event);
   if (event.httpMethod !== 'POST') return { statusCode: 405, body: 'Method not allowed' };
 
   const sig = event.headers['stripe-signature'] || event.headers['Stripe-Signature'];

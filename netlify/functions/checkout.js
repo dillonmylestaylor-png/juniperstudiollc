@@ -1,6 +1,8 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async (event) => {
+  // Classic (Lambda-style) function: give Netlify Blobs its request context before any store is opened.
+  require('@netlify/blobs').connectLambda(event);
   try {
     const params = event.queryStringParameters || {};
     const priceId = params.price;

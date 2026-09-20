@@ -1,6 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { verifyLicense } = require('./utils/license');
 const { getPlugin } = require('./utils/plugins');
+const { connectLambda } = require('@netlify/blobs');
 const { activate, deactivate } = require('./utils/activations');
 
 const headers = {
@@ -10,6 +11,9 @@ const headers = {
 
 exports.handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') return { statusCode: 204, headers };
+  // Classic (Lambda-style) functions must hand Netlify Blobs their request context before any store is
+  // opened, or every activation with a machine id throws MissingBlobsEnvironmentError.
+  connectLambda(event);
   const params = event.queryStringParameters || {};
   const body = event.body ? (() => { try { return JSON.parse(event.body); } catch (e) { return {}; } })() : {};
   const key = params.key || body.key;
@@ -25,9 +29,17 @@ exports.handler = async (event) => {
   if (key) {
     const check = verifyLicense(key, pluginId);
     if (!check.ok) return { statusCode: 200, headers, body: JSON.stringify(check) };
-    const act = action === 'deactivate'
-      ? await deactivate({ key, machine, master: check.master })
-      : await activate({ key, machine, master: check.master });
+    // A valid, correctly signed key must never be rejected because activation bookkeeping failed: if the
+    // storage layer errors, log it and let the customer in (the 10-machine cap is a soft limit).
+    let act;
+    try {
+      act = action === 'deactivate'
+        ? await deactivate({ key, machine, master: check.master })
+        : await activate({ key, machine, master: check.master });
+    } catch (err) {
+      console.error('activation store error', err && err.message);
+      act = action === 'deactivate' ? { ok: true, remaining: null, deactivated: false } : { ok: true, remaining: null };
+    }
     if (!act.ok) return { statusCode: 200, headers, body: JSON.stringify(act) };
     return {
       statusCode: 200,
