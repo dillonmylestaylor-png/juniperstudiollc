@@ -101,6 +101,11 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://juniperstudiollc.com/suno-ai-production</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://juniperstudiollc.com/how-to-prepare-for-studio.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>

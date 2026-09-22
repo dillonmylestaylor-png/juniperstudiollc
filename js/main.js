@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!sessionStorage.getItem('juniper_sale_hide') && !document.querySelector('.sale-banner')) {
     const banner = document.createElement('div');
     banner.className = 'sale-banner';
-    banner.innerHTML = '50% off production — code <strong>PRODUCTION50</strong> (one use per email) · <a href="services.html">See rates</a>' +
+    banner.innerHTML = '50% off production — code <strong>PRODUCTION50</strong> (one use per email) · <a href="services.html">See rates</a> · <a href="join.html">10% off — join the list</a>' +
       '<button type="button" class="sale-banner-close" aria-label="Dismiss">&times;</button>';
     document.body.prepend(banner);
     document.body.classList.add('has-sale-banner');
@@ -103,60 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, true);
   }
 
-  if (!hasListSignup() && !sessionStorage.getItem('juniper_list_seen')) {
-    setTimeout(() => {
-      if (document.querySelector('.list-modal')) return;
-      const modal = document.createElement('div');
-      modal.className = 'list-modal open';
-      modal.setAttribute('role', 'dialog');
-      modal.setAttribute('aria-label', 'Email list');
-      modal.innerHTML = '<div class="list-modal-card">' +
-        '<button type="button" class="list-modal-close" aria-label="Close">&times;</button>' +
-        '<h3>10% off your next session</h3>' +
-        '<p>Join the list for studio news and plugin drops. Enter a real email and we\'ll give you 10% off recording, mixing, or mastering.</p>' +
-        '<form id="listForm">' +
-        '<input type="email" name="email" placeholder="you@email.com" required autocomplete="email">' +
-        '<button type="submit" class="btn btn-primary">Get 10% off</button>' +
-        '</form>' +
-        '</div>';
-      document.body.appendChild(modal);
-
-      function closeModal() {
-        modal.classList.remove('open');
-        sessionStorage.setItem('juniper_list_seen', '1');
-      }
-
-      modal.querySelector('.list-modal-close').addEventListener('click', closeModal);
-      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-
-      modal.querySelector('#listForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = this.email.value.trim();
-        const btn = this.querySelector('button[type="submit"]');
-        btn.disabled = true;
-        btn.textContent = 'Sending...';
-        fetch('/.netlify/functions/subscribe', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, source: 'discount-popup' })
-        })
-          .then((r) => { if (!r.ok) throw new Error('subscribe failed'); })
-          .then(() => {
-            localStorage.setItem('juniper_list', '1');
-            modal.querySelector('.list-modal-card').innerHTML =
-              '<h3>You\'re in.</h3>' +
-              '<p>Use code <strong>JUNIPER10</strong> at checkout for 10% off. It will apply automatically when you pay from this browser.</p>' +
-              '<button type="button" class="btn btn-primary list-done">Got it</button>';
-            modal.querySelector('.list-done').addEventListener('click', closeModal);
-          })
-          .catch(() => {
-            btn.disabled = false;
-            btn.textContent = 'Get 10% off';
-            alert('Couldn\'t sign up — email Info@JuniperStudioLLC.com and we\'ll send the code.');
-          });
-      });
-    }, 8000);
-  }
 });
 
 
