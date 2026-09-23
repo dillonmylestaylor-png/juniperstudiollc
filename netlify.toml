@@ -38,6 +38,16 @@
   status = 301
 
 [[redirects]]
+  from = "/suno-ai-production"
+  to = "/suno-to-real-song"
+  status = 301
+
+[[redirects]]
+  from = "/suno-ai-production.html"
+  to = "/suno-to-real-song"
+  status = 301
+
+[[redirects]]
   from = "/*"
   to = "/404.html"
   status = 404
