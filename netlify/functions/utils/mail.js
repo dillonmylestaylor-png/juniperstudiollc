@@ -11,7 +11,7 @@ function transporter() {
   });
 }
 
-async function sendLicenseEmail({ to, pluginName, license }) {
+async function sendLicenseEmail({ to, pluginName, license, noun = 'plugin' }) {
   const transport = transporter();
   await transport.sendMail({
     from: `Juniper Studio LLC <${FROM}>`,
@@ -21,10 +21,10 @@ async function sendLicenseEmail({ to, pluginName, license }) {
     text:
       `Hey,\n\n` +
       `Thanks for grabbing ${pluginName}. Means a lot.\n\n` +
-      `Here's your license key — paste it in the plugin and you're good:\n\n` +
+      `Here's your license key — paste it in the ${noun} and you're good:\n\n` +
       `${license}\n\n` +
       `It works on up to 10 machines, so studio / laptop / a spare is covered. ` +
-      `To move it, open the plugin's Settings and hit Deactivate on this computer first.\n\n` +
+      `To move it, open the ${noun}'s Settings and hit Deactivate on this computer first.\n\n` +
       `If anything's weird, just reply to this email. I actually read it.\n\n` +
       `— Dillon\n` +
       `Juniper Studio LLC\n` +

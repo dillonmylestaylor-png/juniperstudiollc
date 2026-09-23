@@ -6,6 +6,19 @@ const PLUGINS = {
     code: 'c505',
     stripeProductId: 'prod_VGguUq0fUI2knK',
     description: 'Analog-style chorus. Donation-based.',
+    page: 'js505', // customer-facing page, used for checkout's cancel link
+    noun: 'plugin', // what the customer is told to paste the key into
+    live: true,
+  },
+  irdeconvolver: {
+    id: 'irdeconvolver',
+    name: 'IR Deconvolver',
+    prefix: 'IRDEC',
+    code: 'irdc',
+    stripeProductId: 'prod_VIrCm6HTbDTrWg',
+    description: 'Sine-sweep impulse response deconvolution app for Mac. Donation-based, $10 minimum.',
+    page: 'irdeconvolver',
+    noun: 'app',
     live: true,
   },
   aurum8200: {

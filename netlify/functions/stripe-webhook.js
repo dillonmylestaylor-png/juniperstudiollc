@@ -72,7 +72,7 @@ exports.handler = async (event) => {
 
   if (email) {
     try {
-      await sendLicenseEmail({ to: email, pluginName: plugin.name, license });
+      await sendLicenseEmail({ to: email, pluginName: plugin.name, license, noun: plugin.noun || 'plugin' });
     } catch (err) {
       return { statusCode: 500, body: JSON.stringify({ error: 'email_failed', detail: err.message }) };
     }

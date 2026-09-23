@@ -17,9 +17,9 @@
   <section class="section">
     <div class="container" style="text-align:center;padding-top:4rem;">
       <h1>Thank you!</h1>
-      <p class="subtitle" style="margin:0 auto 2rem;">Your JS-505 license key is on its way to the email you used at checkout. It usually arrives within a minute. Check spam if you don't see it.</p>
-      <p style="color:var(--muted);margin-bottom:2rem;">Open JS-505 in your DAW, go to the settings page, paste the key and hit Activate.</p>
-      <div class="btn-group" style="justify-content:center;">
+      <p class="subtitle" id="thanksMsg" style="margin:0 auto 2rem;">Your JS-505 license key is on its way to the email you used at checkout. It usually arrives within a minute. Check spam if you don't see it.</p>
+      <p id="thanksHow" style="color:var(--muted);margin-bottom:2rem;">Open JS-505 in your DAW, go to the settings page, paste the key and hit Activate.</p>
+      <div class="btn-group" id="thanksBtns" style="justify-content:center;">
         <a href="downloads/JS-505-Mac.pkg" class="btn btn-primary" download>Download for Mac</a>
         <a href="downloads/JS-505-Windows.exe" class="btn btn-primary" download>Download for Windows</a>
         <a href="js505" class="btn btn-outline">Back to JS-505</a>
@@ -28,5 +28,31 @@
   </section>
 </main>
 <script src="js/main.js"></script>
+<script>
+// Default text is JS-505; other products pass ?plugin=<id> (set by the checkout function).
+(function () {
+  var P = {
+    irdeconvolver: {
+      msg: 'Your IR Deconvolver license key is on its way to the email you used at checkout. It usually arrives within a minute. Check spam if you don\'t see it.',
+      how: 'Open IR Deconvolver, go to Settings, paste the key and click Activate.',
+      btns: [['downloads/IR-Deconvolver-Mac.pkg', 'Download for Mac', true], ['irdeconvolver', 'Back to IR Deconvolver', false]]
+    }
+  };
+  var p = P[new URLSearchParams(location.search).get('plugin')];
+  if (!p) return;
+  document.getElementById('thanksMsg').textContent = p.msg;
+  document.getElementById('thanksHow').textContent = p.how;
+  var box = document.getElementById('thanksBtns');
+  box.innerHTML = '';
+  p.btns.forEach(function (b) {
+    var a = document.createElement('a');
+    a.href = b[0];
+    a.className = 'btn ' + (b[2] ? 'btn-primary' : 'btn-outline');
+    if (b[2]) a.setAttribute('download', '');
+    a.textContent = b[1];
+    box.appendChild(a);
+  });
+})();
+</script>
 </body>
 </html>

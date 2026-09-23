@@ -15,7 +15,7 @@ exports.handler = async (event) => {
       if (!info || !info.live) {
         return { statusCode: 404, body: 'Plugin is not live yet.' };
       }
-      // Pay-what-you-want price ($1 min, $10 suggested, $1,000 max) lives in
+      // Pay-what-you-want price (min/suggested/max differ per product, e.g. JS-505 is $1/$10/$1,000) lives in
       // Stripe on the plugin's product. The webhook reads metadata.plugin to
       // mint and email the license key after payment.
       const product = await stripe.products.retrieve(info.stripeProductId);
@@ -52,8 +52,8 @@ exports.handler = async (event) => {
         custom_text: {
           submit: { message: 'Your license key is emailed to you right after payment. It works on up to 10 of your machines.' },
         },
-        success_url: 'https://juniperstudiollc.com/plugin-thanks.html',
-        cancel_url: 'https://juniperstudiollc.com/js505',
+        success_url: 'https://juniperstudiollc.com/plugin-thanks.html?plugin=' + encodeURIComponent(info.id),
+        cancel_url: 'https://juniperstudiollc.com/' + (info.page || info.id),
       });
       return { statusCode: 302, headers: { Location: session.url } };
     }
