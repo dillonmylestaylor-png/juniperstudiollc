@@ -42,35 +42,6 @@ exports.handler = async (event) => {
     if (email && usedCode) await markUsedProduction50(email, full.id);
   } catch (err) {}
 
-  // Shirt orders: send the paid order to Printful (print-on-demand). external_id = the Stripe session, so a
-  // retried webhook can never create a second order.
-  if (session.metadata && session.metadata.merch) {
-    const { getMerch, variantId, printFileUrl } = require('./utils/merch');
-    const { createOrder } = require('./utils/printful');
-    const item = getMerch(session.metadata.merch);
-    const size = session.metadata.size;
-    try {
-      const full = await stripe.checkout.sessions.retrieve(session.id);
-      const ship = (full.collected_information && full.collected_information.shipping_details) || full.shipping_details || {};
-      const addr = ship.address || {};
-      const recipient = {
-        name: ship.name || (full.customer_details && full.customer_details.name) || '',
-        address1: addr.line1 || '', address2: addr.line2 || '', city: addr.city || '',
-        state_code: addr.state || '', country_code: addr.country || 'US', zip: addr.postal_code || '',
-        email: (full.customer_details && full.customer_details.email) || '',
-      };
-      const result = await createOrder({
-        externalId: session.id,
-        recipient,
-        items: [{ variant_id: variantId(item, size), quantity: 1, name: item.name + ' ' + size, files: [{ type: 'front', url: printFileUrl(item) }] }],
-      });
-      return { statusCode: 200, body: JSON.stringify({ received: true, merch: item.id, printful: result && (result.id || result.duplicate) }) };
-    } catch (err) {
-      // 500 makes Stripe retry the webhook later (e.g. if Printful was briefly unreachable).
-      return { statusCode: 500, body: JSON.stringify({ error: 'printful_failed', detail: err.message }) };
-    }
-  }
-
   const pluginId = session.metadata && session.metadata.plugin;
   const plugin = getPlugin(pluginId);
   if (!plugin) {

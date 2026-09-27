@@ -149,12 +149,6 @@
   force = true
 
 [[redirects]]
-  from = "/merch-thanks.html"
-  to = "/merch-thanks"
-  status = 301
-  force = true
-
-[[redirects]]
   from = "/plugin-thanks.html"
   to = "/plugin-thanks"
   status = 301
