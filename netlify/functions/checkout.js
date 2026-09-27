@@ -9,6 +9,32 @@ exports.handler = async (event) => {
     const customAmount = params.amount ? parseInt(params.amount, 10) : null;
     const plugin = params.plugin;
 
+    // Shirts (print-on-demand, see utils/merch.js): /checkout?merch=<id>&size=<size>. The price comes from
+    // the server-side table, never the URL. The webhook sends the paid order to Printful.
+    if (params.merch) {
+      const { getMerch, SIZES, PRICE_CENTS, SHIPPING_CENTS, variantId } = require('./utils/merch');
+      const item = getMerch(params.merch);
+      const size = String(params.size || '').toUpperCase();
+      if (!item || !SIZES.includes(size) || !variantId(item, size)) {
+        return { statusCode: 400, body: 'Unknown shirt or size.' };
+      }
+      const session = await stripe.checkout.sessions.create({
+        mode: 'payment',
+        line_items: [{
+          price_data: { currency: 'usd', unit_amount: PRICE_CENTS[size], product_data: { name: item.name + ' (' + item.color + ', ' + size + ')' } },
+          quantity: 1,
+        }],
+        shipping_address_collection: { allowed_countries: ['US'] },
+        shipping_options: [{ shipping_rate_data: { type: 'fixed_amount', display_name: 'Standard shipping (US)', fixed_amount: { amount: SHIPPING_CENTS, currency: 'usd' } } }],
+        phone_number_collection: { enabled: false },
+        metadata: { merch: item.id, size },
+        customer_creation: 'always',
+        success_url: 'https://juniperstudiollc.com/merch-thanks.html',
+        cancel_url: 'https://juniperstudiollc.com/merch',
+      });
+      return { statusCode: 302, headers: { Location: session.url } };
+    }
+
     if (plugin) {
       const { getPlugin } = require('./utils/plugins');
       const info = getPlugin(plugin);
