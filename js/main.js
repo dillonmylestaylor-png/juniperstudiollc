@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!sessionStorage.getItem('juniper_sale_hide') && !document.querySelector('.sale-banner')) {
     const banner = document.createElement('div');
     banner.className = 'sale-banner';
-    banner.innerHTML = '50% off production — code <strong>PRODUCTION50</strong> (one use per email) · <a href="services.html">See rates</a> · <a href="join.html">10% off — join the list</a>' +
+    banner.innerHTML = '50% off production — code <strong>PRODUCTION50</strong> (one use per email) · <a href="/services">See rates</a> · <a href="/join">10% off — join the list</a>' +
       '<button type="button" class="sale-banner-close" aria-label="Dismiss">&times;</button>';
     document.body.prepend(banner);
     document.body.classList.add('has-sale-banner');
@@ -50,10 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Highlight active page
-  const current = window.location.pathname.split('/').pop() || 'index.html';
+  // Clean URLs (/services, not services.html): compare the last path segment without any .html.
+  const pageName = (p) => (p || '').split(/[?#]/)[0].replace(/\/+$/, '').split('/').pop().replace(/\.html$/, '').replace(/^index$/, '');
+  const current = pageName(window.location.pathname);
   document.querySelectorAll('.links a').forEach(a => {
-    const href = a.getAttribute('href');
-    if (href === current) a.classList.add('active');
+    if (pageName(a.getAttribute('href')) === current) a.classList.add('active');
   });
 
   if (!document.querySelector('.sticky-call')) {

@@ -62,6 +62,176 @@
   to = "/suno-to-real-song"
   status = 301
 
+# Old .html URLs -> clean URLs (bookmarks, search results, links elsewhere). force = true because the
+# .html files still exist and would otherwise be served as-is.
+[[redirects]]
+  from = "/audio.html"
+  to = "/audio"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/coupon-error.html"
+  to = "/coupon-error"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/faq.html"
+  to = "/faq"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/fayetteville-recording-studio.html"
+  to = "/fayetteville-recording-studio"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/fort-smith-recording-studio.html"
+  to = "/fort-smith-recording-studio"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/gear.html"
+  to = "/gear"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/hip-hop-mixing.html"
+  to = "/hip-hop-mixing"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-to-prepare-for-studio.html"
+  to = "/how-to-prepare-for-studio"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/join.html"
+  to = "/join"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/js2.html"
+  to = "/js2"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/js505.html"
+  to = "/js505"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/merch.html"
+  to = "/merch"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/merch-thanks.html"
+  to = "/merch-thanks"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/plugin-thanks.html"
+  to = "/plugin-thanks"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/plugins.html"
+  to = "/plugins"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/remote-mixing-mastering.html"
+  to = "/remote-mixing-mastering"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/review.html"
+  to = "/review"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-album.html"
+  to = "/service-album"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-consulting.html"
+  to = "/service-consulting"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-mastering.html"
+  to = "/service-mastering"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-mixing.html"
+  to = "/service-mixing"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-production.html"
+  to = "/service-production"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-reamp.html"
+  to = "/service-reamp"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/service-recording.html"
+  to = "/service-recording"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services.html"
+  to = "/services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/suno-to-real-song.html"
+  to = "/suno-to-real-song"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/404.html"

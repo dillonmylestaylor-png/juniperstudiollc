@@ -29,7 +29,7 @@ exports.handler = async (event) => {
         phone_number_collection: { enabled: false },
         metadata: { merch: item.id, size },
         customer_creation: 'always',
-        success_url: 'https://juniperstudiollc.com/merch-thanks.html',
+        success_url: 'https://juniperstudiollc.com/merch-thanks',
         cancel_url: 'https://juniperstudiollc.com/merch',
       });
       return { statusCode: 302, headers: { Location: session.url } };
@@ -78,7 +78,7 @@ exports.handler = async (event) => {
         custom_text: {
           submit: { message: 'Your license key is emailed to you right after payment. It works on up to 10 of your machines.' },
         },
-        success_url: 'https://juniperstudiollc.com/plugin-thanks.html?plugin=' + encodeURIComponent(info.id),
+        success_url: 'https://juniperstudiollc.com/plugin-thanks?plugin=' + encodeURIComponent(info.id),
         cancel_url: 'https://juniperstudiollc.com/' + (info.page || info.id),
       });
       return { statusCode: 302, headers: { Location: session.url } };
@@ -163,18 +163,18 @@ exports.handler = async (event) => {
 
     if (requestedCoupon === 'PRODUCTION50') {
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        return { statusCode: 302, headers: { Location: '/coupon-error.html' } };
+        return { statusCode: 302, headers: { Location: '/coupon-error' } };
       }
       if (await hasUsedProduction50(email)) {
-        return { statusCode: 302, headers: { Location: '/coupon-error.html' } };
+        return { statusCode: 302, headers: { Location: '/coupon-error' } };
       }
     }
 
     const sessionParams = {
       line_items: lineItems,
       mode,
-      success_url: 'https://juniperstudiollc.com/contact.html?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'https://juniperstudiollc.com/services.html',
+      success_url: 'https://juniperstudiollc.com/contact?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'https://juniperstudiollc.com/services',
       billing_address_collection: 'auto',
       custom_text: {
         submit: {
