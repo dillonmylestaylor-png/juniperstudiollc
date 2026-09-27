@@ -3,9 +3,9 @@ const API = 'https://api.printful.com';
 const STORE_ID = process.env.PRINTFUL_STORE_ID || '18816469'; // the "Juniper Studio LLC" API store (token is account-level)
 
 async function createOrder({ externalId, recipient, items }) {
-  // Orders stay drafts (confirm in the Printful dashboard) unless PRINTFUL_AUTO_CONFIRM=1, in which case
-  // Printful charges the account's billing method and starts fulfilment right away.
-  const confirm = process.env.PRINTFUL_AUTO_CONFIRM === '1';
+  // Auto-fulfil (Dillon's call): Printful charges the account's billing method and starts printing right
+  // away. Set PRINTFUL_DRAFT_ORDERS=1 in Netlify to hold orders as drafts for manual confirmation instead.
+  const confirm = process.env.PRINTFUL_DRAFT_ORDERS !== '1';
   const res = await fetch(API + '/orders' + (confirm ? '?confirm=true' : ''), {
     method: 'POST',
     headers: { Authorization: 'Bearer ' + process.env.PRINTFUL_API_TOKEN, 'X-PF-Store-Id': STORE_ID, 'Content-Type': 'application/json' },
