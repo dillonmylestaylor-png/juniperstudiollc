@@ -59,7 +59,8 @@
     "Analog-style chorus with SPEED and DEPTH controls",
     "Built on NAM A2 captures of a real vintage pedal",
     "Auto-Calibration for over 90 audio interfaces and preamps",
-    "Mono and stereo",
+    "Optional buffered bypass, like the hardware",
+    "Mono and stereo, including mono in to stereo out",
     "AU, VST3 and CLAP on Mac; VST3 and CLAP on Windows"
   ]
 }
@@ -133,6 +134,22 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. It works on mono and stereo tracks, and on guitar, bass, keys, synths, vocals and busses. Auto-Calibration sets the right input level for your audio interface or preamp."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do the SPEED and DEPTH knobs do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SPEED sets how fast the chorus sweeps, from a slow 0.3 Hz drift to a quick 3 Hz shimmer. DEPTH sets how far the sweep moves: low settings gently thicken and double, high settings give a deep, seasick warble. Three factory presets (Subtle Double, Classic Chorus, Deep Warble) get you started."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Buffered Bypass?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The real pedal doesn't just disconnect when you switch it off: your signal still passes through its buffer, which has a sound of its own. Turn on Buffered Bypass in Settings and the footswitch gives you that buffered sound, while your DAW's bypass button still bypasses the plugin completely."
       }
     },
     {
@@ -229,21 +246,33 @@
 
       <div class="cards">
         <div class="card">
-          <h3>Simple on purpose</h3>
-          <p>SPEED sets how fast the chorus sweeps (0.3&ndash;3 Hz). DEPTH sets how much it moves. Click the footswitch to bypass, and the LED shows when it's on.</p>
+          <h3>Two knobs</h3>
+          <p>SPEED (0.3&ndash;3 Hz) sets how fast the chorus sweeps. DEPTH sets how far it moves, from a gentle thickening to a deep warble. Both start at noon.</p>
         </div>
         <div class="card">
           <h3>Built on NAM A2</h3>
           <p>The tone comes from a real capture of the hardware, made with Neural Amp Modeler A2, so it has the weight and warmth of the original circuit.</p>
         </div>
         <div class="card">
-          <h3>Auto-Calibration</h3>
-          <p>Pick your audio interface or preamp from a list of over 90 and JS-505 sets the right input level for it automatically. Or choose Line or DI and set it yourself.</p>
+          <h3>Buffered Bypass</h3>
+          <p>By default the footswitch is a clean bypass, linked to your DAW's. Turn on Buffered Bypass and it gives you the pedal's own buffered sound instead, like the hardware.</p>
         </div>
         <div class="card">
-          <h3>Mono or stereo</h3>
-          <p>Works on mono and stereo tracks, on guitar, bass, keys, synths, vocals and busses.</p>
+          <h3>Auto-Calibration</h3>
+          <p>Pick your audio interface or preamp from a list of over 90 and JS-505 drives the capture at the right level. Works on mono and stereo tracks, and takes mono tracks to stereo.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:860px;text-align:center;">
+      <h2>Inside the plugin</h2>
+      <p style="color:var(--muted);margin:0 auto 1.5rem;">Settings, a built-in manual, and a little something hidden behind the help button.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+        <img src="images/js505-settings.webp" alt="JS-505 settings: license, calibration and Buffered Bypass" width="200" style="max-width:45%;height:auto;border-radius:10px;" loading="lazy">
+        <img src="images/js505-manual.webp" alt="JS-505 built-in manual" width="200" style="max-width:45%;height:auto;border-radius:10px;" loading="lazy">
+        <img src="images/js505-game-play.webp" alt="The hidden Pong game inside JS-505" width="200" style="max-width:45%;height:auto;border-radius:10px;" loading="lazy">
       </div>
     </div>
   </section>
@@ -261,6 +290,10 @@
       <p style="color:var(--muted);line-height:1.7;">After you pay, your license key is emailed to you right away. Paste it into the plugin's Settings and click Activate. One key works on up to 10 of your machines, and you can deactivate a machine to move the license to a new computer.</p>
       <h3 style="margin-top:1.5rem;">Does JS-505 work on guitar, bass, keys and vocals?</h3>
       <p style="color:var(--muted);line-height:1.7;">Yes. It works on mono and stereo tracks, and on guitar, bass, keys, synths, vocals and busses. Auto-Calibration sets the right input level for your audio interface or preamp.</p>
+      <h3 style="margin-top:1.5rem;">What do the SPEED and DEPTH knobs do?</h3>
+      <p style="color:var(--muted);line-height:1.7;">SPEED sets how fast the chorus sweeps, from a slow 0.3 Hz drift to a quick 3 Hz shimmer. DEPTH sets how far the sweep moves: low settings gently thicken and double, high settings give a deep, seasick warble. Three factory presets (Subtle Double, Classic Chorus, Deep Warble) get you started.</p>
+      <h3 style="margin-top:1.5rem;">What is Buffered Bypass?</h3>
+      <p style="color:var(--muted);line-height:1.7;">The real pedal doesn't just disconnect when you switch it off: your signal still passes through its buffer, which has a sound of its own. Turn on Buffered Bypass in Settings and the footswitch gives you that buffered sound, while your DAW's bypass button still bypasses the plugin completely.</p>
       <h3 style="margin-top:1.5rem;">What is NAM A2?</h3>
       <p style="color:var(--muted);line-height:1.7;">Neural Amp Modeler (NAM), created by Steven Atkinson, is an open-source technology for capturing the sound of real analog gear. JS-505 uses its A2 models, so the tone comes from a capture of the actual hardware.</p>
     </div>
