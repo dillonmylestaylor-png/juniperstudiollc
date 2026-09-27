@@ -37,4 +37,7 @@ const api = async (method, p, body) => {
       console.log(item.id, 'created', r.status, r.status === 200 ? r.j.result.id : JSON.stringify(r.j.error || r.j).slice(0, 200));
     }
   }
+  // Shipping notifications: Printful tells the site when a package ships; the site emails the tracking link.
+  const hook = await api('POST', '/webhooks', { url: 'https://juniperstudiollc.com/.netlify/functions/printful-webhook', types: ['package_shipped'] });
+  console.log('webhook', hook.status, JSON.stringify(hook.j.result || hook.j.error || hook.j).slice(0, 200));
 })().catch((e) => { console.error(e.message); process.exit(1); });
