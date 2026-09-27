@@ -15,11 +15,11 @@ const PLUGINS = {
     name: 'JS-2',
     prefix: 'JS2',          // must match the plugin's LicenseClient ("js2", "JS2")
     code: 'js02',
-    stripeProductId: null,  // TODO: create the pay-what-you-want Stripe product, paste its id, then set live: true
+    stripeProductId: 'prod_VKmMk9MEsoVAeN',
     description: 'Analog-style tremolo. Donation-based.',
     page: 'js2',
     noun: 'plugin',
-    live: false,
+    live: true,
   },
   irdeconvolver: {
     id: 'irdeconvolver',
