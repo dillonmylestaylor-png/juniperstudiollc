@@ -11,6 +11,7 @@ const SHIPPING_CENTS = 495; // Printful's US flat rate for one shirt
 
 const MERCH = {
   'your-drummer-sucks': { id: 'your-drummer-sucks', name: 'Your Drummer Sucks Tee', color: 'Black' },
+  'your-intonation-sucks': { id: 'your-intonation-sucks', name: 'Your Intonation Sucks Tee', color: 'Black' },
   'talkback':           { id: 'talkback',           name: 'Talkback Tee',           color: 'Black' },
   'js505-pedal':        { id: 'js505-pedal',        name: 'JS-505 Pedal Tee',       color: 'Black' },
   'js2-pedal':          { id: 'js2-pedal',          name: 'JS-2 Pedal Tee',         color: 'Soft Cream' },
