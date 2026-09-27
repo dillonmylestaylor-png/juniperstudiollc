@@ -38,6 +38,21 @@
   status = 301
 
 [[redirects]]
+  from = "/JS2"
+  to = "/js2"
+  status = 301
+
+[[redirects]]
+  from = "/JS-2"
+  to = "/js2"
+  status = 301
+
+[[redirects]]
+  from = "/js-2"
+  to = "/js2"
+  status = 301
+
+[[redirects]]
   from = "/suno-ai-production"
   to = "/suno-to-real-song"
   status = 301

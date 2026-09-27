@@ -10,6 +10,17 @@ const PLUGINS = {
     noun: 'plugin', // what the customer is told to paste the key into
     live: true,
   },
+  js2: {
+    id: 'js2',
+    name: 'JS-2',
+    prefix: 'JS2',          // must match the plugin's LicenseClient ("js2", "JS2")
+    code: 'js02',
+    stripeProductId: null,  // TODO: create the pay-what-you-want Stripe product, paste its id, then set live: true
+    description: 'Analog-style tremolo. Donation-based.',
+    page: 'js2',
+    noun: 'plugin',
+    live: false,
+  },
   irdeconvolver: {
     id: 'irdeconvolver',
     name: 'IR Deconvolver',

@@ -51,6 +51,7 @@ Full list: https://juniperstudiollc.com/gear.html
 - [Studio Gear](https://juniperstudiollc.com/gear.html): complete equipment list
 - [Plugins](https://juniperstudiollc.com/plugins): index of Juniper Studio plugins
 - [JS-505](https://juniperstudiollc.com/js505): analog-style chorus plugin built on NAM A2 for Mac and Windows (Linux coming soon). Free 30-day trial, then pay what you want ($1 minimum). Demo video: https://youtu.be/xA5NSveh1OY
+- [JS-2](https://juniperstudiollc.com/js2): analog-style tremolo plugin (rate, wave, depth) built on NAM A2 from a real modded tremolo pedal, for Mac and Windows. Free 30-day trial, then pay what you want ($1 minimum).
 - [FAQ](https://juniperstudiollc.com/faq.html): pricing, gear, location, and booking questions answered
 - [Audio Samples](https://juniperstudiollc.com/audio.html): embedded Apple Music, Spotify, and YouTube playlists of work tracked, mixed, or produced at the studio (hundreds of songs), featuring artists including 357, BABE, Bradyn Ketter, Jake Moffett, Oreo Blue, Robert Rauch, Saubrie, Stephen Boudreaux, and The Dryline
 - [Contact](https://juniperstudiollc.com/contact.html): booking form, location, phone, email

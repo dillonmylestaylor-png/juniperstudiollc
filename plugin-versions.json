@@ -2,5 +2,9 @@
   "chorus505": {
     "version": "1.0.5",
     "url": "https://juniperstudiollc.com/js505"
+  },
+  "js2": {
+    "version": "1.0.0",
+    "url": "https://juniperstudiollc.com/js2"
   }
 }
