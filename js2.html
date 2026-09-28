@@ -198,8 +198,8 @@
           <h2 style="font-size:1.25rem;color:var(--accent);margin-bottom:1rem;">Analog-style tremolo, built on NAM A2</h2>
           <p class="subtitle" style="margin:0 0 1.25rem;">From a slow, round throb to a hard helicopter chop. Three knobs, one footswitch, and the tone of a real modded pedal.</p>
           <div class="btn-group" style="margin-bottom:.75rem;">
-            <a href="/downloads/JS-2-Mac.pkg" class="btn btn-primary" download>Download for Mac &mdash; free trial</a>
-            <a href="/downloads/JS-2-Windows.exe" class="btn btn-primary" download>Download for Windows &mdash; free trial</a>
+            <a href="/download/JS-2-Mac.pkg" class="btn btn-primary" download>Download for Mac &mdash; free trial</a>
+            <a href="/download/JS-2-Windows.exe" class="btn btn-primary" download>Download for Windows &mdash; free trial</a>
             <a href="/checkout?plugin=js2" class="btn btn-outline">Purchase &mdash; pay what you want</a>
           </div>
           <p style="color:var(--muted);font-size:.85rem;"><strong style="color:#fff;">Donation-based pricing:</strong> pay what you want, from $1.<br>Mac: AU, VST3 and CLAP &middot; Apple Silicon and Intel &middot; macOS 12 or newer.<br>Windows: VST3 and CLAP.<br>AAX version coming soon.</p>
@@ -280,13 +280,33 @@
         <div class="card"><h3>3. Get your key</h3><p>Pay what you want, then paste the emailed key into the plugin's Settings and click Activate.</p></div>
       </div>
       <div class="btn-group" style="justify-content:center;margin-top:2rem;">
-        <a href="/downloads/JS-2-Mac.pkg" class="btn btn-primary" download>Download for Mac</a>
-        <a href="/downloads/JS-2-Windows.exe" class="btn btn-primary" download>Download for Windows</a>
+        <a href="/download/JS-2-Mac.pkg" class="btn btn-primary" download>Download for Mac</a>
+        <a href="/download/JS-2-Windows.exe" class="btn btn-primary" download>Download for Windows</a>
         <a href="/checkout?plugin=js2" class="btn btn-outline">Purchase &mdash; pay what you want</a>
       </div>
       <p style="color:var(--muted);font-size:.9rem;max-width:640px;margin:2rem auto 0;">Moving to a new computer? Click Deactivate in the plugin's Settings on the old one, and that slot is yours again. Problems with a key? Email <a href="mailto:Info@JuniperStudioLLC.com">Info@JuniperStudioLLC.com</a> and a real person will help.</p>
       <p style="margin-top:1.5rem;"><a href="/plugins">&larr; All plugins</a></p>
       <p style="color:var(--muted);font-size:.8rem;max-width:640px;margin:1.5rem auto 0;">JS-2 &copy; 2026 Juniper Studio LLC. Built on NAM (Neural Amp Modeler) by Steven Atkinson, used under the MIT License. VST is a registered trademark of Steinberg Media Technologies GmbH. Audio Units is a trademark of Apple Inc.</p>
+    </div>
+  </section>
+  <section class="section section-alt" id="reviews" data-reviews="js2">
+    <div class="container" style="max-width:860px;">
+      <h2 style="text-align:center;">Reviews</h2>
+      <p class="reviews-summary" style="text-align:center;color:var(--muted);margin-bottom:1.5rem;">Loading reviews&hellip;</p>
+      <div class="reviews-list"></div>
+      <form class="card review-form" novalidate>
+        <h3 style="margin-bottom:.75rem;">Write a review</h3>
+        <div class="star-pick" role="group" aria-label="Your rating">
+          <button type="button" aria-label="1 star">&#9734;</button><button type="button" aria-label="2 stars">&#9734;</button><button type="button" aria-label="3 stars">&#9734;</button><button type="button" aria-label="4 stars">&#9734;</button><button type="button" aria-label="5 stars">&#9734;</button>
+        </div>
+        <label>Your name<input name="name" maxlength="40" required autocomplete="name"></label>
+        <label>Email <span style="color:var(--muted);">(optional, never shown: we only check it against license purchases for the &ldquo;Verified owner&rdquo; badge)</span><input name="email" type="email" maxlength="120" autocomplete="email"></label>
+        <label>Your review<textarea name="text" rows="5" maxlength="1000" required placeholder="How does JS-2 sound in your sessions?"></textarea></label>
+        <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+        <button type="submit" class="btn btn-primary">Send review</button>
+        <p class="review-status" role="status" style="color:var(--muted);font-size:.9rem;margin-top:.75rem;"></p>
+        <p style="color:var(--muted);font-size:.8rem;margin-top:.25rem;">Reviews show up after a quick check, usually within a day.</p>
+      </form>
     </div>
   </section>
 </main>
@@ -312,5 +332,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/reviews.js"></script>
 </body>
 </html>

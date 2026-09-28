@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin | Juniper Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { padding: 2rem 0 4rem; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+    h1 { font-size: 1.6rem; margin-bottom: .25rem; }
+    h2 { font-size: 1.15rem; margin: 2.25rem 0 .75rem; }
+    .muted { color: var(--muted); font-size: .9rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; margin-bottom: .75rem; }
+    th, td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid #262626; }
+    th { color: var(--muted); font-weight: 500; }
+    td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+    .bars { display: flex; align-items: flex-end; gap: 3px; height: 70px; margin: .5rem 0 .25rem; }
+    .bars div { flex: 1; background: var(--accent); min-height: 2px; border-radius: 2px 2px 0 0; }
+    .review { margin-bottom: .75rem; }
+    .review .stars { color: var(--accent); letter-spacing: 2px; }
+    .review .text { white-space: pre-line; line-height: 1.6; margin: .5rem 0; }
+    .badge { font-size: .72rem; background: var(--accent); color: #000; border-radius: 999px; padding: .1rem .5rem; font-weight: 600; margin-left: .35rem; }
+    .actions { display: flex; gap: .5rem; margin-top: .5rem; }
+    .actions button { font: inherit; font-size: .85rem; padding: .45rem .9rem; border-radius: 6px; cursor: pointer; border: 1px solid #444; background: #151515; color: #fff; }
+    .actions .approve { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
+    #login input { padding: .65rem .75rem; border-radius: 6px; background: #111; color: #fff; border: 1px solid #333; font: inherit; width: 260px; max-width: 100%; }
+    .err { color: #ff8a80; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Juniper<span style="color:var(--accent);">Studio</span> admin</h1>
+  <p class="muted">Private numbers. This page is not linked anywhere and search engines are told to skip it.</p>
+
+  <form id="login" class="card" style="margin-top:1.5rem;max-width:420px;">
+    <label class="muted" for="pw">Password</label><br>
+    <input id="pw" type="password" autocomplete="current-password" style="margin:.5rem 0 1rem;">
+    <br><button class="btn btn-primary" type="submit">Open</button>
+    <p id="loginMsg" class="err" style="margin-top:.75rem;"></p>
+  </form>
+
+  <div id="dash" hidden>
+    <p class="muted" style="margin-top:1rem;"><span id="asof"></span> &middot; <a href="#" id="refresh">Refresh</a> &middot; <a href="#" id="logout">Lock</a></p>
+
+    <h2>Downloads</h2>
+    <p class="muted">One per person per file per day. Bots and link previews aren't counted. Counting started when this page went live.</p>
+    <div class="grid" id="downloads"></div>
+
+    <h2>License sales</h2>
+    <div id="sales"></div>
+
+    <h2>Reviews waiting for approval</h2>
+    <div id="pending"></div>
+
+    <h2>Published reviews</h2>
+    <div id="approved"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var KEY = 'jsAdminPw';
+  var pw = '';
+  try { pw = sessionStorage.getItem(KEY) || ''; } catch (e) {}
+  var $ = function (id) { return document.getElementById(id); };
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function stars(n) { var s = ''; for (var i = 1; i <= 5; i++) s += i <= n ? '★' : '☆'; return s; }
+  function api(method, body) {
+    return fetch('/api/admin', { method: method, headers: { 'Authorization': 'Bearer ' + pw, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined })
+      .then(function (r) { return r.json().then(function (d) { d._status = r.status; return d; }); });
+  }
+
+  function table(head, rows) {
+    var t = el('table'), tr = el('tr');
+    head.forEach(function (h, i) { tr.appendChild(el('th', i ? 'n' : '', h)); });
+    t.appendChild(tr);
+    rows.forEach(function (r) { var row = el('tr'); r.forEach(function (c, i) { row.appendChild(el('td', i ? 'n' : '', String(c))); }); t.appendChild(row); });
+    return t;
+  }
+
+  function renderDownloads(d) {
+    var box = $('downloads'); box.textContent = '';
+    if (!d || d.error) { box.appendChild(el('p', 'err', 'Could not load downloads: ' + (d && d.error))); return; }
+    Object.keys(d.plugins).forEach(function (id) {
+      var p = d.plugins[id], card = el('div', 'card');
+      card.appendChild(el('h3', null, p.name));
+      var rows = [], tot = [0, 0, 0, 0];
+      Object.keys(p.os).forEach(function (os) { var o = p.os[os]; rows.push([os, o.today, o.d7, o.d30, o.all]); tot[0] += o.today; tot[1] += o.d7; tot[2] += o.d30; tot[3] += o.all; });
+      rows.push(['Total'].concat(tot));
+      card.appendChild(table(['', 'Today', '7 days', '30 days', 'All time'], rows));
+      var max = Math.max.apply(null, p.daily.map(function (x) { return x[1]; }).concat([1]));
+      var bars = el('div', 'bars');
+      p.daily.slice().reverse().forEach(function (x) { var b = el('div'); b.style.height = (100 * x[1] / max) + '%'; b.title = x[0] + ': ' + x[1]; bars.appendChild(b); });
+      card.appendChild(bars);
+      card.appendChild(el('p', 'muted', 'Last 14 days (hover a bar for the day).'));
+      if (p.countries.length) card.appendChild(el('p', 'muted', 'Top countries: ' + p.countries.map(function (c) { return c[0] + ' ' + c[1]; }).join(', ')));
+      box.appendChild(card);
+    });
+  }
+
+  function renderSales(s) {
+    var box = $('sales'); box.textContent = '';
+    if (!s || s.error) { box.appendChild(el('p', 'err', 'Could not load sales from Stripe: ' + (s && s.error))); return; }
+    var rows = Object.keys(s).map(function (id) { var o = s[id]; return [o.name, o.count, o.d7, '$' + o.gross.toFixed(2)]; });
+    if (!rows.length) { box.appendChild(el('p', 'muted', 'No license sales yet.')); return; }
+    box.appendChild(table(['Plugin', 'Licenses', 'Last 7 days', 'Gross'], rows));
+    box.appendChild(el('p', 'muted', 'Gross is before Stripe fees. Includes $0 promo licenses.'));
+  }
+
+  function renderReviews(list, boxId, pending) {
+    var box = $(boxId); box.textContent = '';
+    if (!list.length) { box.appendChild(el('p', 'muted', pending ? 'Nothing waiting.' : 'None yet.')); return; }
+    list.forEach(function (r) {
+      var c = el('div', 'card review'), head = el('p');
+      head.appendChild(el('span', 'stars', stars(r.rating)));
+      head.appendChild(el('strong', null, '  ' + r.name));
+      if (r.verified) head.appendChild(el('span', 'badge', 'Verified owner'));
+      head.appendChild(el('span', 'muted', '  on ' + r.pluginName + ' · ' + new Date(r.created).toLocaleString()));
+      c.appendChild(head);
+      c.appendChild(el('p', 'text', r.text));
+      if (r.email) { var m = el('p', 'muted'); m.appendChild(document.createTextNode('Email (private): ')); var a = el('a', null, r.email); a.href = 'mailto:' + r.email; m.appendChild(a); c.appendChild(m); }
+      var act = el('div', 'actions');
+      if (pending) { var ok = el('button', 'approve', 'Approve'); ok.onclick = function () { act.textContent = 'Saving…'; api('POST', { action: 'approve', id: r.id }).then(load); }; act.appendChild(ok); }
+      var del = el('button', null, pending ? 'Delete' : 'Remove from site');
+      del.onclick = function () { if (confirm('Delete this review for good?')) { act.textContent = 'Deleting…'; api('POST', { action: 'delete', id: r.id }).then(load); } };
+      act.appendChild(del);
+      c.appendChild(act);
+      box.appendChild(c);
+    });
+  }
+
+  function load() {
+    $('asof').textContent = 'Loading…';
+    return api('GET').then(function (d) {
+      if (!d.ok) {
+        try { sessionStorage.removeItem(KEY); } catch (e) {}
+        $('dash').hidden = true; $('login').hidden = false; $('loginMsg').textContent = d.error || 'Could not open.';
+        return;
+      }
+      $('login').hidden = true; $('dash').hidden = false;
+      $('asof').textContent = 'Updated ' + new Date().toLocaleString();
+      renderDownloads(d.downloads); renderSales(d.sales);
+      renderReviews(d.reviews.pending, 'pending', true); renderReviews(d.reviews.approved, 'approved', false);
+    }).catch(function () { $('asof').textContent = 'Could not reach the server.'; });
+  }
+
+  $('login').addEventListener('submit', function (e) {
+    e.preventDefault(); pw = $('pw').value; $('loginMsg').textContent = '';
+    try { sessionStorage.setItem(KEY, pw); } catch (e2) {}
+    load();
+  });
+  $('refresh').onclick = function (e) { e.preventDefault(); load(); };
+  $('logout').onclick = function (e) { e.preventDefault(); pw = ''; try { sessionStorage.removeItem(KEY); } catch (e2) {} location.reload(); };
+  if (pw) load();
+})();
+</script>
+</body>
+</html>

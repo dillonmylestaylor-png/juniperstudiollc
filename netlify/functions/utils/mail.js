@@ -38,4 +38,18 @@ async function addToMailingList(email) {
   return addToListOnce(email, 'plugin-purchase');
 }
 
-module.exports = { sendLicenseEmail, addToMailingList, FROM };
+// Tells Dillon a new plugin review is waiting on /admin. Goes to our own inbox only.
+async function sendReviewNotice({ pluginName, rating, name, text, verified }) {
+  const transport = transporter();
+  await transport.sendMail({
+    from: `Juniper Studio LLC <${FROM}>`,
+    to: FROM,
+    subject: `New ${pluginName} review (${rating}★) waiting for approval`,
+    text:
+      `${name}${verified ? ' (verified owner)' : ''} gave ${pluginName} ${rating} out of 5:\n\n` +
+      `${text}\n\n` +
+      `Approve or delete it at https://juniperstudiollc.com/admin\n`,
+  });
+}
+
+module.exports = { sendLicenseEmail, sendReviewNotice, addToMailingList, FROM };

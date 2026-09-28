@@ -527,3 +527,18 @@ footer .socials a:hover { color: var(--accent); }
   .section { padding: 3rem 0; }
   .container { padding: 0 1.25rem; }
 }
+
+/* Plugin reviews (js/reviews.js) */
+.reviews-list { display: grid; gap: 1rem; margin-bottom: 2rem; }
+.review p { margin: 0 0 .5rem; }
+.review-head { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.review-stars { color: var(--accent); letter-spacing: 2px; }
+.review-badge { font-size: .75rem; color: var(--black); background: var(--accent); border-radius: 999px; padding: .1rem .55rem; font-weight: 600; }
+.review-text { line-height: 1.7; white-space: pre-line; }
+.review-date { color: var(--muted); font-size: .8rem; }
+.review-form label { display: block; font-size: .85rem; color: #ddd; margin-bottom: .9rem; }
+.review-form input, .review-form textarea { display: block; width: 100%; margin-top: .35rem; padding: .65rem .75rem; border-radius: 6px; background: #111; color: #fff; border: 1px solid #333; font: inherit; }
+.review-form textarea { resize: vertical; }
+.review-form .hp { position: absolute; left: -9999px; }
+.star-pick { margin-bottom: 1rem; }
+.star-pick button { background: none; border: 0; color: var(--accent); font-size: 1.9rem; line-height: 1; cursor: pointer; padding: 0 .1rem; }
