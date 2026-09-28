@@ -21,11 +21,30 @@
     return e;
   }
 
+  // Search engines read the page's SoftwareApplication JSON-LD; with approved reviews on the page, add
+  // the same rating and reviews there so results can show stars. Only what's visible on the page.
+  function addRatingToStructuredData(d) {
+    var scripts = document.querySelectorAll('script[type="application/ld+json"]');
+    for (var i = 0; i < scripts.length; i++) {
+      var data;
+      try { data = JSON.parse(scripts[i].textContent); } catch (e) { continue; }
+      if (!data || data['@type'] !== 'SoftwareApplication') continue;
+      data.aggregateRating = { '@type': 'AggregateRating', ratingValue: Number(d.average.toFixed(1)), reviewCount: d.count, bestRating: 5, worstRating: 1 };
+      data.review = d.reviews.slice(0, 10).map(function (r) {
+        return { '@type': 'Review', author: { '@type': 'Person', name: r.name }, datePublished: new Date(r.created).toISOString().slice(0, 10),
+                 reviewBody: r.text, reviewRating: { '@type': 'Rating', ratingValue: r.rating, bestRating: 5, worstRating: 1 } };
+      });
+      scripts[i].textContent = JSON.stringify(data);
+      return;
+    }
+  }
+
   fetch('/api/reviews?plugin=' + encodeURIComponent(plugin))
     .then(function (r) { return r.json(); })
     .then(function (d) {
       if (!d.ok) return;
       if (!d.count) { summary.textContent = 'No reviews yet. Tried it? Be the first.'; return; }
+      addRatingToStructuredData(d);
       summary.textContent = '';
       summary.appendChild(el('span', 'review-stars', stars(d.average)));
       summary.appendChild(document.createTextNode(' ' + d.average.toFixed(1) + ' out of 5 · ' + d.count + (d.count === 1 ? ' review' : ' reviews')));
