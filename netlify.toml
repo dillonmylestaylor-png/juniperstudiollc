@@ -37,6 +37,11 @@
   to = "/.netlify/functions/admin"
   status = 200
 
+[[redirects]]
+  from = "/fourthwall-webhook"
+  to = "/.netlify/functions/fourthwall-webhook"
+  status = 200
+
 [[headers]]
   for = "/admin"
   [headers.values]

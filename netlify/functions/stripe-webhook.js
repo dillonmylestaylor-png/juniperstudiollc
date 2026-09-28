@@ -44,6 +44,38 @@ exports.handler = async (event) => {
 
   const pluginId = session.metadata && session.metadata.plugin;
   const plugin = getPlugin(pluginId);
+
+  // Tell Dillon about the sale (plugin license or studio service). Once per checkout; never blocks the rest.
+  try {
+    const { notifySale, money } = require('./utils/notify');
+    const amount = money((session.amount_total || 0) / 100, session.currency);
+    const who = session.customer_details || {};
+    const buyer = [who.name, who.email && `(${who.email})`].filter(Boolean).join(' ') || 'Someone';
+    let what;
+    if (plugin) {
+      what = `${plugin.name} license`;
+    } else {
+      const items = await stripe.checkout.sessions.listLineItems(session.id, { limit: 10 });
+      what = items.data.map((li) => (li.quantity > 1 ? `${li.quantity} x ` : '') + (li.description || 'Item')).join(', ') || 'Studio service';
+      if (session.mode === 'subscription') what += ' (subscription)';
+    }
+    const free = !session.amount_total;
+    const pending = session.payment_status === 'unpaid';
+    const discount = session.total_details && session.total_details.amount_discount
+      ? `Discount used: ${money(session.total_details.amount_discount / 100, session.currency)} off` : '';
+    await notifySale({
+      key: 'stripe/' + session.id,
+      title: `Sale: ${what} - ${free ? 'free (promo)' : amount}${pending ? ' (payment pending)' : ''}`,
+      lines: [
+        `${buyer} ${free ? 'got' : 'bought'} ${what}${free ? ' with a promo code' : ` for ${amount}`}.`,
+        discount,
+        pending ? 'The payment is still processing (bank transfer); Stripe will confirm it later.' : '',
+      ],
+      link: session.payment_intent ? `https://dashboard.stripe.com/payments/${session.payment_intent}` : 'https://dashboard.stripe.com/payments',
+    });
+  } catch (err) {
+    console.error('sale notice failed:', err.message);
+  }
   if (!plugin) {
     return { statusCode: 200, body: JSON.stringify({ received: true, skipped: true }) };
   }

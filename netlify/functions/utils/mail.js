@@ -52,4 +52,10 @@ async function sendReviewNotice({ pluginName, rating, name, text, verified }) {
   });
 }
 
-module.exports = { sendLicenseEmail, sendReviewNotice, addToMailingList, FROM };
+// "You made a sale" email to our own inbox (see utils/notify.js).
+async function sendSaleNotice({ subject, text }) {
+  const transport = transporter();
+  await transport.sendMail({ from: `Juniper Studio LLC <${FROM}>`, to: FROM, subject, text });
+}
+
+module.exports = { sendLicenseEmail, sendReviewNotice, sendSaleNotice, addToMailingList, FROM };
