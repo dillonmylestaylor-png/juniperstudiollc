@@ -112,10 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
    gated. Reuses the .list-modal styling and the same `email-list` Netlify form as
    the 10%-off popup, tagged source=download so the two are tellable apart. */
 (function () {
-  var links = document.querySelectorAll('a[href*="downloads/"]');
+  // Download buttons go through the /download/<file> counter; older pages linked downloads/<file> directly.
+  var links = document.querySelectorAll('a[href*="/download/"], a[href*="downloads/"]');
   if (!links.length) return;
 
-  function show() {
+  function show(plugin) {
     if (document.querySelector('.list-modal')) return; // never stack on the 10%-off popup
     var subscribed = false;
     try { subscribed = localStorage.getItem('juniper_list') === '1'; } catch (e) {}
@@ -128,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
       '<button type="button" class="list-modal-close" aria-label="Close">&times;</button>' +
       '<h3>Thanks for downloading!</h3>' +
       (subscribed
-        ? '<p>Your download is on its way. Run the installer, then open JS-505 in your DAW &mdash; it\'s free to use for 30 days.</p>' +
+        ? '<p>Your download is on its way. Run the installer, then open ' + plugin + ' in your DAW &mdash; it\'s free to use for 30 days.</p>' +
           '<button type="button" class="btn btn-primary list-done">Got it</button>'
         : '<p>Your download is on its way. Want an email when there\'s an update or a fix? Totally optional.</p>' +
           '<form id="dlForm">' +
@@ -180,6 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   for (var i = 0; i < links.length; i++) {
-    links[i].addEventListener('click', function () { setTimeout(show, 900); });
+    links[i].addEventListener('click', function () {
+      var plugin = /JS-2[-.]/.test(this.getAttribute('href')) ? 'JS-2' : 'JS-505';
+      setTimeout(function () { show(plugin); }, 900);
+    });
   }
 })();
