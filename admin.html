@@ -58,6 +58,15 @@
 
     <h2>Published reviews</h2>
     <div id="approved"></div>
+
+    <h2>Review promo codes (30% off studio)</h2>
+    <p class="muted">When someone has reviewed a plugin and posted on two socials, make them a pair of one-time codes and send both. They type the code on the Stripe payment page. THANKS30-… is 30% off Mixing, Hip-Hop Mixing, Mastering, the Mix &amp; Master Bundle, Suno and Re-amping. THANKS30-…-PROD is Production at $262.50 (the 50% sale plus 30%). Recording sessions and album packages aren't covered: discount those by hand.</p>
+    <form id="promoForm" class="actions" style="flex-wrap:wrap;align-items:center;">
+      <input id="promoNote" type="text" maxlength="100" placeholder="Who is it for? (name or email)" style="padding:.5rem .7rem;border-radius:6px;background:#111;color:#fff;border:1px solid #333;font:inherit;min-width:260px;flex:1;">
+      <button class="approve" type="submit">Create codes</button>
+    </form>
+    <div id="promoNew"></div>
+    <div id="promoList"></div>
   </div>
 </div>
 
@@ -133,6 +142,37 @@
     });
   }
 
+  function renderPromoCodes(list) {
+    var box = $('promoList'); box.textContent = '';
+    if (!list || list.error) { box.appendChild(el('p', 'err', 'Could not load codes from Stripe: ' + (list && list.error))); return; }
+    if (!list.length) { box.appendChild(el('p', 'muted', 'No codes made yet.')); return; }
+    box.appendChild(table(['Code', 'For', 'Made', 'Used on'], list.map(function (p) {
+      return [p.code + '  /  ' + p.code + '-PROD', p.note || '—', new Date(p.created).toLocaleDateString(), p.used || 'not yet'];
+    })));
+  }
+
+  $('promoForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var box = $('promoNew'), btn = this.querySelector('button');
+    btn.disabled = true; box.textContent = 'Making codes…';
+    api('POST', { action: 'review-codes', note: $('promoNote').value }).then(function (d) {
+      btn.disabled = false; box.textContent = '';
+      if (!d.ok) { box.appendChild(el('p', 'err', d.error || 'Could not make codes.')); return; }
+      var msg = 'Thanks for the review and the posts! Here are your codes (one use each):\n\n' +
+        d.codes.service + ' = 30% off one studio service (mixing, hip-hop mixing, mastering, mix + master, Suno to real song, re-amping)\n' +
+        d.codes.production + ' = a Production song for $262.50 (the 50% sale plus your 30%)\n\n' +
+        'Book at https://juniperstudiollc.com/services and enter the code on the payment page.';
+      var c = el('div', 'card review');
+      c.appendChild(el('p', null, 'New codes' + (d.codes.note ? ' for ' + d.codes.note : '') + '. Copy this into your reply:'));
+      var t = el('p', 'text', msg); c.appendChild(t);
+      var act = el('div', 'actions'), copy = el('button', 'approve', 'Copy message');
+      copy.onclick = function () { (navigator.clipboard ? navigator.clipboard.writeText(msg) : Promise.reject()).then(function () { copy.textContent = 'Copied'; }, function () { copy.textContent = 'Select the text and copy it'; }); };
+      act.appendChild(copy); c.appendChild(act); box.appendChild(c);
+      $('promoNote').value = '';
+      load();
+    }).catch(function () { btn.disabled = false; box.textContent = 'Could not reach the server.'; });
+  });
+
   function load() {
     $('asof').textContent = 'Loading…';
     return api('GET').then(function (d) {
@@ -145,6 +185,7 @@
       $('asof').textContent = 'Updated ' + new Date().toLocaleString();
       renderDownloads(d.downloads); renderSales(d.sales);
       renderReviews(d.reviews.pending, 'pending', true); renderReviews(d.reviews.approved, 'approved', false);
+      renderPromoCodes(d.promoCodes);
     }).catch(function () { $('asof').textContent = 'Could not reach the server.'; });
   }
 

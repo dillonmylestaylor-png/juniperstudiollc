@@ -2,13 +2,15 @@
 // Auth: "Authorization: Bearer <ADMIN_PASSWORD>" (Netlify environment variable). Without the variable set
 // the endpoint is closed.
 //   GET  downloads (per plugin/OS: today, 7 days, 30 days, all time; last 14 days; countries),
-//        license sales from Stripe, and reviews (pending + approved)
+//        license sales from Stripe, reviews (pending + approved), and review-promo codes
 //   POST {action: "approve" | "delete", id}
+//   POST {action: "review-codes", note} -> a new pair of one-time review-promo codes (utils/reviewPromo.js)
 const crypto = require('crypto');
 const { connectLambda, getStore } = require('@netlify/blobs');
 const { FILES, statsDay } = require('./utils/downloads');
 const { REVIEWABLE, ID_RE, store, listState } = require('./utils/reviews');
 const { PLUGINS } = require('./utils/plugins');
+const { createReviewCodes, listReviewCodes } = require('./utils/reviewPromo');
 
 const json = (statusCode, body) => ({ statusCode, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }, body: JSON.stringify(body) });
 const sha = (s) => crypto.createHash('sha256').update(String(s)).digest();
@@ -77,6 +79,14 @@ exports.handler = async (event) => {
   if (event.httpMethod === 'POST') {
     let b = {};
     try { b = JSON.parse(event.body || '{}'); } catch (e) {}
+    if (b.action === 'review-codes') {
+      try {
+        const codes = await createReviewCodes(require('stripe')(process.env.STRIPE_SECRET_KEY), b.note);
+        return json(200, { ok: true, codes });
+      } catch (err) {
+        return json(500, { ok: false, error: err.message });
+      }
+    }
     if (!ID_RE.test(String(b.id || ''))) return json(400, { ok: false, error: 'Bad review id.' });
     const s = store();
     if (b.action === 'approve') {
@@ -94,12 +104,13 @@ exports.handler = async (event) => {
     return json(400, { ok: false, error: 'Unknown action.' });
   }
 
-  const [downloads, sales, pending, approved] = await Promise.all([
+  const [downloads, sales, pending, approved, promoCodes] = await Promise.all([
     downloadStats().catch((e) => ({ error: e.message })),
     salesStats().catch((e) => ({ error: e.message })),
     listState('pending'),
     listState('approved'),
+    listReviewCodes(require('stripe')(process.env.STRIPE_SECRET_KEY)).catch((e) => ({ error: e.message })),
   ]);
   const label = (r) => ({ ...r, pluginName: REVIEWABLE[r.plugin] || r.plugin });
-  return json(200, { ok: true, downloads, sales, reviews: { pending: pending.map(label), approved: approved.map(label) } });
+  return json(200, { ok: true, downloads, sales, reviews: { pending: pending.map(label), approved: approved.map(label) }, promoCodes });
 };
