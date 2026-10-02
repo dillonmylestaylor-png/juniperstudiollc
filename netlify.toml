@@ -173,6 +173,12 @@
   force = true
 
 [[redirects]]
+  from = "/irdeconvolver.html"
+  to = "/irdeconvolver"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/js2.html"
   to = "/js2"
   status = 301

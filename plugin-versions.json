@@ -6,5 +6,9 @@
   "js2": {
     "version": "1.0.2",
     "url": "https://juniperstudiollc.com/js2"
+  },
+  "irdeconvolver": {
+    "version": "1.0.0",
+    "url": "https://juniperstudiollc.com/irdeconvolver"
   }
 }
