@@ -188,7 +188,14 @@
   var PLAY = '<svg class="pl" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="pa" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
   var HEART = '<svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-9.3-9C1.3 9 3 5.5 6.4 5.5c2 0 3.6 1.1 4.4 2.6.8-1.5 2.4-2.6 4.4-2.6 3.4 0 5.1 3.5 3.7 6.5C19 16.6 12 21 12 21z"/></svg>';
 
-  function api(path, opts) { return fetch('/api/catalog/' + path, Object.assign({ credentials: 'same-origin' }, opts || {})); }
+  var TOKEN = '';
+  try { TOKEN = localStorage.getItem('catalogToken') || ''; } catch (e) {}
+  function api(path, opts) {
+    opts = Object.assign({ credentials: 'same-origin' }, opts || {});
+    if (TOKEN) opts.headers = Object.assign({ Authorization: 'Bearer ' + TOKEN }, opts.headers || {});
+    return fetch('/api/catalog/' + path, opts);
+  }
+  function audioUrl(id) { return '/api/catalog/audio/' + encodeURIComponent(id) + (TOKEN ? '?t=' + encodeURIComponent(TOKEN) : ''); }
   function fmt(t) { if (!isFinite(t)) t = 0; return Math.floor(t / 60) + ':' + ('0' + Math.floor(t % 60)).slice(-2); }
   function savePicks() { try { localStorage.setItem('catalogShortlist', JSON.stringify(picks)); } catch (e) {} updateShort(); }
   function updateShort() {
@@ -222,7 +229,7 @@
     heart.onclick = function () { if (picks[s.title]) delete picks[s.title]; else picks[s.title] = 1; heart.classList.toggle('on', !!picks[s.title]); savePicks(); };
     el.appendChild(heart);
 
-    function load(v) { audio.src = '/api/catalog/audio/' + encodeURIComponent(v.id); audio.dataset.fadeIn = v.fadeIn; audio.dataset.fadeOut = v.fadeOut; range.value = 0; range.style.setProperty('--p', '0%'); cur.textContent = '0:00'; }
+    function load(v) { audio.src = audioUrl(v.id); audio.dataset.fadeIn = v.fadeIn; audio.dataset.fadeOut = v.fadeOut; range.value = 0; range.style.setProperty('--p', '0%'); cur.textContent = '0:00'; }
     var vers = s.versions;
     if (vers.length > 1) {
       var vs = document.createElement('div'); vs.className = 'vers';
@@ -337,7 +344,7 @@
 
   function load() {
     return api('list').then(function (r) {
-      if (r.status === 401) return false;
+      if (r.status === 401) { if (TOKEN) { TOKEN = ''; try { localStorage.removeItem('catalogToken'); } catch (e) {} } return false; }
       return r.json().then(function (j) { if (j.ok) { show(j.songs); return true; } $('err').textContent = j.error || ''; return false; });
     });
   }
@@ -345,7 +352,11 @@
     e.preventDefault(); $('err').textContent = '';
     api('login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: $('pw').value }) })
       .then(function (r) { return r.json(); })
-      .then(function (j) { if (!j.ok) { $('err').textContent = j.error || 'Could not sign in.'; return; } return load(); })
+      .then(function (j) {
+        if (!j.ok) { $('err').textContent = j.error || 'Could not sign in.'; return; }
+        TOKEN = j.token || ''; try { localStorage.setItem('catalogToken', TOKEN); } catch (e) {}
+        return load().then(function (ok) { if (!ok) $('err').textContent = 'Signed in, but the catalog could not load. Please refresh and try again.'; });
+      })
       .catch(function () { $('err').textContent = 'Could not reach the server.'; });
   });
   $('q').addEventListener('input', function (e) { render(e.target.value); });

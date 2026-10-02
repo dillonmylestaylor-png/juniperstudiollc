@@ -22,13 +22,22 @@ const password = () => process.env.CATALOG_PASSWORD || process.env.ADMIN_PASSWOR
 const secret = () => process.env.LICENSE_SIGNING_SECRET || password();
 const sign = (exp) => crypto.createHmac('sha256', secret()).update('catalog|' + exp).digest('hex');
 
-function hasAccess(event) {
-  const m = /(?:^|;\s*)catalog_access=([^;]+)/.exec((event.headers || {}).cookie || '');
-  if (!m) return false;
-  const [exp, sig] = decodeURIComponent(m[1]).split('.');
-  if (!exp || !sig || Number(exp) < Date.now()) return false;
+function tokenOk(tok) {
+  const [exp, sig] = String(tok || '').split('.');
+  if (!exp || !sig || !/^\d+$/.test(exp) || Number(exp) < Date.now()) return false;
   const want = sign(exp);
   return sig.length === want.length && crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(want));
+}
+
+// The signed token can arrive as the cookie, an "Authorization: Bearer" header, or ?t= (audio players cannot send headers).
+function hasAccess(event) {
+  const h = event.headers || {};
+  const m = /(?:^|;\s*)catalog_access=([^;]+)/.exec(h.cookie || '');
+  let cookieTok = '';
+  try { cookieTok = m ? decodeURIComponent(m[1]) : ''; } catch (e) {}
+  const bearer = String(h.authorization || '').replace(/^Bearer\s+/i, '');
+  const q = (event.queryStringParameters || {}).t || '';
+  return tokenOk(cookieTok) || tokenOk(bearer) || tokenOk(q);
 }
 
 function findFile(id) {
@@ -58,8 +67,9 @@ exports.handler = async (event) => {
       return json(401, { ok: false, error: 'Wrong password.' });
     }
     const exp = String(Date.now() + MAX_AGE * 1000);
-    const cookie = `${COOKIE}=${encodeURIComponent(exp + '.' + sign(exp))}; Path=/api/catalog; Max-Age=${MAX_AGE}; HttpOnly; Secure; SameSite=Strict`;
-    return json(200, { ok: true }, { 'Set-Cookie': cookie });
+    const token = exp + '.' + sign(exp);
+    const cookie = `${COOKIE}=${encodeURIComponent(token)}; Path=/api/catalog; Max-Age=${MAX_AGE}; HttpOnly; Secure; SameSite=Strict`;
+    return json(200, { ok: true, token }, { 'Set-Cookie': cookie });
   }
 
   if (!hasAccess(event)) return json(401, { ok: false, error: 'Password needed.' });
