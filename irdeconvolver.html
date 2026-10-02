@@ -228,7 +228,7 @@
       <div class="cards">
         <div class="card"><h3>Scattered tools</h3><p>One program to generate the sweep, another to deconvolve, another to trim, another to level. Every capture turns into a chain of manual steps you have to remember.</p></div>
         <div class="card"><h3>IRs that don't line up</h3><p>Each capture lands at a slightly different point in time, so swapping or blending IRs gives phasey, comb-filtered results until you nudge them by hand.</p></div>
-        <div class="card"><h3>Blends that fight each other</h3><p>Layer two IRs and one is louder than the other. You level by ear, then do it again for the next pair.</p></div>
+        <div class="card"><h3>Blends that go phasey</h3><p>Layer two IRs a sample or two out of line, or at mismatched levels, and they partly cancel and comb-filter. You nudge and level by ear, then do it again for the next pair.</p></div>
         <div class="card"><h3>Mic and speaker character</h3><p>A plain sweep result gives you the linear response only. Measuring how the speaker itself distorts means a special sweep and extra processing most people skip.</p></div>
         <div class="card"><h3>Settings to guess at</h3><p>How long should the IR be? Is this sweep linear or exponential? Get it wrong and you either clip the tail or keep a pile of noise.</p></div>
         <div class="card"><h3>One at a time</h3><p>Captured ten mic positions? That's ten rounds of the same steps, with ten chances to get a setting wrong.</p></div>
@@ -257,8 +257,8 @@
           <p>Harmonic Kernels extracts measured 2nd, 3rd and 4th-order harmonic content from a true exponential sweep, with an optional mic calibration file for the measurement mic you used.</p>
         </div>
         <div class="card">
-          <h3>Blend without level-matching by ear</h3>
-          <p>Combine two IRs into one. The second is gain-matched to the first using a white noise probe, so neither dominates, and the primary's level is left alone.</p>
+          <h3>Blends that stay in phase</h3>
+          <p>Combine two IRs into one. The app checks that their peaks line up and corrects any offset to the exact sample, then matches the second IR's gain to the first using a white noise probe. The result sums as close to perfectly in phase as possible, with no comb filtering. The primary IR is left untouched.</p>
         </div>
         <div class="card">
           <h3>Phase-aligned to each other</h3>
