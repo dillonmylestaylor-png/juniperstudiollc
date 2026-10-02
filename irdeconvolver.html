@@ -151,6 +151,14 @@
     },
     {
       "@type": "Question",
+      "name": "Can I use a mic calibration file?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, in the Harmonic Kernels tool. No calibration file comes with the app, so add the one for your own measurement mic. It takes the mic's own coloration out of the result, so you're measuring the speaker, not the mic. It's a plain text file with two columns per line: frequency in Hz, then the mic's deviation in dB. Leave it blank if you don't have one."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "What computers does it run on?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -318,6 +326,8 @@
       <p style="color:var(--muted);line-height:1.7;">It's one shared reference file at the top of the window. Every IR or kernel the app makes has its peak moved to land on the same sample as the reference's peak, so anything you make in the app lines up in time with everything else you make in it. You can use the built-in reference, pick your own, or turn alignment off.</p>
       <h3 style="margin-top:1.5rem;">What file formats does it write?</h3>
       <p style="color:var(--muted);line-height:1.7;">WAV files, at 24-bit or 32-bit float. You choose the level of the output peak in dBFS, and the Cabinet IR tool can re-check each result against your original recording (Verify reconvolution).</p>
+      <h3 style="margin-top:1.5rem;">Can I use a mic calibration file?</h3>
+      <p style="color:var(--muted);line-height:1.7;">Yes, in the Harmonic Kernels tool. No calibration file comes with the app, so add the one for your own measurement mic. It takes the mic's own coloration out of the result, so you're measuring the speaker, not the mic. It's a plain text file with two columns per line: frequency in Hz, then the mic's deviation in dB. Leave it blank if you don't have one.</p>
       <h3 style="margin-top:1.5rem;">What computers does it run on?</h3>
       <p style="color:var(--muted);line-height:1.7;">Mac: Apple Silicon and Intel Macs on macOS 12 or newer (one universal download). Windows: 64-bit Windows.</p>
       <h3 style="margin-top:1.5rem;">Is IR Deconvolver free?</h3>
