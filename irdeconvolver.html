@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IR Deconvolver: Impulse Response App for Mac &amp; Windows — Free Trial</title>
-  <meta name="description" content="Turn a sine-sweep recording into an impulse response. Cabinet IRs, measured harmonic kernels and IR blending in one app for Mac and Windows. Free 30-day trial, pay what you want from $10.">
+  <meta name="description" content="Make speaker cabinet impulse responses from a sine sweep. Cabinet IRs, measured harmonic kernels and IR blending in one app for Mac and Windows. Free 30-day trial, pay what you want from $10.">
   <link rel="canonical" href="https://juniperstudiollc.com/irdeconvolver">
 
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
@@ -15,7 +15,7 @@
   <meta property="og:type" content="product">
   <meta property="og:site_name" content="Juniper Studio LLC">
   <meta property="og:title" content="IR Deconvolver: Impulse Response App for Mac &amp; Windows — Free Trial">
-  <meta property="og:description" content="Sweep in, impulse response out. Cabinet IRs, harmonic kernels and IR blending. Free 30-day trial, then pay what you want from $10.">
+  <meta property="og:description" content="Capture speaker cabinet IRs without the hassle. Speaker cabinet IRs, harmonic kernels and IR blending. Free 30-day trial, then pay what you want from $10.">
   <meta property="og:url" content="https://juniperstudiollc.com/irdeconvolver">
   <meta property="og:image" content="https://juniperstudiollc.com/images/social/irdeconvolver.jpg?v=1">
   <meta property="og:image:width" content="1200">
@@ -23,7 +23,7 @@
   <meta property="og:image:alt" content="IR Deconvolver impulse response app">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="IR Deconvolver: Impulse Response App for Mac &amp; Windows — Free Trial">
-  <meta name="twitter:description" content="Sweep in, impulse response out. Cabinet IRs, harmonic kernels and IR blending. Free 30-day trial, then pay what you want from $10.">
+  <meta name="twitter:description" content="Capture speaker cabinet IRs without the hassle. Speaker cabinet IRs, harmonic kernels and IR blending. Free 30-day trial, then pay what you want from $10.">
   <meta name="twitter:image" content="https://juniperstudiollc.com/images/social/irdeconvolver.jpg?v=1">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,7 +41,7 @@
   "softwareVersion": "1.0.0",
   "dateModified": "2026-10-02",
   "operatingSystem": "macOS 12 or newer (Apple Silicon), Windows (64-bit)",
-  "description": "Sine-sweep impulse response app for Mac and Windows: Cabinet IRs, measured harmonic kernels and blended IRs, all aligned to one reference. Free 30-day trial, then pay what you want.",
+  "description": "Speaker cabinet impulse response app for Mac and Windows: batch sweep deconvolution, measured harmonic kernels and blended IRs, all aligned to one reference. Free 30-day trial, then pay what you want.",
   "url": "https://juniperstudiollc.com/irdeconvolver",
   "image": "https://juniperstudiollc.com/images/irdeconvolver-cabinet.webp",
   "downloadUrl": "https://juniperstudiollc.com/irdeconvolver",
@@ -106,7 +106,7 @@
       "name": "What is IR Deconvolver?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "IR Deconvolver is a Mac and Windows app from Juniper Studio LLC that turns a sine-sweep recording into an impulse response (IR). Play a sweep through a guitar cabinet, a mic'd amp or a piece of outboard gear, record what comes back, and the app works out the IR from the two files."
+        "text": "IR Deconvolver is a Mac and Windows app from Juniper Studio LLC that turns a sine-sweep recording into an impulse response (IR). Play a sweep through a speaker cabinet, record it with your mic, and the app works out the cabinet's IR from the two files."
       }
     },
     {
@@ -122,7 +122,7 @@
       "name": "What do I need to get started?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A sweep file played through the thing you want to capture, and a recording of what comes back. The app includes a default sweep, and you can save a copy of it to play through your own interface or a DAW track."
+        "text": "A sweep file played through your cabinet, and a recording of what comes back. The app includes a default sweep, and you can save a copy of it to play through your own interface or a DAW track."
       }
     },
     {
@@ -208,8 +208,8 @@
         <img src="images/irdeconvolver-cabinet.webp" alt="IR Deconvolver Cabinet IR tool: sweep file, response files, parameters and a Deconvolve button" width="520" style="max-width:100%;height:auto;border-radius:12px;border:1px solid var(--light);">
         <div style="flex:1 1 320px;max-width:560px;">
           <h1 style="font-size:2.2rem;margin-bottom:.25rem;">IR Deconvolver</h1>
-          <h2 style="font-size:1.25rem;color:var(--accent);margin-bottom:1rem;">Sweep in, impulse response out</h2>
-          <p class="subtitle" style="margin:0 0 1.25rem;">Play a sine sweep through a cabinet, a mic'd amp or a piece of outboard gear, record what comes back, and IR Deconvolver works out the impulse response. Cabinet IRs, measured harmonic kernels and blended IRs, all lined up in time.</p>
+          <h2 style="font-size:1.25rem;color:var(--accent);margin-bottom:1rem;">Stop fighting your IR workflow</h2>
+          <p class="subtitle" style="margin:0 0 1.25rem;">Capturing a speaker cabinet IR shouldn't take a stack of scripts, a plugin chain and a lot of guesswork. Play a sweep, record it, drop in the files, press one button. Every IR comes out lined up in time and ready to load.</p>
           <div class="btn-group" style="margin-bottom:.75rem;">
             <a href="/download/IR-Deconvolver-Mac.dmg" class="btn btn-primary" download>Download for Mac &mdash; free trial</a>
             <a href="/download/IR-Deconvolver-Windows.exe" class="btn btn-primary" download>Download for Windows &mdash; free trial</a>
@@ -223,33 +223,48 @@
 
   <section class="section section-alt">
     <div class="container" style="max-width:860px;">
-      <h2 style="text-align:center;">What it does</h2>
-      <p style="color:var(--muted);line-height:1.75;margin:0 auto 1rem;">An impulse response (IR) is the fingerprint of a speaker cabinet, a mic'd amp or a piece of gear. The usual way to capture one is a sine sweep: you play a known sweep through the thing, record the result, and divide one by the other. IR Deconvolver does that division for you, quickly and in batches.</p>
+      <h2 style="text-align:center;">Making your own IRs is harder than it should be</h2>
+      <p style="color:var(--muted);line-height:1.75;margin:0 auto 1.5rem;text-align:center;">A sweep capture is the right way to measure a speaker cabinet. The tools for doing it usually aren't friendly.</p>
+      <div class="cards">
+        <div class="card"><h3>Scattered tools</h3><p>One program to generate the sweep, another to deconvolve, another to trim, another to level. Every capture turns into a chain of manual steps you have to remember.</p></div>
+        <div class="card"><h3>IRs that don't line up</h3><p>Each capture lands at a slightly different point in time, so swapping or blending IRs gives phasey, comb-filtered results until you nudge them by hand.</p></div>
+        <div class="card"><h3>Blends that fight each other</h3><p>Layer two IRs and one is louder than the other. You level by ear, then do it again for the next pair.</p></div>
+        <div class="card"><h3>Mic and speaker character</h3><p>A plain sweep result gives you the linear response only. Measuring how the speaker itself distorts means a special sweep and extra processing most people skip.</p></div>
+        <div class="card"><h3>One at a time</h3><p>Captured ten mic positions? That's ten rounds of the same steps, with ten chances to get a setting wrong.</p></div>
+        <div class="card"><h3>Silent mistakes</h3><p>Use the wrong sweep file and you get a plausible-looking IR that is quietly wrong, with nothing to tell you.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:860px;">
+      <h2 style="text-align:center;">One app that does the whole job</h2>
+      <p style="color:var(--muted);line-height:1.75;margin:0 auto 1rem;">An impulse response (IR) is the fingerprint of a guitar or bass speaker cabinet with a mic on it. You play a known sine sweep through the cabinet, record the result, and IR Deconvolver does the rest, in batches, with the fiddly parts handled for you.</p>
       <p style="color:var(--muted);line-height:1.75;margin:0 auto 2rem;">It has three independent tools, plus one shared Alignment Reference IR at the top of the window that all of them can use, so every IR and kernel you make lines up in time with the rest.</p>
 
       <div class="cards">
         <div class="card">
-          <h3>Cabinet IR</h3>
-          <p>Pick the sweep you played and drop in as many recordings as you like. Each one becomes its own IR. Set the IR length, fades and output level, and let it re-check each result against your original recording.</p>
+          <h3>Batch a whole session</h3>
+          <p>Pick the sweep you played, drop in every recording from the session, and each one becomes its own IR in one run. Set length, fades and level once. It can re-check each result against your original recording so you know it's right.</p>
         </div>
         <div class="card">
-          <h3>Harmonic Kernels</h3>
-          <p>Extracts measured 2nd, 3rd and 4th-order harmonic content from a true exponential sweep, with an optional mic calibration file for the measurement mic you used.</p>
+          <h3>Measure the speaker's distortion</h3>
+          <p>Harmonic Kernels extracts measured 2nd, 3rd and 4th-order harmonic content from a true exponential sweep, with an optional mic calibration file for the measurement mic you used.</p>
         </div>
         <div class="card">
-          <h3>Blend IRs</h3>
-          <p>Combine two IRs into one. The secondary IR is gain-matched to the primary using a white noise probe, so neither one silently dominates the blend.</p>
+          <h3>Blend without level-matching by ear</h3>
+          <p>Combine two IRs into one. The second is gain-matched to the first using a white noise probe, so neither dominates, and the primary's level is left alone.</p>
         </div>
         <div class="card">
-          <h3>Aligned to one reference</h3>
-          <p>Everything you make lands on the same sample as the shared Alignment Reference IR, so you can swap, blend and layer results without them fighting in time. Use the built-in reference, pick your own, or turn it off.</p>
+          <h3>Everything lines up</h3>
+          <p>Every IR and kernel lands on the same sample as a shared Alignment Reference IR, so you can swap, blend and layer results without phase trouble. Use the built-in reference, pick your own, or turn it off.</p>
         </div>
         <div class="card">
-          <h3>Ready to use</h3>
+          <h3>Nothing else to hunt down</h3>
           <p>A default sweep, alignment reference, white noise probe and mic calibration file are built in. Save a copy of the sweep to play through your interface or a DAW track.</p>
         </div>
         <div class="card">
-          <h3>Clean output</h3>
+          <h3>Clean, predictable output</h3>
           <p>WAV files at 24-bit or 32-bit float, with output written next to your recording or to a folder you choose, named with a pattern you control.</p>
         </div>
       </div>
@@ -260,12 +275,12 @@
     <div class="container" style="max-width:860px;text-align:center;">
       <h2>How it works</h2>
       <div class="cards" style="text-align:left;margin-top:1.5rem;">
-        <div class="card"><h3>1. Play the sweep</h3><p>Send the sweep file through your cabinet, mic'd amp or gear.</p></div>
+        <div class="card"><h3>1. Play the sweep</h3><p>Send the sweep file through your cabinet and record it with your mic.</p></div>
         <div class="card"><h3>2. Record the result</h3><p>Record what comes back as a WAV file. Capture as many as you want in one session.</p></div>
         <div class="card"><h3>3. Deconvolve</h3><p>Point the app at the sweep and your recordings and press Deconvolve. Your IRs are written out.</p></div>
       </div>
       <div class="offer" style="margin:2rem auto 0;text-align:left;max-width:760px;">
-        <h3>One rule that matters</h3>
+        <h3>The one thing to get right</h3>
         <p>Use the exact sweep file you actually played. If you turn the default sweep down before playing it, use <strong>Save Copy</strong> and select that adjusted copy for every recording made with it. The math divides your recording by the sweep sample for sample, so a different copy, even one that sounds the same, gives a wrong result.</p>
       </div>
     </div>
@@ -287,11 +302,11 @@
     <div class="container" style="max-width:860px;">
       <h2 style="text-align:center;">Frequently asked questions</h2>
       <h3 style="margin-top:1.5rem;">What is IR Deconvolver?</h3>
-      <p style="color:var(--muted);line-height:1.7;">IR Deconvolver is a Mac and Windows app from Juniper Studio LLC that turns a sine-sweep recording into an impulse response (IR). Play a sweep through a guitar cabinet, a mic'd amp or a piece of outboard gear, record what comes back, and the app works out the IR from the two files.</p>
+      <p style="color:var(--muted);line-height:1.7;">IR Deconvolver is a Mac and Windows app from Juniper Studio LLC that turns a sine-sweep recording into an impulse response (IR). Play a sweep through a speaker cabinet, record it with your mic, and the app works out the cabinet's IR from the two files.</p>
       <h3 style="margin-top:1.5rem;">What can I make with it?</h3>
       <p style="color:var(--muted);line-height:1.7;">Three things: Cabinet IRs (a sweep plus one or more recordings becomes one IR per recording), Harmonic Kernels (measured 2nd, 3rd and 4th-order harmonic content from a true exponential sweep), and Blended IRs (two IRs combined into one, gain-matched so neither overpowers the other).</p>
       <h3 style="margin-top:1.5rem;">What do I need to get started?</h3>
-      <p style="color:var(--muted);line-height:1.7;">A sweep file played through the thing you want to capture, and a recording of what comes back. The app includes a default sweep, and you can save a copy of it to play through your own interface or a DAW track.</p>
+      <p style="color:var(--muted);line-height:1.7;">A sweep file played through your cabinet, and a recording of what comes back. The app includes a default sweep, and you can save a copy of it to play through your own interface or a DAW track.</p>
       <h3 style="margin-top:1.5rem;">Why do I have to use the exact sweep I played?</h3>
       <p style="color:var(--muted);line-height:1.7;">The deconvolution divides your recording by the sweep, sample for sample. If you turn the bundled sweep down before playing it, save that adjusted copy and point the app at that file for every recording made with it. A different copy, even one that sounds the same, gives a wrong result.</p>
       <h3 style="margin-top:1.5rem;">What does the Alignment Reference IR do?</h3>
@@ -313,7 +328,7 @@
       <p style="color:var(--muted);line-height:1.7;margin:0 auto 1.5rem;">The download is the full app, free to use for 30 days. No account, no credit card. IR Deconvolver is donation-based: if you keep it, pay what you want for a license. It's $10 minimum, $20 suggested, and you pick the amount at checkout.</p>
       <div class="cards" style="text-align:left;">
         <div class="card"><h3>1. Download</h3><p>Install the app for your computer and open it. Everything works from the first minute.</p></div>
-        <div class="card"><h3>2. Try it for 30 days</h3><p>Capture your own gear. The built-in manual explains every control.</p></div>
+        <div class="card"><h3>2. Try it for 30 days</h3><p>Capture your own cabinets. The built-in manual explains every control.</p></div>
         <div class="card"><h3>3. Get your key</h3><p>Pay what you want, then paste the emailed key into the app's Settings tab and click Activate.</p></div>
       </div>
       <div class="btn-group" style="justify-content:center;margin-top:2rem;">
