@@ -161,6 +161,12 @@
   force = true
 
 [[redirects]]
+  from = "/how-to-make-a-cab-ir.html"
+  to = "/how-to-make-a-cab-ir"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/index.html"
   to = "/"
   status = 301

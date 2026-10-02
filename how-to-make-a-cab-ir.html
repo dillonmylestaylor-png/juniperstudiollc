@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Make a Cab Impulse Response (IR) with a Sine Sweep</title>
+  <meta name="description" content="Make a guitar or bass cab impulse response: play a sine sweep through the speaker, record it and deconvolve. Gear, levels and mistakes to avoid.">
+  <link rel="canonical" href="https://juniperstudiollc.com/how-to-make-a-cab-ir">
+
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Juniper Studio LLC">
+  <meta property="og:title" content="How to Make a Cab Impulse Response (IR) with a Sine Sweep">
+  <meta property="og:description" content="The whole process for capturing a guitar or bass cabinet IR with a sine sweep, from signal path and levels to deconvolution, trimming and checking the result.">
+  <meta property="og:url" content="https://juniperstudiollc.com/how-to-make-a-cab-ir">
+  <meta property="og:image" content="https://juniperstudiollc.com/images/social/irdeconvolver.jpg?v=1">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="IR Deconvolver impulse response app">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Make a Cab Impulse Response (IR) with a Sine Sweep">
+  <meta name="twitter:description" content="The whole process for capturing a guitar or bass cabinet IR with a sine sweep, from signal path and levels to deconvolution, trimming and checking the result.">
+  <meta name="twitter:image" content="https://juniperstudiollc.com/images/social/irdeconvolver.jpg?v=1">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>main .container > p { margin-bottom: 1rem; }</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": "https://juniperstudiollc.com/how-to-make-a-cab-ir#article",
+  "headline": "How to Make a Guitar Cab Impulse Response (IR) with a Sine Sweep",
+  "description": "A step-by-step guide to capturing a guitar or bass speaker cabinet impulse response: play a sine sweep through the cabinet, record it, deconvolve, trim and check the result.",
+  "url": "https://juniperstudiollc.com/how-to-make-a-cab-ir",
+  "mainEntityOfPage": "https://juniperstudiollc.com/how-to-make-a-cab-ir",
+  "image": "https://juniperstudiollc.com/images/social/irdeconvolver.jpg?v=1",
+  "datePublished": "2026-10-02",
+  "dateModified": "2026-10-02",
+  "inLanguage": "en",
+  "about": "Speaker cabinet impulse response capture",
+  "author": {
+    "@type": "Person",
+    "name": "Dillon Taylor",
+    "jobTitle": "Engineer, Producer, Multi-instrumentalist",
+    "image": "https://juniperstudiollc.com/images/dillon-taylor-2026.webp",
+    "worksFor": { "@id": "https://juniperstudiollc.com/#business" }
+  },
+  "publisher": { "@id": "https://juniperstudiollc.com/#business" }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to make a guitar cab impulse response (IR) with a sine sweep",
+  "description": "Play a known sine sweep through a speaker cabinet, record it with a microphone, then deconvolve the recording against the sweep to get the cabinet's impulse response.",
+  "tool": [
+    { "@type": "HowToTool", "name": "Guitar or bass speaker cabinet and the amp or power amp that drives it" },
+    { "@type": "HowToTool", "name": "Microphone, preamp and audio interface" },
+    { "@type": "HowToTool", "name": "Reamp box (if sending the sweep into an instrument input)" },
+    { "@type": "HowToTool", "name": "A sweep file and a DAW or recorder" },
+    { "@type": "HowToTool", "name": "Deconvolution software, such as IR Deconvolver" }
+  ],
+  "step": [
+    { "@type": "HowToStep", "name": "Pick a sweep", "text": "Use an exponential sine sweep covering the full audible range, about 10 to 30 seconds long, with a little silence at each end." },
+    { "@type": "HowToStep", "name": "Set up the signal path", "text": "Play the sweep from your DAW through the interface, a reamp box, the amp and the cabinet. Mic the cabinet and record it back into the DAW at the same sample rate, with no processing on the record track." },
+    { "@type": "HowToStep", "name": "Set the level", "text": "Start quiet and raise the level until the mic signal is strong without clipping the preamp or interface. Sweeps are sustained tones, so do not run them loud for long." },
+    { "@type": "HowToStep", "name": "Record", "text": "Start recording a second or two before the sweep and keep recording until the tail has died away. Record each mic position as its own file." },
+    { "@type": "HowToStep", "name": "Deconvolve", "text": "Deconvolve each recording against the exact sweep file you played. The result is the impulse response of the cabinet, the mic and the room." },
+    { "@type": "HowToStep", "name": "Trim, fade and level", "text": "Cut the IR so the main peak is near the start, trim the tail where it falls into the noise, add a short fade-out and normalize." },
+    { "@type": "HowToStep", "name": "Check the result", "text": "Convolve the finished IR with the sweep and compare it to your original recording. If they match closely, the IR is right." },
+    { "@type": "HowToStep", "name": "Align and blend (optional)", "text": "To combine two mic positions, line up their peaks to the exact sample and match their levels before summing, or they will comb-filter." }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://juniperstudiollc.com/" },
+    { "@type": "ListItem", "position": 2, "name": "IR Deconvolver", "item": "https://juniperstudiollc.com/irdeconvolver" },
+    { "@type": "ListItem", "position": 3, "name": "How to make a cab IR", "item": "https://juniperstudiollc.com/how-to-make-a-cab-ir" }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a cab impulse response (IR)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An impulse response is a recording of how a system reacts to a single instant of sound. For a guitar or bass cabinet, the IR captures what the speaker, the cabinet and the microphone do to a signal. Convolve a dry signal with the IR and it sounds as if it were played through that cabinet and mic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use an exponential or a linear sweep?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An exponential sweep is the usual choice for speakers. It spends equal time in each octave, and after deconvolution it moves the speaker's harmonic distortion to a separate spot before the main IR, so the linear response comes out clean and the distortion can be measured on its own. IR Deconvolver detects which kind you played."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long should the sweep be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Somewhere from 10 to 30 seconds is common. A longer sweep puts more energy into each frequency, which lowers the noise in the finished IR. Leave a little silence before and after, and record until the tail has fully died away."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an anechoic chamber or a treated room?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. For a close-miked guitar or bass cabinet the direct sound dominates and the tail is trimmed, so a normal room works. A quiet room does help, because fans, hum and street noise are recorded along with the sweep."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do my blended IRs sound phasey?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Two mic positions capture the cabinet at slightly different distances, so their peaks land at different times. If you sum them without lining the peaks up to the exact sample and matching their levels, they partly cancel and comb-filter."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What software makes the IR from the sweep?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Any tool that can deconvolve a recording against a sweep will do. IR Deconvolver from Juniper Studio LLC does the whole job in one app for Mac and Windows: batch deconvolution, automatic IR length and sweep-type detection, alignment, reconvolution check, harmonic kernels and IR blending. It has a free 30-day trial, then pay what you want from $10."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="/" class="logo">Juniper<span>Studio</span></a>
+    <div class="links" id="navLinks">
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/gear">Gear</a>
+      <a href="/plugins">Plugins</a>
+      <a href="/merch">Merch</a>
+      <a href="/audio">Audio</a>
+      <a href="/catalog">Catalog</a>
+      <a href="/faq">FAQ</a>
+      <a href="/contact">Contact</a>
+      <a href="tel:+16156649985" class="nav-cta">Call / Text</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <section class="section" style="padding-top:calc(64px + 3.5rem);">
+    <div class="container" style="max-width:820px;">
+      <p style="color:var(--muted);font-size:.9rem;margin-bottom:.5rem;"><a href="/irdeconvolver">IR Deconvolver</a> &rsaquo; Guide</p>
+      <h1 style="font-size:2.2rem;margin-bottom:1rem;">How to Make a Guitar Cab Impulse Response (IR) with a Sine Sweep</h1>
+      <p style="color:var(--muted);font-size:.9rem;margin-bottom:1.5rem;">By Dillon Taylor, Juniper Studio LLC &middot; Updated October 2, 2026</p>
+      <p class="subtitle" style="margin:0 0 1.25rem;">A cabinet impulse response (IR) is a fingerprint of what a speaker cabinet and a microphone do to a signal. The cleanest way to capture one is a sine sweep: play a known sweep through the cabinet, record what the mic hears, and deconvolve the recording against the sweep. This guide covers the whole process, from signal path to a finished IR, and the mistakes that most often spoil a capture.</p>
+      <p style="color:var(--muted);line-height:1.75;">The same method works for guitar cabs, bass cabs and any other speaker you can put a mic on.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:820px;">
+      <h2>What you need</h2>
+      <ul class="include-list">
+        <li>A guitar or bass cabinet, and the amp or power amp that drives it. Never run an amp with no speaker or load connected.</li>
+        <li>A microphone, a preamp and an audio interface.</li>
+        <li>A reamp box, if you will send the sweep into an amp's instrument input. It converts the interface's line-level output to the level and impedance an instrument input expects.</li>
+        <li>A sweep file: an exponential sine sweep covering the full audible range. <a href="/irdeconvolver">IR Deconvolver</a> includes one.</li>
+        <li>A DAW or any recorder that can play the sweep and record the mic at the same time.</li>
+        <li>A quiet room.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:820px;">
+      <h2>1. Pick a sweep</h2>
+      <p style="color:var(--muted);line-height:1.75;">Use an <strong>exponential</strong> (logarithmic) sine sweep that runs from the bottom to the top of the audible range, roughly 20 Hz to 20 kHz. Ten to thirty seconds is common: a longer sweep puts more energy into every frequency, which lowers the noise in the finished IR. Leave a little silence at the start and the end.</p>
+      <p style="color:var(--muted);line-height:1.75;">Exponential sweeps are the standard for speakers because they separate the speaker's harmonic distortion from its linear response. After deconvolution the distortion lands in its own place just before the main IR, so the IR itself comes out clean, and the distortion can be measured separately if you want it.</p>
+
+      <h2 style="margin-top:2.5rem;">2. Set up the signal path</h2>
+      <p style="color:var(--muted);line-height:1.75;">The chain is: sweep on a DAW track, out of the interface, through a reamp box, into the amp, out to the cabinet, picked up by the mic, through the preamp and back into the interface onto a new track.</p>
+      <ul class="include-list">
+        <li><strong>Same sample rate everywhere.</strong> Play and record at the sweep file's sample rate.</li>
+        <li><strong>Nothing on the record track.</strong> No EQ, compression, limiter, amp sim or noise reduction. Anything that changes the signal changes the IR.</li>
+        <li><strong>Keep the amp clean and neutral.</strong> The IR should capture the cabinet and the mic, not an amp's gain structure. Use a low-gain setting with the tone controls where you want them to stay.</li>
+        <li><strong>Mic it like you would to record it.</strong> Close to the speaker, at the position you like. Every mic position is its own IR, so capture several.</li>
+        <li><strong>Make sure the amp is matched to the cabinet.</strong> Check the impedance before you power it up.</li>
+      </ul>
+      <p style="color:var(--muted);line-height:1.75;">A measurement microphone with a calibration file lets you take the mic's own response out of the result. For guitar cabs most people do the opposite and use a favorite mic on purpose, because the mic is part of the sound they want.</p>
+
+      <h2 style="margin-top:2.5rem;">3. Set the level</h2>
+      <p style="color:var(--muted);line-height:1.75;">Start the sweep quietly and bring the level up until the mic signal is strong, with headroom, and nothing clips at the preamp or the interface. A sweep is a sustained tone, so it heats a speaker's voice coil far more than playing does. Keep the volume sensible and do not run it loud for long.</p>
+
+      <h2 style="margin-top:2.5rem;">4. Record</h2>
+      <p style="color:var(--muted);line-height:1.75;">Start recording a second or two before the sweep begins and keep going until the tail has fully died away, a few seconds past the end of the sweep. Record each mic position as its own file, and keep the sweep exactly as you played it. You will need that same file for the next step.</p>
+
+      <h2 style="margin-top:2.5rem;">5. Deconvolve</h2>
+      <p style="color:var(--muted);line-height:1.75;">Deconvolution divides the recording by the sweep in the frequency domain (equivalently, it convolves the recording with the sweep's inverse filter). What is left is the impulse response of the whole path: the cabinet, the mic and the room.</p>
+      <div class="offer" style="margin:1.5rem 0;">
+        <h3>Use the exact sweep you played</h3>
+        <p>The math works sample for sample, so a different copy of the sweep, even one that sounds identical, gives a wrong IR. If you turned the sweep down or changed it in any way before playing it, save that version and deconvolve against it.</p>
+      </div>
+
+      <h2 style="margin-top:2.5rem;">6. Trim, fade and level</h2>
+      <p style="color:var(--muted);line-height:1.75;">Cut the IR so the main peak sits near the start. Trim the tail where it falls into the noise, add a short fade-out so it does not end with a click, and normalize it. Cab IRs are short, usually a few hundred milliseconds at most, and shorter IRs are lighter on the CPU in a cab simulator or IR loader.</p>
+
+      <h2 style="margin-top:2.5rem;">7. Check the result</h2>
+      <p style="color:var(--muted);line-height:1.75;">Convolve the finished IR with the sweep and compare the result to your original recording, by ear or by nulling one against the other. If they match closely, the IR is right. If they do not, one of the common mistakes below is usually the cause.</p>
+
+      <h2 style="margin-top:2.5rem;">8. Align and blend (optional)</h2>
+      <p style="color:var(--muted);line-height:1.75;">Blending two mic positions is a classic way to build a bigger sound, but each position captures the cabinet at a slightly different distance, so the peaks arrive at different times. Line the two peaks up to the exact sample and match their levels before summing. If you do not, they partly cancel and comb-filter, and the blend sounds thin and phasey. If you plan to swap and layer IRs often, align every IR you make to the same reference so they all line up in time.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:820px;">
+      <h2>Common mistakes</h2>
+      <div class="cards">
+        <div class="card"><h3>Clipping</h3><p>A clipped preamp or interface puts distortion into the recording that the math cannot tell apart from the speaker. Leave headroom.</p></div>
+        <div class="card"><h3>Wrong sweep file</h3><p>Deconvolving against a different copy of the sweep gives an IR that looks plausible and is quietly wrong.</p></div>
+        <div class="card"><h3>Sample rate mismatch</h3><p>Playing and recording at different rates from the sweep file shifts everything. Keep one rate from start to finish.</p></div>
+        <div class="card"><h3>Processing on the record track</h3><p>EQ, compression, amp sims and noise reduction all change the signal, and the IR with it.</p></div>
+        <div class="card"><h3>Stopping the recording early</h3><p>Cut the recording before the tail has died away and the IR ends abruptly or loses its decay.</p></div>
+        <div class="card"><h3>A noisy room</h3><p>Fans, hum and traffic are recorded along with the sweep. A quiet room and a longer sweep both help.</p></div>
+        <div class="card"><h3>Layering IRs that are not aligned</h3><p>Peaks a sample or two apart comb-filter. Align them to the sample and match levels before you blend.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:820px;">
+      <h2>Do the whole job in one app</h2>
+      <p style="color:var(--muted);line-height:1.75;">Steps 5 to 8 are where most of the fiddly work is. <a href="/irdeconvolver">IR Deconvolver</a> is a Mac and Windows app I built to do them for you: pick the sweep you played, drop in every recording from the session, and each one becomes its own IR in one run. IR length and sweep type are detected automatically, every IR is normalized and aligned to a shared reference so they line up with each other, and it can re-check each result against your original recording. It also blends two IRs without comb filtering and can measure a speaker's 2nd, 3rd and 4th-order harmonic content from an exponential sweep.</p>
+      <img src="images/irdeconvolver-cabinet.webp" alt="IR Deconvolver Cabinet IR tool: sweep file, response files, parameters and a Deconvolve button" width="520" height="415" loading="lazy" style="max-width:100%;height:auto;border-radius:12px;border:1px solid var(--light);display:block;margin:1.5rem auto;">
+      <p style="color:var(--muted);line-height:1.75;text-align:center;">Free 30-day trial, no account and no credit card. Then pay what you want, from $10.</p>
+      <div class="btn-group" style="justify-content:center;margin-top:1rem;">
+        <a href="/download/IR-Deconvolver-Mac.dmg" class="btn btn-primary" download>Download for Mac</a>
+        <a href="/download/IR-Deconvolver-Windows.exe" class="btn btn-primary" download>Download for Windows</a>
+        <a href="/irdeconvolver" class="btn btn-outline">See all features</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:820px;">
+      <h2 style="text-align:center;">Frequently asked questions</h2>
+      <h3 style="margin-top:1.5rem;">What is a cab impulse response (IR)?</h3>
+      <p style="color:var(--muted);line-height:1.7;">An impulse response is a recording of how a system reacts to a single instant of sound. For a guitar or bass cabinet, the IR captures what the speaker, the cabinet and the microphone do to a signal. Convolve a dry signal with the IR and it sounds as if it were played through that cabinet and mic.</p>
+      <h3 style="margin-top:1.5rem;">Should I use an exponential or a linear sweep?</h3>
+      <p style="color:var(--muted);line-height:1.7;">An exponential sweep is the usual choice for speakers. It spends equal time in each octave, and after deconvolution it moves the speaker's harmonic distortion to a separate spot before the main IR, so the linear response comes out clean and the distortion can be measured on its own. IR Deconvolver detects which kind you played.</p>
+      <h3 style="margin-top:1.5rem;">How long should the sweep be?</h3>
+      <p style="color:var(--muted);line-height:1.7;">Somewhere from 10 to 30 seconds is common. A longer sweep puts more energy into each frequency, which lowers the noise in the finished IR. Leave a little silence before and after, and record until the tail has fully died away.</p>
+      <h3 style="margin-top:1.5rem;">Do I need an anechoic chamber or a treated room?</h3>
+      <p style="color:var(--muted);line-height:1.7;">No. For a close-miked guitar or bass cabinet the direct sound dominates and the tail is trimmed, so a normal room works. A quiet room does help, because fans, hum and street noise are recorded along with the sweep.</p>
+      <h3 style="margin-top:1.5rem;">Why do my blended IRs sound phasey?</h3>
+      <p style="color:var(--muted);line-height:1.7;">Two mic positions capture the cabinet at slightly different distances, so their peaks land at different times. If you sum them without lining the peaks up to the exact sample and matching their levels, they partly cancel and comb-filter.</p>
+      <h3 style="margin-top:1.5rem;">What software makes the IR from the sweep?</h3>
+      <p style="color:var(--muted);line-height:1.7;">Any tool that can deconvolve a recording against a sweep will do. IR Deconvolver from Juniper Studio LLC does the whole job in one app for Mac and Windows: batch deconvolution, automatic IR length and sweep-type detection, alignment, reconvolution check, harmonic kernels and IR blending. It has a free 30-day trial, then pay what you want from $10.</p>
+      <p style="margin-top:2rem;text-align:center;"><a href="/irdeconvolver">&larr; IR Deconvolver</a> &middot; <a href="/plugins">All plugins &amp; apps</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="socials">
+    <a href="https://www.instagram.com/juniperstudiollc/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.facebook.com/JuniperStudioLLC" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://www.youtube.com/@JuniperStudioLLC" target="_blank" rel="noopener">YouTube</a>
+    <a href="mailto:Info@JuniperStudioLLC.com">Email</a>
+    <a href="tel:+16156649985">Call / Text</a>
+  </div>
+  <p class="footer-links">
+    <a href="/fort-smith-recording-studio">Fort Smith studio</a>
+    <a href="/fayetteville-recording-studio">Fayetteville / NWA</a>
+    <a href="/remote-mixing-mastering">Remote mix &amp; master</a>
+    <a href="/how-to-prepare-for-studio">Session prep</a>
+    <a href="/suno-to-real-song">AI Song to Real Song</a>
+    <a href="/plugins">Plugins</a>
+  </p>
+  <p class="nap">Juniper Studio LLC · 200 E Central Ave, Central City, AR 72941 · <a href="tel:+16156649985">(615) 664-9985</a> · <a href="mailto:Info@JuniperStudioLLC.com">Info@JuniperStudioLLC.com</a></p>
+  <p>&copy; 2026 Juniper Studio LLC. All rights reserved.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
