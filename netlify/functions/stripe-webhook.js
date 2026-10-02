@@ -34,12 +34,14 @@ exports.handler = async (event) => {
     const { markUsedProduction50 } = require('./utils/promo');
     const full = await stripe.checkout.sessions.retrieve(session.id, { expand: ['discounts', 'discounts.coupon', 'discounts.promotion_code'] });
     const email = full.customer_details && full.customer_details.email;
-    const usedCode = (full.discounts || []).some((d) => {
+    const SALE = ['PRODUCTION50', 'PRODUCTION30'];
+    let usedCode = '';
+    for (const d of full.discounts || []) {
       const coupon = d.coupon || {};
       const promo = d.promotion_code || {};
-      return coupon.id === 'PRODUCTION50' || promo.code === 'PRODUCTION50';
-    });
-    if (email && usedCode) await markUsedProduction50(email, full.id);
+      usedCode = SALE.find((x) => coupon.id === x || promo.code === x) || usedCode;
+    }
+    if (email && usedCode) await markUsedProduction50(email, full.id, usedCode);
   } catch (err) {}
 
   const pluginId = session.metadata && session.metadata.plugin;

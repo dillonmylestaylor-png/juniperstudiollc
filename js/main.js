@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!sessionStorage.getItem('juniper_sale_hide') && !document.querySelector('.sale-banner')) {
     const banner = document.createElement('div');
     banner.className = 'sale-banner';
-    banner.innerHTML = '50% off production — code <strong>PRODUCTION50</strong> (one use per email) · <a href="/services">See rates</a> · <a href="/join">10% off — join the list</a>' +
+    banner.innerHTML = '30% off a production song — code <strong>PRODUCTION30</strong> (one use per email) · <a href="/services">See rates</a> · <a href="/join">10% off — join the list</a>' +
       '<button type="button" class="sale-banner-close" aria-label="Dismiss">&times;</button>';
     document.body.prepend(banner);
     document.body.classList.add('has-sale-banner');
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         const url = new URL(a.getAttribute('href'), window.location.origin);
         if (url.searchParams.get('plugin')) return;
-        if (url.searchParams.get('coupon') === 'PRODUCTION50' && !url.searchParams.get('email')) {
+        if (['PRODUCTION50', 'PRODUCTION30'].includes(url.searchParams.get('coupon')) && !url.searchParams.get('email')) {
           e.preventDefault();
           const saved = localStorage.getItem('juniper_checkout_email') || '';
           const email = saved || window.prompt('Email for this checkout (saved on this device):');
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
           window.location.href = url.pathname + url.search;
           return;
         }
-        if (hasListSignup() && url.searchParams.get('coupon') !== 'PRODUCTION50') {
+        if (hasListSignup() && !['PRODUCTION50', 'PRODUCTION30'].includes(url.searchParams.get('coupon'))) {
           url.searchParams.set('coupon', COUPON);
           a.href = url.pathname + url.search;
         }

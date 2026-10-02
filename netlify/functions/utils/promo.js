@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const { getStore } = require('@netlify/blobs');
 
 const COUPON = 'PRODUCTION50';
+const SALE_COUPONS = ['PRODUCTION50', 'PRODUCTION30']; // one sale use per email across both codes
 
 function emailKey(email) {
   return crypto.createHash('sha256').update(String(email || '').trim().toLowerCase()).digest('hex');
@@ -15,14 +16,14 @@ async function hasUsedProduction50(email) {
   if (!email) return false;
   const s = await store();
   const row = await s.get(emailKey(email), { type: 'json' });
-  return !!(row && row.coupon === COUPON);
+  return !!(row && SALE_COUPONS.includes(row.coupon));
 }
 
-async function markUsedProduction50(email, sessionId) {
+async function markUsedProduction50(email, sessionId, coupon) {
   if (!email) return;
   const s = await store();
   await s.setJSON(emailKey(email), {
-    coupon: COUPON,
+    coupon: SALE_COUPONS.includes(coupon) ? coupon : COUPON,
     email: String(email).trim().toLowerCase(),
     sessionId: sessionId || '',
     used: Date.now(),
@@ -34,4 +35,4 @@ async function findCustomerId(stripe, email) {
   return list.data[0] ? list.data[0].id : null;
 }
 
-module.exports = { COUPON, hasUsedProduction50, markUsedProduction50, findCustomerId };
+module.exports = { COUPON, SALE_COUPONS, hasUsedProduction50, markUsedProduction50, findCustomerId };

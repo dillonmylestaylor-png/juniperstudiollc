@@ -131,11 +131,12 @@ exports.handler = async (event) => {
     }
 
     const { hasUsedProduction50, findCustomerId } = require('./utils/promo');
-    const allowedCoupons = ['JUNIPER10', 'PRODUCTION50'];
+    const allowedCoupons = ['JUNIPER10', 'PRODUCTION50', 'PRODUCTION30'];
     const requestedCoupon = allowedCoupons.includes(params.coupon) ? params.coupon : null;
     const email = (params.email || '').trim().toLowerCase();
 
-    if (requestedCoupon === 'PRODUCTION50') {
+    const isSaleCoupon = requestedCoupon === 'PRODUCTION50' || requestedCoupon === 'PRODUCTION30';
+    if (isSaleCoupon) {
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         return { statusCode: 302, headers: { Location: '/coupon-error' } };
       }
@@ -153,8 +154,8 @@ exports.handler = async (event) => {
       custom_text: {
         submit: {
           message: isSubscription
-            ? 'Subscription automatically cancels after 16 weeks. PRODUCTION50 is 50% off production, one use per email.'
-            : 'PRODUCTION50 is 50% off production packages, one use per email.',
+            ? 'Subscription automatically cancels after 16 weeks. PRODUCTION30 is 30% off a production song and PRODUCTION50 is 50% off album packages, one use per email.'
+            : 'PRODUCTION30 is 30% off a production song and PRODUCTION50 is 50% off album packages, one use per email.',
         },
       },
     };
@@ -169,8 +170,8 @@ exports.handler = async (event) => {
 
     if (requestedCoupon) {
       sessionParams.discounts = [{ coupon: requestedCoupon }];
-      if (requestedCoupon === 'PRODUCTION50' && email) {
-        sessionParams.metadata = { coupon: 'PRODUCTION50', email };
+      if (isSaleCoupon && email) {
+        sessionParams.metadata = { coupon: requestedCoupon, email };
       }
     } else {
       sessionParams.allow_promotion_codes = true;

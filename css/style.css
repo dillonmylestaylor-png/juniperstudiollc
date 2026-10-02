@@ -500,6 +500,21 @@ footer .socials a:hover { color: var(--accent); }
 .list-modal-close:hover { color: #fff; }
 .list-modal-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.75rem; margin-bottom: 0; }
 
+/* Ten menu links: tighten the spacing on tablets / small laptops so the Call / Text button never wraps */
+nav .links a, nav .nav-cta { white-space: nowrap; }
+@media (max-width: 1180px) {
+  nav { padding: 0 1rem; }
+  nav .links a { padding: 0.5rem 0.55rem; font-size: 0.82rem; }
+  nav .nav-cta { margin-left: 0.25rem; padding: 0.45rem 0.8rem; }
+}
+
+@media (max-width: 900px) {
+  nav .links { display: none; flex-direction: column; background: var(--black); position: absolute; top: 64px; left: 0; right: 0; padding: 1rem; border-bottom: 1px solid var(--light); }
+  nav .links.open { display: flex; }
+  nav .hamburger { display: flex; }
+  nav .links a { padding: 1rem; font-size: 0.875rem; }
+}
+
 @media (max-width: 768px) {
   nav .links { display: none; flex-direction: column; background: var(--black); position: absolute; top: 64px; left: 0; right: 0; padding: 1rem; border-bottom: 1px solid var(--light); }
   nav .links.open { display: flex; }
