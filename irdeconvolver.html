@@ -209,7 +209,7 @@
         <div style="flex:1 1 320px;max-width:560px;">
           <h1 style="font-size:2.2rem;margin-bottom:.25rem;">IR Deconvolver</h1>
           <h2 style="font-size:1.25rem;color:var(--accent);margin-bottom:1rem;">Stop fighting your IR workflow</h2>
-          <p class="subtitle" style="margin:0 0 1.25rem;">Capturing a speaker cabinet IR shouldn't take a stack of scripts, a plugin chain and a lot of guesswork. Play a sweep, record it, drop in the files, press one button. Every IR comes out lined up in time and ready to load.</p>
+          <p class="subtitle" style="margin:0 0 1.25rem;">Capturing a speaker cabinet IR shouldn't take a stack of scripts, a plugin chain and a lot of guesswork. Play a sweep, record it, drop in the files, press one button. IR length and sweep type are detected for you. Every IR comes out lined up in time and ready to load.</p>
           <div class="btn-group" style="margin-bottom:.75rem;">
             <a href="/download/IR-Deconvolver-Mac.dmg" class="btn btn-primary" download>Download for Mac &mdash; free trial</a>
             <a href="/download/IR-Deconvolver-Windows.exe" class="btn btn-primary" download>Download for Windows &mdash; free trial</a>
@@ -230,6 +230,7 @@
         <div class="card"><h3>IRs that don't line up</h3><p>Each capture lands at a slightly different point in time, so swapping or blending IRs gives phasey, comb-filtered results until you nudge them by hand.</p></div>
         <div class="card"><h3>Blends that fight each other</h3><p>Layer two IRs and one is louder than the other. You level by ear, then do it again for the next pair.</p></div>
         <div class="card"><h3>Mic and speaker character</h3><p>A plain sweep result gives you the linear response only. Measuring how the speaker itself distorts means a special sweep and extra processing most people skip.</p></div>
+        <div class="card"><h3>Settings to guess at</h3><p>How long should the IR be? Is this sweep linear or exponential? Get it wrong and you either clip the tail or keep a pile of noise.</p></div>
         <div class="card"><h3>One at a time</h3><p>Captured ten mic positions? That's ten rounds of the same steps, with ten chances to get a setting wrong.</p></div>
         <div class="card"><h3>Silent mistakes</h3><p>Use the wrong sweep file and you get a plausible-looking IR that is quietly wrong, with nothing to tell you.</p></div>
       </div>
@@ -246,6 +247,10 @@
         <div class="card">
           <h3>Batch a whole session</h3>
           <p>Pick the sweep you played, drop in every recording from the session, and each one becomes its own IR in one run. Set length, fades and level once. It can re-check each result against your original recording so you know it's right.</p>
+        </div>
+        <div class="card">
+          <h3>Auto mode, no guesswork</h3>
+          <p>Leave IR length on Auto and the app finds the right length for you. Sweep type is set to Auto too, so it works out whether you played an exponential or linear sweep. Nothing to look up, nothing to get wrong.</p>
         </div>
         <div class="card">
           <h3>Measure the speaker's distortion</h3>
