@@ -4,12 +4,13 @@
 //   THANKS30-XXXXX       -> coupon REVIEW30: 30% off Mixing, Hip-Hop Mixing, Mastering, Mix & Master Bundle,
 //                           Suno to Real Song, Re-amping (restricted to those products, so the card-fee line
 //                           and album packages stay full price)
-//   THANKS30-XXXXX-PROD  -> coupon REVIEW30PROD: 65% off Production only, i.e. the 50% production sale plus 30%
-//                           ($750 -> $262.50). Stripe Checkout takes one code per purchase, so the stacked price
+//   THANKS30-XXXXX-PROD  -> coupon REVIEW30PROD51: 51% off Production only, i.e. the 30% production sale plus 30%
+//                           ($500 -> $245). (Older codes use REVIEW30PROD, 65% off.) Stripe Checkout takes one code per purchase, so the stacked price
 //                           needs its own coupon.
 // Both coupons were created once in the Stripe dashboard's live account (see their names there).
 const SERVICE_COUPON = 'REVIEW30';
-const PRODUCTION_COUPON = 'REVIEW30PROD';
+const PRODUCTION_COUPON = 'REVIEW30PROD51';
+const OLD_PRODUCTION_COUPON = 'REVIEW30PROD'; // 65%, codes made before the $500 price; still listed
 const ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'; // no 0/O/1/I/L
 
 function randomSuffix(n = 5) {
@@ -36,12 +37,12 @@ async function createReviewCodes(stripe, note) {
 
 async function listReviewCodes(stripe) {
   const pairs = {};
-  for (const coupon of [SERVICE_COUPON, PRODUCTION_COUPON]) {
+  for (const coupon of [SERVICE_COUPON, PRODUCTION_COUPON, OLD_PRODUCTION_COUPON]) {
     for await (const pc of stripe.promotionCodes.list({ coupon, limit: 100 })) {
       if (!pc.active && !pc.times_redeemed) continue; // switched off in Stripe without being used
       const key = (pc.metadata && pc.metadata.pair) || pc.code.replace(/-PROD$/, '');
       const p = pairs[key] || (pairs[key] = { code: key, note: (pc.metadata && pc.metadata.note) || '', created: pc.created * 1000, used: '' });
-      if (pc.times_redeemed > 0) p.used = coupon === PRODUCTION_COUPON ? 'Production' : 'Service';
+      if (pc.times_redeemed > 0) p.used = coupon !== SERVICE_COUPON ? 'Production' : 'Service';
     }
   }
   return Object.values(pairs).sort((a, b) => b.created - a.created);
