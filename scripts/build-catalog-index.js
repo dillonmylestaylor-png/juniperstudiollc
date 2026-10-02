@@ -1,5 +1,5 @@
-// Builds netlify/functions/data/songs.json (the private song index) from the preview clips Dillon marked.
-// Usage: node scripts/build-song-index.js [clip-dir]   (default: the SSD "Song Previews/previews_orig" folder)
+// Builds netlify/functions/data/catalog.json (the private song index) from the preview clips Dillon marked.
+// Usage: node scripts/build-catalog-index.js [clip-dir]   (default: the SSD "Song Previews/previews_orig" folder)
 const fs = require('fs');
 const path = require('path');
 const BASE = '/Volumes/Mac/Claude SSD/Song Previews';
@@ -26,5 +26,5 @@ const out = Object.keys(songs).sort((a, b) => a.localeCompare(b)).map((title) =>
   else versions[0].label = '';
   return { title, versions };
 });
-fs.writeFileSync(path.join(__dirname, '..', 'netlify', 'functions', 'data', 'songs.json'), JSON.stringify({ songs: out }, null, 1));
+fs.writeFileSync(path.join(__dirname, '..', 'netlify', 'functions', 'data', 'catalog.json'), JSON.stringify({ songs: out }, null, 1));
 console.log(out.length + ' songs, ' + out.reduce((n, s) => n + s.versions.length, 0) + ' clips');

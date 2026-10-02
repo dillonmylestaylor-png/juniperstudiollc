@@ -1,7 +1,7 @@
-// Uploads the preview clips to the private Netlify Blobs store "song-previews" (key "audio/<id>").
-// Run AFTER the site has been deployed with the /songs page. Needs NETLIFY_AUTH_TOKEN and the site id
+// Uploads the preview clips to the private Netlify Blobs store "catalog-previews" (key "audio/<id>").
+// Run AFTER the site has been deployed with the /catalog page. Needs NETLIFY_AUTH_TOKEN and the site id
 // (NETLIFY_SITE_ID) in .env or the environment.
-// Usage: node scripts/upload-song-previews.js [clip-dir]
+// Usage: node scripts/upload-catalog-previews.js [clip-dir]
 const fs = require('fs');
 const path = require('path');
 const envPath = path.join(__dirname, '..', '.env');
@@ -16,9 +16,9 @@ if (fs.existsSync(envPath)) {
 }
 const { getStore } = require('@netlify/blobs');
 const dir = process.argv[2] || '/Volumes/Mac/Claude SSD/Song Previews/previews_orig';
-const index = require('../netlify/functions/data/songs.json');
+const index = require('../netlify/functions/data/catalog.json');
 (async () => {
-  const store = getStore({ name: 'song-previews', siteID: process.env.NETLIFY_SITE_ID, token: process.env.NETLIFY_AUTH_TOKEN });
+  const store = getStore({ name: 'catalog-previews', siteID: process.env.NETLIFY_SITE_ID, token: process.env.NETLIFY_AUTH_TOKEN });
   let n = 0;
   for (const s of index.songs) for (const v of s.versions) {
     await store.set('audio/' + v.id, fs.readFileSync(path.join(dir, v.file)));

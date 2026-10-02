@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Songs | Juniper Studio</title>
+  <title>Song Catalog | Juniper Studio</title>
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
@@ -44,7 +44,7 @@
 </nav>
 <main>
 <div class="songs-wrap">
-  <h1>Songs</h1>
+  <h1>Song Catalog</h1>
   <p class="muted">Hear the chorus of each song. This page is private and not linked anywhere. If you like one, tell us and we will talk about recording it.</p>
 
   <form id="login" class="card">
@@ -73,7 +73,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var songs = [], ctx = null, current = null;
 
-  function api(path, opts) { return fetch('/api/songs/' + path, Object.assign({ credentials: 'same-origin' }, opts || {})); }
+  function api(path, opts) { return fetch('/api/catalog/' + path, Object.assign({ credentials: 'same-origin' }, opts || {})); }
 
   function show(list) {
     songs = list;
@@ -98,7 +98,7 @@
       audio.addEventListener('contextmenu', function (e) { e.preventDefault(); });
       function pick(v, btn) {
         var was = !audio.paused;
-        audio.src = '/api/songs/audio/' + encodeURIComponent(v.id);
+        audio.src = '/api/catalog/audio/' + encodeURIComponent(v.id);
         audio.dataset.fadeIn = v.fadeIn; audio.dataset.fadeOut = v.fadeOut;
         [].forEach.call(card.querySelectorAll('.vers button'), function (b) { b.classList.toggle('on', b === btn); });
         if (was) audio.play();
@@ -113,7 +113,7 @@
         });
         card.appendChild(vs);
       } else {
-        var v0 = s.versions[0]; audio.src = '/api/songs/audio/' + encodeURIComponent(v0.id);
+        var v0 = s.versions[0]; audio.src = '/api/catalog/audio/' + encodeURIComponent(v0.id);
         audio.dataset.fadeIn = v0.fadeIn; audio.dataset.fadeOut = v0.fadeOut;
       }
       card.appendChild(audio);

@@ -1,29 +1,29 @@
-// /api/songs/* -- password-protected song previews (the /songs page).
-//   POST /api/songs/login  {password}  -> sets a 30-day HttpOnly cookie
-//   GET  /api/songs/list               -> the song index (needs the cookie)
-//   GET  /api/songs/audio/<id>         -> one preview clip, with Range support so the player can seek (needs the cookie)
-// Password: SONGS_PASSWORD (falls back to ADMIN_PASSWORD until a separate one is set). Without either, the
-// endpoints are closed. The clips live in the private Netlify Blobs store "song-previews" (key "audio/<id>"),
-// never as public files. For local testing set SONG_PREVIEW_DIR to a folder of the original clip files.
+// /api/catalog/* -- password-protected song previews (the /catalog page).
+//   POST /api/catalog/login  {password}  -> sets a 30-day HttpOnly cookie
+//   GET  /api/catalog/list               -> the song index (needs the cookie)
+//   GET  /api/catalog/audio/<id>         -> one preview clip, with Range support so the player can seek (needs the cookie)
+// Password: CATALOG_PASSWORD (falls back to ADMIN_PASSWORD until a separate one is set). Without either, the
+// endpoints are closed. The clips live in the private Netlify Blobs store "catalog-previews" (key "audio/<id>"),
+// never as public files. For local testing set CATALOG_PREVIEW_DIR to a folder of the original clip files.
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const { connectLambda, getStore } = require('@netlify/blobs');
-const INDEX = require('./data/songs.json');
+const INDEX = require('./data/catalog.json');
 
-const COOKIE = 'songs_access';
+const COOKIE = 'catalog_access';
 const MAX_AGE = 30 * 86400;
 const CHUNK = 3500000; // keep each response well under the 6 MB function limit; players just ask for the next range
 const TYPES = { mp3: 'audio/mpeg', wav: 'audio/wav', m4a: 'audio/mp4' };
 
 const sha = (s) => crypto.createHash('sha256').update(String(s)).digest();
 const json = (statusCode, body, headers) => ({ statusCode, headers: Object.assign({ 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }, headers || {}), body: JSON.stringify(body) });
-const password = () => process.env.SONGS_PASSWORD || process.env.ADMIN_PASSWORD || '';
+const password = () => process.env.CATALOG_PASSWORD || process.env.ADMIN_PASSWORD || '';
 const secret = () => process.env.LICENSE_SIGNING_SECRET || password();
-const sign = (exp) => crypto.createHmac('sha256', secret()).update('songs|' + exp).digest('hex');
+const sign = (exp) => crypto.createHmac('sha256', secret()).update('catalog|' + exp).digest('hex');
 
 function hasAccess(event) {
-  const m = /(?:^|;\s*)songs_access=([^;]+)/.exec((event.headers || {}).cookie || '');
+  const m = /(?:^|;\s*)catalog_access=([^;]+)/.exec((event.headers || {}).cookie || '');
   if (!m) return false;
   const [exp, sig] = decodeURIComponent(m[1]).split('.');
   if (!exp || !sig || Number(exp) < Date.now()) return false;
@@ -37,18 +37,18 @@ function findFile(id) {
 }
 
 async function readClip(v) {
-  const dir = process.env.SONG_PREVIEW_DIR;
+  const dir = process.env.CATALOG_PREVIEW_DIR;
   if (dir) {
     const p = path.join(dir, v.file);
     return fs.existsSync(p) ? fs.readFileSync(p) : null;
   }
-  const data = await getStore('song-previews').get('audio/' + v.id, { type: 'arrayBuffer' });
+  const data = await getStore('catalog-previews').get('audio/' + v.id, { type: 'arrayBuffer' });
   return data ? Buffer.from(data) : null;
 }
 
 exports.handler = async (event) => {
-  if (!password()) return json(503, { ok: false, error: 'Set SONGS_PASSWORD (or ADMIN_PASSWORD) in Netlify to open this page.' });
-  const route = String(event.path || '').replace(/^.*\/api\/songs\/?/, '').replace(/^.*\/\.netlify\/functions\/songs\/?/, '');
+  if (!password()) return json(503, { ok: false, error: 'Set CATALOG_PASSWORD (or ADMIN_PASSWORD) in Netlify to open this page.' });
+  const route = String(event.path || '').replace(/^.*\/api\/catalog\/?/, '').replace(/^.*\/\.netlify\/functions\/catalog\/?/, '');
 
   if (route === 'login' && event.httpMethod === 'POST') {
     let given = '';
@@ -58,7 +58,7 @@ exports.handler = async (event) => {
       return json(401, { ok: false, error: 'Wrong password.' });
     }
     const exp = String(Date.now() + MAX_AGE * 1000);
-    const cookie = `${COOKIE}=${encodeURIComponent(exp + '.' + sign(exp))}; Path=/api/songs; Max-Age=${MAX_AGE}; HttpOnly; Secure; SameSite=Strict`;
+    const cookie = `${COOKIE}=${encodeURIComponent(exp + '.' + sign(exp))}; Path=/api/catalog; Max-Age=${MAX_AGE}; HttpOnly; Secure; SameSite=Strict`;
     return json(200, { ok: true }, { 'Set-Cookie': cookie });
   }
 
@@ -71,7 +71,7 @@ exports.handler = async (event) => {
   if (route.startsWith('audio/')) {
     const v = findFile(decodeURIComponent(route.slice(6)));
     if (!v) return { statusCode: 404, body: 'Not found' };
-    if (!process.env.SONG_PREVIEW_DIR) connectLambda(event);
+    if (!process.env.CATALOG_PREVIEW_DIR) connectLambda(event);
     const buf = await readClip(v);
     if (!buf) return { statusCode: 404, body: 'Not found' };
     const type = TYPES[v.ext] || 'application/octet-stream';

@@ -38,8 +38,8 @@
   status = 200
 
 [[redirects]]
-  from = "/api/songs/*"
-  to = "/.netlify/functions/songs/:splat"
+  from = "/api/catalog/*"
+  to = "/.netlify/functions/catalog/:splat"
   status = 200
 
 [[redirects]]
@@ -48,13 +48,13 @@
   status = 200
 
 [[headers]]
-  for = "/songs"
+  for = "/catalog"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "no-store"
 
 [[headers]]
-  for = "/api/songs/*"
+  for = "/api/catalog/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
 
@@ -293,7 +293,7 @@
   force = true
 
 [[redirects]]
-  from = "/songs.html"
-  to = "/songs"
+  from = "/catalog.html"
+  to = "/catalog"
   status = 301
   force = true
