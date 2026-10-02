@@ -63,6 +63,7 @@ Full list: https://juniperstudiollc.com/gear
 - [Hip-hop & rap mixing](https://juniperstudiollc.com/hip-hop-mixing): you have the beat and vocals — mixed online for $100/song, up to 5 revisions; send the beat as a stereo instrumental plus separate vocal tracks
 - [Suno AI song production](https://juniperstudiollc.com/suno-to-real-song): rebuild an AI-generated song as a fully real, professionally produced track for $350/song — your vocals (or a session singer) and real instruments, mixed and mastered
 - [How to prepare for a session](https://juniperstudiollc.com/how-to-prepare-for-studio): what to bring and how to get more out of studio time
+- [Guides](https://juniperstudiollc.com/guides): index of how-to guides from the studio
 - [How to make a cab impulse response](https://juniperstudiollc.com/how-to-make-a-cab-ir): step-by-step guide to making a guitar or bass cabinet IR with IR Deconvolver: use the default exponential sweep (48 kHz), drive the cab with a solid-state power amp (guitar-amp effects return only as a fallback), set levels at the amps without altering the sweep, record, then deconvolve, check and blend
 
 ## Plugins (JS-505 chorus, JS-2 tremolo)
