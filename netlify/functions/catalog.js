@@ -1,7 +1,7 @@
 // /api/catalog/* -- password-protected song previews (the /catalog page).
-//   POST /api/catalog/login  {password}  -> sets a 30-day HttpOnly cookie
-//   GET  /api/catalog/list               -> the song index (needs the cookie)
-//   GET  /api/catalog/audio/<id>         -> one preview clip, with Range support so the player can seek (needs the cookie)
+//   POST /api/catalog/login  {password}  -> a signed 12-hour token (kept in the page's memory only)
+//   GET  /api/catalog/list               -> the song index (needs the token)
+//   GET  /api/catalog/audio/<id>         -> one preview clip, with Range support so the player can seek (needs the token)
 // Password: CATALOG_PASSWORD (falls back to ADMIN_PASSWORD until a separate one is set). Without either, the
 // endpoints are closed. The clips live in the private Netlify Blobs store "catalog-previews" (key "audio/<id>"),
 // never as public files. For local testing set CATALOG_PREVIEW_DIR to a folder of the original clip files.
@@ -11,8 +11,7 @@ const path = require('path');
 const { connectLambda, getStore } = require('@netlify/blobs');
 const INDEX = require('./data/catalog.json');
 
-const COOKIE = 'catalog_access';
-const MAX_AGE = 30 * 86400;
+const MAX_AGE = 12 * 3600; // a signed token the page keeps only in memory, so a refresh asks for the password again
 const CHUNK = 3500000; // keep each response well under the 6 MB function limit; players just ask for the next range
 const TYPES = { mp3: 'audio/mpeg', wav: 'audio/wav', m4a: 'audio/mp4' };
 
@@ -29,15 +28,13 @@ function tokenOk(tok) {
   return sig.length === want.length && crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(want));
 }
 
-// The signed token can arrive as the cookie, an "Authorization: Bearer" header, or ?t= (audio players cannot send headers).
+// The signed token arrives as an "Authorization: Bearer" header or ?t= (audio players cannot send headers).
+// It is never stored in a cookie, so closing or refreshing the page locks the catalog again.
 function hasAccess(event) {
   const h = event.headers || {};
-  const m = /(?:^|;\s*)catalog_access=([^;]+)/.exec(h.cookie || '');
-  let cookieTok = '';
-  try { cookieTok = m ? decodeURIComponent(m[1]) : ''; } catch (e) {}
   const bearer = String(h.authorization || '').replace(/^Bearer\s+/i, '');
   const q = (event.queryStringParameters || {}).t || '';
-  return tokenOk(cookieTok) || tokenOk(bearer) || tokenOk(q);
+  return tokenOk(bearer) || tokenOk(q);
 }
 
 function findFile(id) {
@@ -68,8 +65,7 @@ exports.handler = async (event) => {
     }
     const exp = String(Date.now() + MAX_AGE * 1000);
     const token = exp + '.' + sign(exp);
-    const cookie = `${COOKIE}=${encodeURIComponent(token)}; Path=/api/catalog; Max-Age=${MAX_AGE}; HttpOnly; Secure; SameSite=Strict`;
-    return json(200, { ok: true, token }, { 'Set-Cookie': cookie });
+    return json(200, { ok: true, token });
   }
 
   if (!hasAccess(event)) return json(401, { ok: false, error: 'Password needed.' });

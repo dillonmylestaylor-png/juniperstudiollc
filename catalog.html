@@ -92,12 +92,9 @@
 </nav>
 
 <main>
-  <section class="page-banner page-banner-16x9 hero-bg-6">
-    <h1>Song Catalog</h1>
-  </section>
-
   <section class="section">
     <div class="container">
+      <h1 style="margin-bottom:1rem;">Song Catalog</h1>
       <p class="subtitle">Original songs from Juniper Studio, ready for an artist to record. Hear a 30-second preview of each chorus, shortlist the ones you like, and ask us for pricing to produce, mix and master your version.</p>
 
       <form id="gate" class="card">
@@ -188,10 +185,10 @@
   var PLAY = '<svg class="pl" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="pa" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
   var HEART = '<svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-9.3-9C1.3 9 3 5.5 6.4 5.5c2 0 3.6 1.1 4.4 2.6.8-1.5 2.4-2.6 4.4-2.6 3.4 0 5.1 3.5 3.7 6.5C19 16.6 12 21 12 21z"/></svg>';
 
-  var TOKEN = '';
-  try { TOKEN = localStorage.getItem('catalogToken') || ''; } catch (e) {}
+  var TOKEN = ''; // kept in memory only, so refreshing the page locks the catalog again
+  try { localStorage.removeItem('catalogToken'); } catch (e) {}
   function api(path, opts) {
-    opts = Object.assign({ credentials: 'same-origin' }, opts || {});
+    opts = Object.assign({ credentials: 'omit' }, opts || {});
     if (TOKEN) opts.headers = Object.assign({ Authorization: 'Bearer ' + TOKEN }, opts.headers || {});
     return fetch('/api/catalog/' + path, opts);
   }
@@ -344,7 +341,7 @@
 
   function load() {
     return api('list').then(function (r) {
-      if (r.status === 401) { if (TOKEN) { TOKEN = ''; try { localStorage.removeItem('catalogToken'); } catch (e) {} } return false; }
+      if (r.status === 401) { TOKEN = ''; return false; }
       return r.json().then(function (j) { if (j.ok) { show(j.songs); return true; } $('err').textContent = j.error || ''; return false; });
     });
   }
@@ -354,13 +351,12 @@
       .then(function (r) { return r.json(); })
       .then(function (j) {
         if (!j.ok) { $('err').textContent = j.error || 'Could not sign in.'; return; }
-        TOKEN = j.token || ''; try { localStorage.setItem('catalogToken', TOKEN); } catch (e) {}
+        TOKEN = j.token || '';
         return load().then(function (ok) { if (!ok) $('err').textContent = 'Signed in, but the catalog could not load. Please refresh and try again.'; });
       })
       .catch(function () { $('err').textContent = 'Could not reach the server.'; });
   });
   $('q').addEventListener('input', function (e) { render(e.target.value); });
-  load();
 })();
 </script>
 </body>
