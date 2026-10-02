@@ -38,9 +38,25 @@
   status = 200
 
 [[redirects]]
+  from = "/api/songs/*"
+  to = "/.netlify/functions/songs/:splat"
+  status = 200
+
+[[redirects]]
   from = "/fourthwall-webhook"
   to = "/.netlify/functions/fourthwall-webhook"
   status = 200
+
+[[headers]]
+  for = "/songs"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/api/songs/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
 
 [[headers]]
   for = "/admin"
@@ -273,5 +289,11 @@
 [[redirects]]
   from = "/admin.html"
   to = "/admin"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/songs.html"
+  to = "/songs"
   status = 301
   force = true

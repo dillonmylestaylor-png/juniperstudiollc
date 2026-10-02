@@ -1,50 +1,62 @@
 User-agent: *
 Allow: /
 Disallow: /admin
+Disallow: /songs
 
 User-agent: GPTBot
 Allow: /
 Disallow: /admin
+Disallow: /songs
 
 User-agent: OAI-SearchBot
 Allow: /
 Disallow: /admin
+Disallow: /songs
 
 User-agent: ChatGPT-User
 Allow: /
 Disallow: /admin
+Disallow: /songs
 
 User-agent: Google-Extended
 Allow: /
 Disallow: /admin
+Disallow: /songs
 
 User-agent: anthropic-ai
 Allow: /
 Disallow: /admin
+Disallow: /songs
 
 User-agent: ClaudeBot
 Allow: /
 Disallow: /admin
+Disallow: /songs
 
 User-agent: Claude-SearchBot
 Allow: /
 Disallow: /admin
+Disallow: /songs
 
 User-agent: Claude-User
 Allow: /
 Disallow: /admin
+Disallow: /songs
 
 User-agent: PerplexityBot
 Allow: /
 Disallow: /admin
+Disallow: /songs
 
 User-agent: Perplexity-User
 Allow: /
 Disallow: /admin
+Disallow: /songs
 
 User-agent: Applebot-Extended
 Allow: /
 Disallow: /admin
+Disallow: /songs
 
 Sitemap: https://juniperstudiollc.com/sitemap.xml
 LLM-Content: https://juniperstudiollc.com/llms.txt

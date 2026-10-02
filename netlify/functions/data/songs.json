@@ -1,0 +1,1240 @@
+{
+ "songs": [
+  {
+   "title": "2 Am In Michigan",
+   "versions": [
+    {
+     "id": "2-am-in-michigan",
+     "label": "",
+     "file": "2 Am In Michigan.mp3",
+     "ext": "mp3",
+     "bytes": 1199601
+    }
+   ]
+  },
+  {
+   "title": "All Day Heartbreak",
+   "versions": [
+    {
+     "id": "all-day-heartbreak",
+     "label": "",
+     "file": "All Day Heartbreak.mp3",
+     "ext": "mp3",
+     "bytes": 1200645
+    }
+   ]
+  },
+  {
+   "title": "Along For The Ride",
+   "versions": [
+    {
+     "id": "along-for-the-ride",
+     "label": "",
+     "file": "Along For The Ride.mp3",
+     "ext": "mp3",
+     "bytes": 959460
+    }
+   ]
+  },
+  {
+   "title": "Any Shot Of Whiskey Can",
+   "versions": [
+    {
+     "id": "any-shot-of-whiskey-can-v1",
+     "label": "V1",
+     "file": "Any Shot Of Whiskey Can - V1.mp3",
+     "ext": "mp3",
+     "bytes": 1199601
+    },
+    {
+     "id": "any-shot-of-whiskey-can-v2",
+     "label": "V2",
+     "file": "Any Shot Of Whiskey Can - V2.mp3",
+     "ext": "mp3",
+     "bytes": 960045
+    }
+   ]
+  },
+  {
+   "title": "Anywhere You Wanna Go",
+   "versions": [
+    {
+     "id": "anywhere-you-wanna-go",
+     "label": "",
+     "file": "Anywhere You Wanna Go.mp3",
+     "ext": "mp3",
+     "bytes": 960295
+    }
+   ]
+  },
+  {
+   "title": "As Long As It Don't Kill Me First",
+   "versions": [
+    {
+     "id": "as-long-as-it-dont-kill-me-first",
+     "label": "",
+     "file": "As Long As It Don't Kill Me First.mp3",
+     "ext": "mp3",
+     "bytes": 1201005
+    }
+   ]
+  },
+  {
+   "title": "Bar Fly",
+   "versions": [
+    {
+     "id": "bar-fly",
+     "label": "",
+     "file": "Bar Fly.mp3",
+     "ext": "mp3",
+     "bytes": 1201678
+    }
+   ]
+  },
+  {
+   "title": "Better Days",
+   "versions": [
+    {
+     "id": "better-days-v1",
+     "label": "V1",
+     "file": "Better Days - V1.mp3",
+     "ext": "mp3",
+     "bytes": 600338
+    },
+    {
+     "id": "better-days-v2",
+     "label": "V2",
+     "file": "Better Days - V2.mp3",
+     "ext": "mp3",
+     "bytes": 959460
+    }
+   ]
+  },
+  {
+   "title": "Blame It On Me",
+   "versions": [
+    {
+     "id": "blame-it-on-me",
+     "label": "",
+     "file": "Blame It On Me.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "Break",
+   "versions": [
+    {
+     "id": "break",
+     "label": "",
+     "file": "Break.mp3",
+     "ext": "mp3",
+     "bytes": 960045
+    }
+   ]
+  },
+  {
+   "title": "By The Way",
+   "versions": [
+    {
+     "id": "by-the-way",
+     "label": "",
+     "file": "By The Way.mp3",
+     "ext": "mp3",
+     "bytes": 1199601
+    }
+   ]
+  },
+  {
+   "title": "California Bound",
+   "versions": [
+    {
+     "id": "california-bound-v1",
+     "label": "V1",
+     "file": "California Bound - V1.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    },
+    {
+     "id": "california-bound-v2",
+     "label": "V2",
+     "file": "California Bound - V2.mp3",
+     "ext": "mp3",
+     "bytes": 1199601
+    }
+   ]
+  },
+  {
+   "title": "Can't Make You Miss Me",
+   "versions": [
+    {
+     "id": "cant-make-you-miss-me",
+     "label": "",
+     "file": "Can't Make You Miss Me.mp3",
+     "ext": "mp3",
+     "bytes": 959460
+    }
+   ]
+  },
+  {
+   "title": "Catches Fire",
+   "versions": [
+    {
+     "id": "catches-fire-troy",
+     "label": "",
+     "file": "Catches Fire (Troy).mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "Certain Way Of Leaving",
+   "versions": [
+    {
+     "id": "certain-way-of-leaving",
+     "label": "",
+     "file": "Certain Way Of Leaving.mp3",
+     "ext": "mp3",
+     "bytes": 960295
+    }
+   ]
+  },
+  {
+   "title": "Colorado Run",
+   "versions": [
+    {
+     "id": "colorado-run-v1",
+     "label": "V1",
+     "file": "Colorado Run - V1.mp3",
+     "ext": "mp3",
+     "bytes": 961351
+    },
+    {
+     "id": "colorado-run-v2",
+     "label": "V2",
+     "file": "Colorado Run - V2.mp3",
+     "ext": "mp3",
+     "bytes": 1200645
+    }
+   ]
+  },
+  {
+   "title": "Country Side",
+   "versions": [
+    {
+     "id": "country-side",
+     "label": "",
+     "file": "Country Side.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "Dashboard Change",
+   "versions": [
+    {
+     "id": "dashboard-change",
+     "label": "",
+     "file": "Dashboard Change.mp3",
+     "ext": "mp3",
+     "bytes": 1200645
+    }
+   ]
+  },
+  {
+   "title": "Didn't I",
+   "versions": [
+    {
+     "id": "didnt-i",
+     "label": "",
+     "file": "Didn't I.mp3",
+     "ext": "mp3",
+     "bytes": 960045
+    }
+   ]
+  },
+  {
+   "title": "Drink About That",
+   "versions": [
+    {
+     "id": "drink-about-that-v1",
+     "label": "V1",
+     "file": "Drink About That - V1.mp3",
+     "ext": "mp3",
+     "bytes": 959460
+    },
+    {
+     "id": "drink-about-that-v2",
+     "label": "V2",
+     "file": "Drink About That - V2.mp3",
+     "ext": "mp3",
+     "bytes": 1200645
+    }
+   ]
+  },
+  {
+   "title": "Drinkin’",
+   "versions": [
+    {
+     "id": "drinkin",
+     "label": "",
+     "file": "Drinkin.mp3",
+     "ext": "mp3",
+     "bytes": 1199601
+    }
+   ]
+  },
+  {
+   "title": "El Dorado",
+   "versions": [
+    {
+     "id": "el-dorado-v1",
+     "label": "V1",
+     "file": "El Dorado - V1.mp3",
+     "ext": "mp3",
+     "bytes": 961351
+    },
+    {
+     "id": "el-dorado-v2",
+     "label": "V2",
+     "file": "El Dorado - V2.wav",
+     "ext": "wav",
+     "bytes": 8650854
+    }
+   ]
+  },
+  {
+   "title": "Every Now And Then",
+   "versions": [
+    {
+     "id": "every-now-and-then",
+     "label": "",
+     "file": "Every Now And Then.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "Goodnight For A Goodbye",
+   "versions": [
+    {
+     "id": "goodnight-for-a-goodbye",
+     "label": "",
+     "file": "Goodnight For A Goodbye.mp3",
+     "ext": "mp3",
+     "bytes": 960295
+    }
+   ]
+  },
+  {
+   "title": "Grandpa's Field",
+   "versions": [
+    {
+     "id": "grandpas-field",
+     "label": "",
+     "file": "Grandpa's Field.mp3",
+     "ext": "mp3",
+     "bytes": 960515
+    }
+   ]
+  },
+  {
+   "title": "Hard Woman To Love",
+   "versions": [
+    {
+     "id": "hard-woman-to-love",
+     "label": "",
+     "file": "Hard Woman To Love.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "Hittin' Me Hard Tonight",
+   "versions": [
+    {
+     "id": "hittin-me-hard-tonight-v1",
+     "label": "V1",
+     "file": "Hittin' Me Hard Tonight - V1.mp3",
+     "ext": "mp3",
+     "bytes": 600861
+    },
+    {
+     "id": "hittin-me-hard-tonight-v2",
+     "label": "V2",
+     "file": "Hittin' Me Hard Tonight - V2.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "Hometown Hero",
+   "versions": [
+    {
+     "id": "hometown-hero",
+     "label": "",
+     "file": "Hometown Hero.mp3",
+     "ext": "mp3",
+     "bytes": 1200645
+    }
+   ]
+  },
+  {
+   "title": "Hook Line And Sinking",
+   "versions": [
+    {
+     "id": "hook-line-and-sinking-v1",
+     "label": "V1",
+     "file": "Hook Line And Sinking - V1.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    },
+    {
+     "id": "hook-line-and-sinking-v2",
+     "label": "V2",
+     "file": "Hook Line And Sinking - V2.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "I Can't Take Cold",
+   "versions": [
+    {
+     "id": "i-cant-take-cold",
+     "label": "",
+     "file": "I Can't Take Cold.mp3",
+     "ext": "mp3",
+     "bytes": 1199601
+    }
+   ]
+  },
+  {
+   "title": "I Do Still",
+   "versions": [
+    {
+     "id": "i-do-still",
+     "label": "",
+     "file": "I Do Still.mp3",
+     "ext": "mp3",
+     "bytes": 961351
+    }
+   ]
+  },
+  {
+   "title": "I Love You More",
+   "versions": [
+    {
+     "id": "i-love-you-more",
+     "label": "",
+     "file": "I Love You More.mp3",
+     "ext": "mp3",
+     "bytes": 959460
+    }
+   ]
+  },
+  {
+   "title": "I'll Be Leaving You",
+   "versions": [
+    {
+     "id": "ill-be-leaving-you",
+     "label": "",
+     "file": "I'll Be Leaving You.mp3",
+     "ext": "mp3",
+     "bytes": 960045
+    }
+   ]
+  },
+  {
+   "title": "If It Was Me",
+   "versions": [
+    {
+     "id": "if-it-was-me",
+     "label": "",
+     "file": "If It Was Me.mp3",
+     "ext": "mp3",
+     "bytes": 1199601
+    }
+   ]
+  },
+  {
+   "title": "If Looks Could Kill",
+   "versions": [
+    {
+     "id": "if-looks-could-kill",
+     "label": "",
+     "file": "If Looks Could Kill.mp3",
+     "ext": "mp3",
+     "bytes": 1201005
+    }
+   ]
+  },
+  {
+   "title": "Just A Kid",
+   "versions": [
+    {
+     "id": "just-a-kid-v1",
+     "label": "V1",
+     "file": "Just A Kid - V1.mp3",
+     "ext": "mp3",
+     "bytes": 960515
+    },
+    {
+     "id": "just-a-kid-v2",
+     "label": "V2",
+     "file": "Just A Kid - V2.mp3",
+     "ext": "mp3",
+     "bytes": 1200645
+    }
+   ]
+  },
+  {
+   "title": "Keep It Coastin'",
+   "versions": [
+    {
+     "id": "keep-it-coastin",
+     "label": "",
+     "file": "Keep It Coastin'.mp3",
+     "ext": "mp3",
+     "bytes": 959460
+    }
+   ]
+  },
+  {
+   "title": "Last Call",
+   "versions": [
+    {
+     "id": "last-call",
+     "label": "",
+     "file": "Last Call.mp3",
+     "ext": "mp3",
+     "bytes": 959460
+    }
+   ]
+  },
+  {
+   "title": "Launch Party",
+   "versions": [
+    {
+     "id": "launch-party",
+     "label": "",
+     "file": "Launch Party.mp3",
+     "ext": "mp3",
+     "bytes": 1200045
+    }
+   ]
+  },
+  {
+   "title": "Lend Me A Halo",
+   "versions": [
+    {
+     "id": "lend-me-a-halo",
+     "label": "",
+     "file": "Lend Me A Halo.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "Life Ain't One",
+   "versions": [
+    {
+     "id": "life-aint-one",
+     "label": "",
+     "file": "Life Ain't One.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "Lift Me Up",
+   "versions": [
+    {
+     "id": "lift-me-up",
+     "label": "Original",
+     "file": "Lift Me Up.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    },
+    {
+     "id": "lift-me-up-matt",
+     "label": "Matt",
+     "file": "Lift Me Up (Matt).mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "Like She Wasn't Lonely",
+   "versions": [
+    {
+     "id": "like-she-wasnt-lonely",
+     "label": "",
+     "file": "Like She Wasn't Lonely.mp3",
+     "ext": "mp3",
+     "bytes": 960045
+    }
+   ]
+  },
+  {
+   "title": "Listen",
+   "versions": [
+    {
+     "id": "listen",
+     "label": "",
+     "file": "Listen.mp3",
+     "ext": "mp3",
+     "bytes": 960045
+    }
+   ]
+  },
+  {
+   "title": "Little Love Song",
+   "versions": [
+    {
+     "id": "little-love-song",
+     "label": "",
+     "file": "Little Love Song.mp3",
+     "ext": "mp3",
+     "bytes": 1201005
+    }
+   ]
+  },
+  {
+   "title": "Living For The Mornings",
+   "versions": [
+    {
+     "id": "living-for-the-mornings",
+     "label": "",
+     "file": "Living For The Mornings.mp3",
+     "ext": "mp3",
+     "bytes": 959460
+    }
+   ]
+  },
+  {
+   "title": "Love's Got Something To Do With It",
+   "versions": [
+    {
+     "id": "loves-got-something-to-do-with-it",
+     "label": "",
+     "file": "Love's Got Something To Do With It.mp3",
+     "ext": "mp3",
+     "bytes": 1200645
+    }
+   ]
+  },
+  {
+   "title": "Moments To Memories",
+   "versions": [
+    {
+     "id": "moments-to-memories",
+     "label": "",
+     "file": "Moments To Memories.mp3",
+     "ext": "mp3",
+     "bytes": 1199601
+    }
+   ]
+  },
+  {
+   "title": "No Good For You",
+   "versions": [
+    {
+     "id": "no-good-for-you",
+     "label": "",
+     "file": "No Good For You.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "No Way No How",
+   "versions": [
+    {
+     "id": "no-way-no-how",
+     "label": "",
+     "file": "No Way No How.mp3",
+     "ext": "mp3",
+     "bytes": 960045
+    }
+   ]
+  },
+  {
+   "title": "Oklahoma Alone",
+   "versions": [
+    {
+     "id": "oklahoma-alone",
+     "label": "",
+     "file": "Oklahoma Alone.mp3",
+     "ext": "mp3",
+     "bytes": 1199601
+    }
+   ]
+  },
+  {
+   "title": "Old Age",
+   "versions": [
+    {
+     "id": "old-age",
+     "label": "",
+     "file": "Old Age.mp3",
+     "ext": "mp3",
+     "bytes": 1200645
+    }
+   ]
+  },
+  {
+   "title": "Old Guitars",
+   "versions": [
+    {
+     "id": "old-guitars",
+     "label": "",
+     "file": "Old Guitars.mp3",
+     "ext": "mp3",
+     "bytes": 1200645
+    }
+   ]
+  },
+  {
+   "title": "Old Times Sake",
+   "versions": [
+    {
+     "id": "old-times-sake",
+     "label": "",
+     "file": "Old Times Sake.mp3",
+     "ext": "mp3",
+     "bytes": 960295
+    }
+   ]
+  },
+  {
+   "title": "Once In A Neon Moon",
+   "versions": [
+    {
+     "id": "once-in-a-neon-moon",
+     "label": "",
+     "file": "Once In A Neon Moon.mp3",
+     "ext": "mp3",
+     "bytes": 959460
+    }
+   ]
+  },
+  {
+   "title": "One Barstool Over",
+   "versions": [
+    {
+     "id": "one-barstool-over-v1",
+     "label": "V1",
+     "file": "One Barstool Over - V1.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    },
+    {
+     "id": "one-barstool-over-v2",
+     "label": "V2",
+     "file": "One Barstool Over - V2.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "One Broken Heart",
+   "versions": [
+    {
+     "id": "one-broken-heart",
+     "label": "",
+     "file": "One Broken Heart.mp3",
+     "ext": "mp3",
+     "bytes": 960295
+    }
+   ]
+  },
+  {
+   "title": "One Drink At A Time",
+   "versions": [
+    {
+     "id": "one-drink-at-a-time",
+     "label": "",
+     "file": "One Drink At A Time.mp3",
+     "ext": "mp3",
+     "bytes": 959460
+    }
+   ]
+  },
+  {
+   "title": "One Mile At A Time",
+   "versions": [
+    {
+     "id": "one-mile-at-a-time",
+     "label": "",
+     "file": "One Mile At A Time.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "Outlaw In A Sundress",
+   "versions": [
+    {
+     "id": "outlaw-in-a-sundress",
+     "label": "",
+     "file": "Outlaw In A Sundress.mp3",
+     "ext": "mp3",
+     "bytes": 961351
+    }
+   ]
+  },
+  {
+   "title": "Over You",
+   "versions": [
+    {
+     "id": "over-you",
+     "label": "",
+     "file": "Over You.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "Plenty Of Love",
+   "versions": [
+    {
+     "id": "plenty-of-love",
+     "label": "",
+     "file": "Plenty Of Love.mp3",
+     "ext": "mp3",
+     "bytes": 1199601
+    }
+   ]
+  },
+  {
+   "title": "Porch Light",
+   "versions": [
+    {
+     "id": "porch-light",
+     "label": "",
+     "file": "Porch Light.mp3",
+     "ext": "mp3",
+     "bytes": 1200645
+    }
+   ]
+  },
+  {
+   "title": "Red Eye Flight To Boston",
+   "versions": [
+    {
+     "id": "red-eye-flight-to-boston",
+     "label": "",
+     "file": "Red Eye Flight To Boston.mp3",
+     "ext": "mp3",
+     "bytes": 1199601
+    }
+   ]
+  },
+  {
+   "title": "Reel Good Time",
+   "versions": [
+    {
+     "id": "reel-good-time",
+     "label": "",
+     "file": "Reel Good Time.mp3",
+     "ext": "mp3",
+     "bytes": 960295
+    }
+   ]
+  },
+  {
+   "title": "River Bank",
+   "versions": [
+    {
+     "id": "river-bank",
+     "label": "",
+     "file": "River Bank.mp3",
+     "ext": "mp3",
+     "bytes": 1200645
+    }
+   ]
+  },
+  {
+   "title": "Roots",
+   "versions": [
+    {
+     "id": "roots",
+     "label": "",
+     "file": "Roots.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "She's Gonna Leave",
+   "versions": [
+    {
+     "id": "shes-gonna-leave",
+     "label": "",
+     "file": "She's Gonna Leave.mp3",
+     "ext": "mp3",
+     "bytes": 1199601
+    }
+   ]
+  },
+  {
+   "title": "Shoes",
+   "versions": [
+    {
+     "id": "shoes",
+     "label": "",
+     "file": "Shoes.mp3",
+     "ext": "mp3",
+     "bytes": 959460
+    }
+   ]
+  },
+  {
+   "title": "Small Town Kinda Thing",
+   "versions": [
+    {
+     "id": "small-town-kinda-thing",
+     "label": "",
+     "file": "Small Town Kinda Thing.mp3",
+     "ext": "mp3",
+     "bytes": 961351
+    }
+   ]
+  },
+  {
+   "title": "Smooth Kinda Lovin",
+   "versions": [
+    {
+     "id": "smooth-kinda-lovin",
+     "label": "",
+     "file": "Smooth Kinda Lovin.mp3",
+     "ext": "mp3",
+     "bytes": 960045
+    }
+   ]
+  },
+  {
+   "title": "Some Of The Time",
+   "versions": [
+    {
+     "id": "some-of-the-time",
+     "label": "",
+     "file": "Some Of The Time.mp3",
+     "ext": "mp3",
+     "bytes": 1200645
+    }
+   ]
+  },
+  {
+   "title": "Something Good Goin' On",
+   "versions": [
+    {
+     "id": "something-good-goin-on",
+     "label": "",
+     "file": "Something Good Goin' On.mp3",
+     "ext": "mp3",
+     "bytes": 960295
+    }
+   ]
+  },
+  {
+   "title": "Something Like A Backroad",
+   "versions": [
+    {
+     "id": "something-like-a-backroad",
+     "label": "",
+     "file": "Something Like A Backroad.mp3",
+     "ext": "mp3",
+     "bytes": 960295
+    }
+   ]
+  },
+  {
+   "title": "Sounds Like A Love Song",
+   "versions": [
+    {
+     "id": "sounds-like-a-love-song",
+     "label": "",
+     "file": "Sounds Like A Love Song.mp3",
+     "ext": "mp3",
+     "bytes": 960045
+    }
+   ]
+  },
+  {
+   "title": "Soundtrack Of My Life",
+   "versions": [
+    {
+     "id": "soundtrack-of-my-life",
+     "label": "",
+     "file": "Soundtrack Of My Life.mp3",
+     "ext": "mp3",
+     "bytes": 961351
+    }
+   ]
+  },
+  {
+   "title": "Southern Boy",
+   "versions": [
+    {
+     "id": "southern-boy",
+     "label": "",
+     "file": "Southern Boy.mp3",
+     "ext": "mp3",
+     "bytes": 960045
+    }
+   ]
+  },
+  {
+   "title": "Start Over",
+   "versions": [
+    {
+     "id": "start-over",
+     "label": "",
+     "file": "Start Over.mp3",
+     "ext": "mp3",
+     "bytes": 960045
+    }
+   ]
+  },
+  {
+   "title": "Stronger Than I'll Ever Be",
+   "versions": [
+    {
+     "id": "stronger-than-ill-ever-be",
+     "label": "",
+     "file": "Stronger Than I'll Ever Be.mp3",
+     "ext": "mp3",
+     "bytes": 1200645
+    }
+   ]
+  },
+  {
+   "title": "Summer Back",
+   "versions": [
+    {
+     "id": "summer-back",
+     "label": "",
+     "file": "Summer Back.mp3",
+     "ext": "mp3",
+     "bytes": 960515
+    }
+   ]
+  },
+  {
+   "title": "Swimming With Our Boots On",
+   "versions": [
+    {
+     "id": "swimming-with-our-boots-on",
+     "label": "",
+     "file": "Swimming With Our Boots On.mp3",
+     "ext": "mp3",
+     "bytes": 959460
+    }
+   ]
+  },
+  {
+   "title": "Tailgate",
+   "versions": [
+    {
+     "id": "tailgate",
+     "label": "",
+     "file": "Tailgate.mp3",
+     "ext": "mp3",
+     "bytes": 600339
+    }
+   ]
+  },
+  {
+   "title": "The Heat",
+   "versions": [
+    {
+     "id": "the-heat",
+     "label": "",
+     "file": "The Heat.mp3",
+     "ext": "mp3",
+     "bytes": 959460
+    }
+   ]
+  },
+  {
+   "title": "The Long Way Home",
+   "versions": [
+    {
+     "id": "the-long-way-home-troy",
+     "label": "",
+     "file": "The Long Way Home (Troy).mp3",
+     "ext": "mp3",
+     "bytes": 1199601
+    }
+   ]
+  },
+  {
+   "title": "The Other Man",
+   "versions": [
+    {
+     "id": "the-other-man",
+     "label": "",
+     "file": "The Other Man.mp3",
+     "ext": "mp3",
+     "bytes": 959460
+    }
+   ]
+  },
+  {
+   "title": "The Whiskey Burns",
+   "versions": [
+    {
+     "id": "the-whiskey-burns",
+     "label": "",
+     "file": "The Whiskey Burns.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "Throwback",
+   "versions": [
+    {
+     "id": "throwback",
+     "label": "",
+     "file": "Throwback.mp3",
+     "ext": "mp3",
+     "bytes": 1199601
+    }
+   ]
+  },
+  {
+   "title": "Walks On Water",
+   "versions": [
+    {
+     "id": "walks-on-water-v1",
+     "label": "V1",
+     "file": "Walks On Water - V1.mp3",
+     "ext": "mp3",
+     "bytes": 961351
+    },
+    {
+     "id": "walks-on-water-v2",
+     "label": "V2",
+     "file": "Walks On Water - V2.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "What About Love",
+   "versions": [
+    {
+     "id": "what-about-love",
+     "label": "",
+     "file": "What About Love.mp3",
+     "ext": "mp3",
+     "bytes": 1200045
+    }
+   ]
+  },
+  {
+   "title": "What Makes A Man",
+   "versions": [
+    {
+     "id": "what-makes-a-man",
+     "label": "",
+     "file": "What Makes A Man.mp3",
+     "ext": "mp3",
+     "bytes": 960295
+    }
+   ]
+  },
+  {
+   "title": "What's It Over",
+   "versions": [
+    {
+     "id": "whats-it-over",
+     "label": "",
+     "file": "What's It Over.mp3",
+     "ext": "mp3",
+     "bytes": 1201005
+    }
+   ]
+  },
+  {
+   "title": "Whiskey And Water",
+   "versions": [
+    {
+     "id": "whiskey-and-water",
+     "label": "",
+     "file": "Whiskey And Water.mp3",
+     "ext": "mp3",
+     "bytes": 960295
+    }
+   ]
+  },
+  {
+   "title": "Whiskey Tipsy",
+   "versions": [
+    {
+     "id": "whiskey-tipsy",
+     "label": "",
+     "file": "Whiskey Tipsy.mp3",
+     "ext": "mp3",
+     "bytes": 960813
+    }
+   ]
+  },
+  {
+   "title": "Yesterday Was Sunday",
+   "versions": [
+    {
+     "id": "yesterday-was-sunday",
+     "label": "",
+     "file": "Yesterday Was Sunday.mp3",
+     "ext": "mp3",
+     "bytes": 959460
+    }
+   ]
+  },
+  {
+   "title": "You And Me And Memphis",
+   "versions": [
+    {
+     "id": "you-and-me-and-memphis",
+     "label": "",
+     "file": "You And Me And Memphis.mp3",
+     "ext": "mp3",
+     "bytes": 961351
+    }
+   ]
+  },
+  {
+   "title": "You Got Me",
+   "versions": [
+    {
+     "id": "you-got-me",
+     "label": "",
+     "file": "You Got Me.mp3",
+     "ext": "mp3",
+     "bytes": 1201005
+    }
+   ]
+  }
+ ]
+}

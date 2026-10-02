@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Songs | Juniper Studio</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .songs-wrap { max-width: 1080px; margin: 0 auto; padding: 3rem 16px 4rem; }
+    .songs-wrap h1 { font-size: 1.8rem; margin-bottom: .35rem; }
+    .muted { color: var(--muted); font-size: .95rem; }
+    #login { margin-top: 2rem; max-width: 420px; }
+    #login input, #q { padding: .65rem .75rem; border-radius: 6px; background: #111; color: #fff; border: 1px solid #333; font: inherit; width: 100%; box-sizing: border-box; }
+    #login button { margin-top: .9rem; }
+    .err { color: #ff8a80; min-height: 1.2em; margin-top: .6rem; }
+    #bar { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin: 1.5rem 0 1rem; }
+    #q { max-width: 320px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: .9rem; }
+    .song { background: #0d0d0d; border: 1px solid #262626; border-radius: 10px; padding: .9rem 1rem; }
+    .song h3 { margin: 0 0 .5rem; font-size: 1.02rem; font-weight: 600; }
+    .vers { display: flex; gap: .4rem; margin-bottom: .6rem; flex-wrap: wrap; }
+    .vers button { font: inherit; font-size: .8rem; padding: .25rem .7rem; border-radius: 999px; border: 1px solid #444; background: #151515; color: var(--text); cursor: pointer; }
+    .vers button.on { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
+    .song audio { width: 100%; height: 40px; }
+    .ask { display: inline-block; margin-top: .6rem; font-size: .85rem; }
+    .empty { color: var(--muted); padding: 2rem 0; }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="inner">
+    <a href="/" class="logo">Juniper<span>Studio</span></a>
+    <div class="links" id="navLinks">
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/contact">Contact</a>
+      <a href="tel:+16156649985" class="nav-cta">Call / Text</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<main>
+<div class="songs-wrap">
+  <h1>Songs</h1>
+  <p class="muted">Hear the chorus of each song. This page is private and not linked anywhere. If you like one, tell us and we will talk about recording it.</p>
+
+  <form id="login" class="card">
+    <label class="muted" for="pw">Password</label><br>
+    <input id="pw" type="password" autocomplete="current-password" style="margin-top:.4rem;">
+    <button class="btn btn-primary" type="submit">Open</button>
+    <div class="err" id="err" role="alert"></div>
+  </form>
+
+  <div id="app" hidden>
+    <div id="bar">
+      <input id="q" type="search" placeholder="Search songs">
+      <span class="muted" id="count"></span>
+    </div>
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" hidden>No songs match.</p>
+  </div>
+</div>
+</main>
+<footer>
+  <p class="nap">Juniper Studio LLC · 200 E Central Ave, Central City, AR 72941 · <a href="tel:+16156649985">(615) 664-9985</a></p>
+</footer>
+<script src="js/main.js"></script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var songs = [], ctx = null, current = null;
+
+  function api(path, opts) { return fetch('/api/songs/' + path, Object.assign({ credentials: 'same-origin' }, opts || {})); }
+
+  function show(list) {
+    songs = list;
+    $('login').hidden = true;
+    $('app').hidden = false;
+    $('count').textContent = list.length + ' songs';
+    render('');
+  }
+
+  function render(filter) {
+    var f = filter.toLowerCase(), grid = $('grid');
+    grid.innerHTML = '';
+    var shown = 0;
+    songs.forEach(function (s) {
+      if (f && s.title.toLowerCase().indexOf(f) === -1) return;
+      shown++;
+      var card = document.createElement('div');
+      card.className = 'song';
+      var h = document.createElement('h3'); h.textContent = s.title; card.appendChild(h);
+      var audio = document.createElement('audio');
+      audio.controls = true; audio.preload = 'none'; audio.setAttribute('controlsList', 'nodownload noplaybackrate');
+      audio.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+      function pick(v, btn) {
+        var was = !audio.paused;
+        audio.src = '/api/songs/audio/' + encodeURIComponent(v.id);
+        audio.dataset.fadeIn = v.fadeIn; audio.dataset.fadeOut = v.fadeOut;
+        [].forEach.call(card.querySelectorAll('.vers button'), function (b) { b.classList.toggle('on', b === btn); });
+        if (was) audio.play();
+      }
+      if (s.versions.length > 1) {
+        var vs = document.createElement('div'); vs.className = 'vers';
+        s.versions.forEach(function (v, i) {
+          var b = document.createElement('button'); b.type = 'button'; b.textContent = v.label;
+          b.onclick = function () { pick(v, b); };
+          vs.appendChild(b);
+          if (i === s.versions.length - 1) setTimeout(function () { pick(v, b); }, 0);
+        });
+        card.appendChild(vs);
+      } else {
+        var v0 = s.versions[0]; audio.src = '/api/songs/audio/' + encodeURIComponent(v0.id);
+        audio.dataset.fadeIn = v0.fadeIn; audio.dataset.fadeOut = v0.fadeOut;
+      }
+      card.appendChild(audio);
+      var a = document.createElement('a');
+      a.className = 'ask'; a.textContent = 'Ask about this song';
+      a.href = 'mailto:info@juniperstudiollc.com?subject=' + encodeURIComponent('Song inquiry: ' + s.title);
+      card.appendChild(a);
+      hook(audio);
+      grid.appendChild(card);
+    });
+    $('empty').hidden = shown > 0;
+  }
+
+  // Fade the clip in and out on playback (the files themselves are untouched, original quality).
+  // The ramps are scheduled on the Web Audio clock, so they stay smooth and do not depend on page timers.
+  function schedule(audio) {
+    var g = audio._gain;
+    if (!g || !ctx) return;
+    var fi = parseFloat(audio.dataset.fadeIn) || 0, fo = parseFloat(audio.dataset.fadeOut) || 0;
+    var t = audio.currentTime, d = audio.duration, now = ctx.currentTime, p = g.gain;
+    p.cancelScheduledValues(now);
+    var start = 1;
+    if (fi > 0) start = Math.min(start, t / fi);
+    if (fo > 0 && isFinite(d)) start = Math.min(start, Math.max(0, (d - t) / fo));
+    p.setValueAtTime(Math.max(0, Math.min(1, start)), now);
+    if (fi > 0 && t < fi) p.linearRampToValueAtTime(1, now + (fi - t));
+    if (fo > 0 && isFinite(d)) {
+      var left = d - t;
+      if (left > fo) { p.setValueAtTime(1, now + (left - fo)); p.linearRampToValueAtTime(0, now + left); }
+      else if (left > 0) p.linearRampToValueAtTime(0, now + left);
+    }
+  }
+  function unfade(audio) {
+    if (audio._gain && ctx) { audio._gain.gain.cancelScheduledValues(ctx.currentTime); audio._gain.gain.setValueAtTime(1, ctx.currentTime); }
+  }
+  function hook(audio) {
+    audio.addEventListener('play', function () {
+      if (current && current !== audio) current.pause();
+      current = audio;
+      try {
+        if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+        if (ctx.state === 'suspended') ctx.resume();
+        if (!audio._gain) {
+          audio._gain = ctx.createGain();
+          ctx.createMediaElementSource(audio).connect(audio._gain);
+          audio._gain.connect(ctx.destination);
+        }
+      } catch (e) { audio._gain = null; }
+      schedule(audio);
+    });
+    audio.addEventListener('seeked', function () { if (!audio.paused) schedule(audio); });
+    audio.addEventListener('pause', function () { unfade(audio); });
+    audio.addEventListener('ended', function () { unfade(audio); });
+  }
+
+  function load() {
+    return api('list').then(function (r) {
+      if (r.status === 401) return false;
+      return r.json().then(function (j) { if (j.ok) { show(j.songs); return true; } $('err').textContent = j.error || ''; return false; });
+    });
+  }
+
+  $('login').addEventListener('submit', function (e) {
+    e.preventDefault();
+    $('err').textContent = '';
+    api('login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: $('pw').value }) })
+      .then(function (r) { return r.json(); })
+      .then(function (j) { if (!j.ok) { $('err').textContent = j.error || 'Could not sign in.'; return; } return load(); })
+      .catch(function () { $('err').textContent = 'Could not reach the server.'; });
+  });
+  $('q').addEventListener('input', function (e) { render(e.target.value); });
+  load();
+})();
+</script>
+</body>
+</html>
