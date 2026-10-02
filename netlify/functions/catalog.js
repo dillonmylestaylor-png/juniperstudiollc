@@ -64,6 +64,26 @@ exports.handler = async (event) => {
 
   if (!hasAccess(event)) return json(401, { ok: false, error: 'Password needed.' });
 
+  if (route === 'inquire' && event.httpMethod === 'POST') {
+    let b = {};
+    try { b = JSON.parse(event.body || '{}'); } catch (e) {}
+    if (b.website) return json(200, { ok: true }); // honeypot: pretend it worked
+    const clean = (v, n) => String(v || '').replace(/[\r\n]+/g, ' ').trim().slice(0, n);
+    const name = clean(b.name, 100), artist = clean(b.artist, 100), email = clean(b.email, 200), phone = clean(b.phone, 40);
+    const message = String(b.message || '').trim().slice(0, 2000);
+    const known = new Set(INDEX.songs.map((s) => s.title));
+    const songs = (Array.isArray(b.songs) ? b.songs : []).map((s) => clean(s, 120)).filter((s) => known.has(s)).slice(0, 40);
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json(400, { ok: false, error: 'Please add your name and a valid email.' });
+    if (!songs.length) return json(400, { ok: false, error: 'Pick at least one song.' });
+    try {
+      await require('./utils/mail').sendSongInquiry({ name, artist, email, phone, songs, message });
+    } catch (e) {
+      console.error('song inquiry failed:', e.message);
+      return json(502, { ok: false, error: 'Could not send right now. Please email Info@JuniperStudioLLC.com.' });
+    }
+    return json(200, { ok: true });
+  }
+
   if (route === 'list') {
     return json(200, { ok: true, songs: INDEX.songs.map((s) => ({ title: s.title, versions: s.versions.map((v) => ({ id: v.id, label: v.label, fadeIn: 0.3, fadeOut: 2 })) })) });
   }
