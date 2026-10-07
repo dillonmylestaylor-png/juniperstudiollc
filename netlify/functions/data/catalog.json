@@ -92,37 +92,6 @@
    ]
   },
   {
-   "title": "Better Days",
-   "versions": [
-    {
-     "id": "better-days-v1",
-     "label": "V1",
-     "file": "Better Days - V1.mp3",
-     "ext": "mp3",
-     "bytes": 600338
-    },
-    {
-     "id": "better-days-v2",
-     "label": "V2",
-     "file": "Better Days - V2.mp3",
-     "ext": "mp3",
-     "bytes": 959460
-    }
-   ]
-  },
-  {
-   "title": "Blame It On Me",
-   "versions": [
-    {
-     "id": "blame-it-on-me",
-     "label": "",
-     "file": "Blame It On Me.mp3",
-     "ext": "mp3",
-     "bytes": 960813
-    }
-   ]
-  },
-  {
    "title": "Break",
    "versions": [
     {
@@ -186,18 +155,6 @@
      "file": "Catches Fire (Troy).mp3",
      "ext": "mp3",
      "bytes": 960813
-    }
-   ]
-  },
-  {
-   "title": "Certain Way Of Leaving",
-   "versions": [
-    {
-     "id": "certain-way-of-leaving",
-     "label": "",
-     "file": "Certain Way Of Leaving.mp3",
-     "ext": "mp3",
-     "bytes": 960295
     }
    ]
   },
@@ -276,7 +233,7 @@
    ]
   },
   {
-   "title": "Drinkin’",
+   "title": "Drinkin\u2019",
    "versions": [
     {
      "id": "drinkin",
@@ -425,18 +382,6 @@
      "file": "I Do Still.mp3",
      "ext": "mp3",
      "bytes": 961351
-    }
-   ]
-  },
-  {
-   "title": "I Love You More",
-   "versions": [
-    {
-     "id": "i-love-you-more",
-     "label": "",
-     "file": "I Love You More.mp3",
-     "ext": "mp3",
-     "bytes": 959460
     }
    ]
   },
