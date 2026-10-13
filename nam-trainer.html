@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Juniper NAM Trainer: Free NAM A2 Trainer for Google Colab | Juniper Studio</title>
-  <meta name="description" content="Free Google Colab trainer for Neural Amp Modeler: makes standard NAM A2 .nam files with the slim (size) option, early stopping, ESR auto-stop and calibration levels. The way Juniper Studio trains its captures.">
+  <meta name="description" content="Free Google Colab trainer for Neural Amp Modeler. Makes standard NAM A2 .nam files with the slim (size) option, calibration levels, measured loudness, gear info and a full training report saved in every file.">
   <link rel="canonical" href="https://juniperstudiollc.com/nam-trainer">
 
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
@@ -15,12 +15,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Juniper Studio LLC">
   <meta property="og:title" content="Juniper NAM Trainer: Free NAM A2 Trainer for Google Colab | Juniper Studio">
-  <meta property="og:description" content="Free Google Colab trainer for Neural Amp Modeler: makes standard NAM A2 .nam files with the slim (size) option, early stopping, ESR auto-stop and calibration levels. The way Juniper Studio trains its captures.">
+  <meta property="og:description" content="Free Google Colab trainer for Neural Amp Modeler. Makes standard NAM A2 .nam files with the slim (size) option, calibration levels, measured loudness, gear info and a full training report saved in every file.">
   <meta property="og:url" content="https://juniperstudiollc.com/nam-trainer">
   <meta property="og:image" content="https://juniperstudiollc.com/images/JS-LCL-2.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Juniper NAM Trainer: Free NAM A2 Trainer for Google Colab | Juniper Studio">
-  <meta name="twitter:description" content="Free Google Colab trainer for Neural Amp Modeler: makes standard NAM A2 .nam files with the slim (size) option, early stopping, ESR auto-stop and calibration levels. The way Juniper Studio trains its captures.">
+  <meta name="twitter:description" content="Free Google Colab trainer for Neural Amp Modeler. Makes standard NAM A2 .nam files with the slim (size) option, calibration levels, measured loudness, gear info and a full training report saved in every file.">
   <meta name="twitter:image" content="https://juniperstudiollc.com/images/JS-LCL-2.webp">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,7 +35,7 @@
   "url": "https://juniperstudiollc.com/nam-trainer",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web (Google Colab)",
-  "description": "Free Google Colab trainer for Neural Amp Modeler: makes standard NAM A2 .nam files with the slim (size) option, early stopping, ESR auto-stop and calibration levels. The way Juniper Studio trains its captures.",
+  "description": "Free Google Colab trainer for Neural Amp Modeler. Makes standard NAM A2 .nam files with the slim (size) option, calibration levels, measured loudness, gear info and a full training report saved in every file.",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://juniperstudiollc.com/#business" }
 }
@@ -92,20 +92,34 @@
 
   <section class="section section-alt">
     <div class="container" style="max-width:820px;">
-      <h2>What you get</h2>
+      <h2>What it does</h2>
       <ul class="include-list">
-        <li><strong>Standard NAM A2 models</strong> with the slim (size) option: a full model and a lite model in one <code>.nam</code> file.</li>
+        <li><strong>Standard NAM A2 models.</strong> By default each <code>.nam</code> file holds a full model and a lite model, so players that support it show the slim (size) option. You can also train full only or lite only.</li>
         <li><strong>Batch training.</strong> Train a whole folder of captures, A to Z or Z to A. Each model is saved the moment it finishes, so a disconnect never loses one, and captures that are already done get skipped.</li>
-        <li><strong>Early stopping and an ESR auto-stop.</strong> Training stops when the model stops improving or reaches your ESR target (0.0001 by default), so you don't waste GPU time.</li>
+        <li><strong>Stops at the right time.</strong> Training stops when the model stops improving, or as soon as it reaches your ESR target (0.0001 by default, or turn it off). The best version is the one that gets saved, not the last one.</li>
         <li><strong>Two validation scores.</strong> NAM's held-out section and random chunks, both shown on every check. You choose which one decides when to stop.</li>
-        <li><strong>Calibration levels</strong> read from the file name (<code>_in_12.0_out_6.5</code>), or typed in.</li>
+        <li><strong>Latency is found automatically.</strong> It uses NAM's own calibration on the standard input file, or cross-correlation on your own DI.</li>
         <li><strong>NAM's recording checks</strong> on the standard input file, with an option to skip them.</li>
-        <li>Your own files from Google Drive or uploaded from your computer, saved back to Drive or downloaded.</li>
+        <li><strong>Any input file.</strong> Use the standard NAM input (built in) or your own DI. Files that aren't 48 kHz are resampled, and stereo is folded to mono.</li>
+        <li>Your files come from Google Drive or are uploaded from your computer, and models are saved back to Drive or downloaded.</li>
       </ul>
     </div>
   </section>
 
   <section class="section">
+    <div class="container" style="max-width:820px;">
+      <h2>What's saved in every .nam file</h2>
+      <ul class="include-list">
+        <li><strong>Calibration levels:</strong> input and output dBu at 0 dBFS, read from the file name (<code>_in_12.0_out_6.5</code>) or typed in. You can turn calibration off.</li>
+        <li><strong>Loudness:</strong> the real measured level of your capture.</li>
+        <li><strong>Gear info:</strong> name, modeled by, gear make, model and type, and tone type.</li>
+        <li><strong>A training report:</strong> both ESR scores for the full and lite models, the best epoch, how many epochs ran and why training stopped, the latency used, the recording-check result, and the trainer and NAM versions.</li>
+        <li>The sample rate (48 kHz) and the date it was trained.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-alt">
     <div class="container" style="max-width:820px;">
       <h2>How to use it</h2>
       <ol style="color:var(--muted);line-height:1.9;padding-left:1.25rem;">
