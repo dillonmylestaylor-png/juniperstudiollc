@@ -6,6 +6,8 @@ const FILES = {
   'JS-2-Windows.exe': { plugin: 'js2', os: 'Windows' },
   'IR-Deconvolver-Mac.dmg': { plugin: 'irdeconvolver', os: 'Mac' },
   'IR-Deconvolver-Windows.exe': { plugin: 'irdeconvolver', os: 'Windows' },
+  'NAMwich-Mac.pkg': { plugin: 'namwich', os: 'Mac' },
+  'NAMwich-Windows.exe': { plugin: 'namwich', os: 'Windows' },
 };
 
 // Days are counted in the studio's own time zone, so "today" on the admin page matches Arkansas.

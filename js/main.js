@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
   for (var i = 0; i < links.length; i++) {
     links[i].addEventListener('click', function () {
       var href = this.getAttribute('href');
-      var open = /IR-Deconvolver/.test(href) ? 'IR Deconvolver' : /JS-2[-.]/.test(href) ? 'JS-2 in your DAW' : 'JS-505 in your DAW';
+      var open = /IR-Deconvolver/.test(href) ? 'IR Deconvolver' : /NAMwich/.test(href) ? 'NAMwich in your DAW or as a standalone app' : /JS-2[-.]/.test(href) ? 'JS-2 in your DAW' : 'JS-505 in your DAW';
       setTimeout(function () { show(open); }, 900);
     });
   }

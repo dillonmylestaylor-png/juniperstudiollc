@@ -38,15 +38,33 @@ exports.handler = async (event) => {
         discounts.push({ promotion_code: pc.id });
       }
 
+      // Owners of our effect pedals pay a lower MINIMUM (Stripe can't discount a pay-what-you-want price): a signed
+      // token from /owner-price says how many they own, and that picks a price on the same product with the matching
+      // minimum. Ignored on promo checkouts, which are fixed-price.
+      let priceId = typeof product.default_price === 'string' ? product.default_price : product.default_price.id;
+      let ownerEffects = 0;
+      if (params.owner && info.ownerPrices && !discounts.length) {
+        const { verifyOwnerToken } = require('./utils/ownerToken');
+        const proof = verifyOwnerToken(params.owner, info.id);
+        if (!proof.ok) {
+          return { statusCode: 400, body: 'That owner price link has expired. Go back to the page and paste your keys again.' };
+        }
+        const tier = Math.min(proof.count, Object.keys(info.ownerPrices).length);
+        if (tier > 0 && info.ownerPrices[tier]) {
+          priceId = info.ownerPrices[tier];
+          ownerEffects = tier;
+        }
+      }
+
       const session = await stripe.checkout.sessions.create({
         mode: 'payment',
         // Stripe refuses discounts on pay-what-you-want prices, so a promo checkout uses a fixed $1 price on the
         // same product (a 100%-off code then makes it $0 and the license webhook still runs end to end).
         line_items: discounts.length
           ? [{ price_data: { currency: 'usd', product: info.stripeProductId, unit_amount: 100 }, quantity: 1 }]
-          : [{ price: typeof product.default_price === 'string' ? product.default_price : product.default_price.id, quantity: 1 }],
+          : [{ price: priceId, quantity: 1 }],
         ...(discounts.length ? { discounts } : {}),
-        metadata: { plugin: info.id },
+        metadata: { plugin: info.id, ...(ownerEffects ? { owner_effects: String(ownerEffects) } : {}) },
         customer_creation: 'always',
         billing_address_collection: 'auto',
         custom_text: {

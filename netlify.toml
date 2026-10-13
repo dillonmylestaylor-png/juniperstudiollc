@@ -191,6 +191,12 @@
   force = true
 
 [[redirects]]
+  from = "/namwich.html"
+  to = "/namwich"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/js2.html"
   to = "/js2"
   status = 301

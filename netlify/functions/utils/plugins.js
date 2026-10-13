@@ -9,6 +9,7 @@ const PLUGINS = {
     page: 'js505', // customer-facing page, used for checkout's cancel link
     noun: 'plugin', // what the customer is told to paste the key into
     live: true,
+    effect: true, // counts toward the NAMwich owner discount
   },
   js2: {
     id: 'js2',
@@ -20,6 +21,7 @@ const PLUGINS = {
     page: 'js2',
     noun: 'plugin',
     live: true,
+    effect: true,
   },
   irdeconvolver: {
     id: 'irdeconvolver',
@@ -31,6 +33,25 @@ const PLUGINS = {
     page: 'irdeconvolver',
     noun: 'app',
     live: true,
+  },
+  namwich: {
+    id: 'namwich',
+    name: 'NAMwich',
+    prefix: 'NAMW',   // the plugin's LicenseClient must use the same prefix and code
+    code: 'namw',
+    stripeProductId: 'prod_VR49ZQo0mlbgsu',
+    // Pay-what-you-want can't take coupons, so owners of our effect pedals get a lower MINIMUM instead:
+    // the key is the number of effects owned (1-4+), the value a price on the same product with that minimum.
+    ownerPrices: {
+      1: 'price_1UQC1QRreoLOc5siKJHs6kiV', // $4 minimum
+      2: 'price_1UQC1QRreoLOc5sixSIJp59R', // $3
+      3: 'price_1UQC1QRreoLOc5siu3M2KdQ8', // $2
+      4: 'price_1UQC1QRreoLOc5si70X8gatD', // $1
+    },
+    description: 'NAM player with built-in effects. Donation-based, $5 minimum.',
+    page: 'namwich',
+    noun: 'plugin',
+    live: false, // flip to true on launch day, after the installers are uploaded
   },
   aurum8200: {
     id: 'aurum8200',
