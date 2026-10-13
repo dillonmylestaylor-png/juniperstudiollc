@@ -315,3 +315,21 @@
   to = "/catalog"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/nam-trainer"
+  to = "/juniper-nam-trainer"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/namtrainer"
+  to = "/juniper-nam-trainer"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/junipernamtrainer"
+  to = "/juniper-nam-trainer"
+  status = 301
+  force = true
