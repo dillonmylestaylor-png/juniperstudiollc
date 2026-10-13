@@ -50,6 +50,7 @@ Full list: https://juniperstudiollc.com/gear
 - [Services & Rates](https://juniperstudiollc.com/services): full pricing and online booking/payment, with links to a detail page per service
 - [Studio Gear](https://juniperstudiollc.com/gear): complete equipment list
 - [Plugins](https://juniperstudiollc.com/plugins): index of Juniper Studio plugins
+- [NAM Trainer](https://juniperstudiollc.com/nam-trainer): free Google Colab trainer for standard Neural Amp Modeler A2 .nam files (slimmable full + lite), with early stopping, ESR auto-stop and calibration levels
 - [JS-505](https://juniperstudiollc.com/js505): analog-style chorus plugin built on NAM A2 for Mac and Windows (Linux coming soon). Free 30-day trial, then pay what you want ($1 minimum). Demo videos: https://youtube.com/shorts/3t41sHIVO5o and https://youtu.be/xA5NSveh1OY
 - [JS-2](https://juniperstudiollc.com/js2): analog-style tremolo plugin (rate, wave, depth) from a real modded tremolo pedal: NAM A2 for the tone, schematic-based DSP for the tremolo. For Mac and Windows. Free 30-day trial, then pay what you want ($1 minimum). Demo video: https://youtube.com/shorts/sI7ePmOlmRE
 - [IR Deconvolver](https://juniperstudiollc.com/irdeconvolver): standalone app (Mac, Apple Silicon and Intel, and Windows) for making speaker cabinet impulse responses from a sine sweep: Cabinet IRs, measured harmonic kernels, IR blending, all aligned to one reference. Free 30-day trial, then pay what you want ($10 minimum, $20 suggested).

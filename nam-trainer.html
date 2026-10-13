@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juniper NAM Trainer: Free NAM A2 Trainer for Google Colab | Juniper Studio</title>
+  <meta name="description" content="Free Google Colab trainer for Neural Amp Modeler: makes standard NAM A2 .nam files with the slim (size) option, early stopping, ESR auto-stop and calibration levels. The way Juniper Studio trains its captures.">
+  <link rel="canonical" href="https://juniperstudiollc.com/nam-trainer">
+
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Juniper Studio LLC">
+  <meta property="og:title" content="Juniper NAM Trainer: Free NAM A2 Trainer for Google Colab | Juniper Studio">
+  <meta property="og:description" content="Free Google Colab trainer for Neural Amp Modeler: makes standard NAM A2 .nam files with the slim (size) option, early stopping, ESR auto-stop and calibration levels. The way Juniper Studio trains its captures.">
+  <meta property="og:url" content="https://juniperstudiollc.com/nam-trainer">
+  <meta property="og:image" content="https://juniperstudiollc.com/images/JS-LCL-2.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Juniper NAM Trainer: Free NAM A2 Trainer for Google Colab | Juniper Studio">
+  <meta name="twitter:description" content="Free Google Colab trainer for Neural Amp Modeler: makes standard NAM A2 .nam files with the slim (size) option, early stopping, ESR auto-stop and calibration levels. The way Juniper Studio trains its captures.">
+  <meta name="twitter:image" content="https://juniperstudiollc.com/images/JS-LCL-2.webp">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Juniper NAM Trainer",
+  "url": "https://juniperstudiollc.com/nam-trainer",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web (Google Colab)",
+  "description": "Free Google Colab trainer for Neural Amp Modeler: makes standard NAM A2 .nam files with the slim (size) option, early stopping, ESR auto-stop and calibration levels. The way Juniper Studio trains its captures.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://juniperstudiollc.com/#business" }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://juniperstudiollc.com/" },
+    { "@type": "ListItem", "position": 2, "name": "NAM Trainer", "item": "https://juniperstudiollc.com/nam-trainer" }
+  ]
+}
+  </script>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="/" class="logo">Juniper<span>Studio</span></a>
+    <div class="links" id="navLinks">
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/gear">Gear</a>
+      <a href="/plugins">Plugins</a>
+      <a href="/nam-trainer">NAM Trainer</a>
+      <a href="/merch">Merch</a>
+      <a href="/audio">Audio</a>
+      <a href="/catalog">Catalog</a>
+      <a href="/guides">Guides</a>
+      <a href="/faq">FAQ</a>
+      <a href="/contact">Contact</a>
+      <a href="tel:+16156649985" class="nav-cta">Call / Text</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <section class="section" style="padding-top:calc(64px + 3.5rem);">
+    <div class="container" style="max-width:820px;">
+      <h1 style="font-size:2.2rem;margin-bottom:1rem;">Juniper NAM Trainer</h1>
+      <p class="subtitle" style="margin:0 0 1.25rem;">A free trainer for Neural Amp Modeler that runs in Google Colab. It makes standard NAM A2 <code>.nam</code> files that load in any up-to-date NAM player, trained the way I train the captures in Juniper Studio's plugins.</p>
+      <p style="color:var(--muted);line-height:1.75;margin-bottom:1.5rem;">It's built on the official NAM trainer, with my training changes added on top: early stopping, an ESR auto-stop, an extra high-frequency term in the loss, and two validation scores.</p>
+      <div class="btn-group">
+        <a href="https://colab.research.google.com/drive/14FdrUm5qibQwVfHq4Gys0L84dylWfRkS" class="btn btn-primary" target="_blank" rel="noopener">Open the trainer in Google Colab</a>
+      </div>
+      <p style="color:var(--muted);font-size:.9rem;margin-top:1rem;">Free. You need a Google account. Colab's free GPU works.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container" style="max-width:820px;">
+      <h2>What you get</h2>
+      <ul class="include-list">
+        <li><strong>Standard NAM A2 models</strong> with the slim (size) option: a full model and a lite model in one <code>.nam</code> file.</li>
+        <li><strong>Batch training.</strong> Train a whole folder of captures, A to Z or Z to A. Each model is saved the moment it finishes, so a disconnect never loses one, and captures that are already done get skipped.</li>
+        <li><strong>Early stopping and an ESR auto-stop.</strong> Training stops when the model stops improving or reaches your ESR target (0.0001 by default), so you don't waste GPU time.</li>
+        <li><strong>Two validation scores.</strong> NAM's held-out section and random chunks, both shown on every check. You choose which one decides when to stop.</li>
+        <li><strong>Calibration levels</strong> read from the file name (<code>_in_12.0_out_6.5</code>), or typed in.</li>
+        <li><strong>NAM's recording checks</strong> on the standard input file, with an option to skip them.</li>
+        <li>Your own files from Google Drive or uploaded from your computer, saved back to Drive or downloaded.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:820px;">
+      <h2>How to use it</h2>
+      <ol style="color:var(--muted);line-height:1.9;padding-left:1.25rem;">
+        <li>Reamp your gear with the standard NAM input file (or your own DI) at 48 kHz, and export each take as a <code>.wav</code> the same length as the input.</li>
+        <li>Optional: put the captures in a <code>captures</code> folder inside a Google Drive folder (by default <code>My Drive/Juniper NAM Trainer</code>).</li>
+        <li><a href="https://colab.research.google.com/drive/14FdrUm5qibQwVfHq4Gys0L84dylWfRkS" target="_blank" rel="noopener">Open the trainer</a>, then go to <strong>Runtime &rsaquo; Change runtime type</strong> and pick a GPU.</li>
+        <li>Run the cells in order. Settings are a simple form. When the last cell finishes, your <code>.nam</code> files are in the output folder.</li>
+      </ol>
+      <p style="color:var(--muted);line-height:1.75;margin-top:1rem;">Name captures like <code>My Amp Gain 5_in_12.0_out_6.5.wav</code> to save the calibration levels with the model: <code>_in_</code> is the input dBu at 0 dBFS and <code>_out_</code> is the output dBu at 0 dBFS.</p>
+      <p style="color:var(--muted);line-height:1.75;margin-top:1rem;">Questions or problems? <a href="/contact">Get in touch</a>.</p>
+      <p style="color:var(--muted);font-size:.85rem;line-height:1.6;margin-top:2rem;">Built on <a href="https://github.com/sdatkinson/neural-amp-modeler" target="_blank" rel="noopener">Neural Amp Modeler</a> by Steven Atkinson (MIT licence).</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="socials">
+    <a href="https://www.instagram.com/juniperstudiollc/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.facebook.com/JuniperStudioLLC" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://www.youtube.com/@JuniperStudioLLC" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://www.threads.com/@juniperstudiollc" target="_blank" rel="noopener">Threads</a>
+    <a href="https://x.com/DillonMylesJS" target="_blank" rel="noopener">X</a>
+    <a href="mailto:Info@JuniperStudioLLC.com">Email</a>
+    <a href="tel:+16156649985">Call / Text</a>
+  </div>
+  <p class="footer-links">
+    <a href="/fort-smith-recording-studio">Fort Smith studio</a>
+    <a href="/fayetteville-recording-studio">Fayetteville / NWA</a>
+    <a href="/remote-mixing-mastering">Remote mix &amp; master</a>
+    <a href="/how-to-prepare-for-studio">Session prep</a>
+    <a href="/suno-to-real-song">AI Song to Real Song</a>
+    <a href="/plugins">Plugins</a>
+  </p>
+  <p class="nap">Juniper Studio LLC · 200 E Central Ave, Central City, AR 72941 · <a href="tel:+16156649985">(615) 664-9985</a> · <a href="mailto:Info@JuniperStudioLLC.com">Info@JuniperStudioLLC.com</a></p>
+  <p>&copy; 2026 Juniper Studio LLC. All rights reserved.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
