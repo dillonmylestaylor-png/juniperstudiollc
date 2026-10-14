@@ -82,7 +82,7 @@
     <div class="container" style="max-width:820px;">
       <h1 style="font-size:2.2rem;margin-bottom:1rem;">Juniper NAM Trainer</h1>
       <p class="subtitle" style="margin:0 0 1.25rem;">A free trainer for Neural Amp Modeler that runs in Google Colab. It makes standard NAM A2 <code>.nam</code> files that load in any up-to-date NAM player, trained the way I train the captures in Juniper Studio's plugins.</p>
-      <p style="color:var(--muted);line-height:1.75;margin-bottom:1.5rem;">It's built on the official NAM trainer, with my training changes added on top: early stopping, an ESR auto-stop, and an extra high-frequency term in the loss.</p>
+      <p style="color:var(--muted);line-height:1.75;margin-bottom:1.5rem;">It's built on the official NAM trainer and uses NAM's own model and loss, with my training changes added on top: early stopping, an ESR auto-stop, a gentler learning-rate schedule, and batch training that saves every model as it finishes.</p>
       <div class="btn-group">
         <a href="https://colab.research.google.com/drive/14FdrUm5qibQwVfHq4Gys0L84dylWfRkS" class="btn btn-primary" target="_blank" rel="noopener">Open the trainer in Google Colab</a>
       </div>
