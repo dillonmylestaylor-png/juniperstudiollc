@@ -53,6 +53,42 @@ const PLUGINS = {
     noun: 'plugin',
     live: false, // flip to true on launch day, after the installers are uploaded
   },
+  js900: {
+    id: 'js900',
+    name: 'JS-900',
+    prefix: 'JS900',   // matches LicenseClient { "js900", "JS900" } in the JS-900 plugin
+    code: 'j900',
+    stripeProductId: null, // create the Stripe product (like scripts/create-js2.js) at launch
+    description: 'Analog-style phaser. Donation-based.',
+    page: 'js900',
+    noun: 'plugin',
+    live: false, // flip to true on launch day
+    effect: true,
+  },
+  js550a: {
+    id: 'js550a',
+    name: 'JS-550A',
+    prefix: 'JS550A',  // matches LicenseClient { "js550a", "JS550A" } in the JS-550A plugin
+    code: 'j55a',
+    stripeProductId: null, // create at launch
+    description: 'Analog-style EQ. Donation-based.',
+    page: 'js550a',
+    noun: 'plugin',
+    live: false,
+    effect: true,
+  },
+  jsdelay: {
+    id: 'jsdelay',
+    name: 'JS Delay',
+    prefix: 'JSDLY',   // JS Delay has no LicenseClient yet; give it { "jsdelay", "JSDLY" } when licensing is ported
+    code: 'jdly',
+    stripeProductId: null, // create at launch
+    description: 'Character delay. Donation-based.',
+    page: 'jsdelay',
+    noun: 'plugin',
+    live: false,
+    effect: true,
+  },
   aurum8200: {
     id: 'aurum8200',
     name: 'Aurum 8200',
