@@ -5,8 +5,8 @@
 // A review's id is "<plugin>/<timestamp>-<random>", so the key is "<state>/<id>".
 const { getStore } = require('@netlify/blobs');
 
-const REVIEWABLE = { chorus505: 'JS-505', js2: 'JS-2' };
-const ID_RE = /^(chorus505|js2)\/\d{13}-[a-z0-9]{6}$/;
+const REVIEWABLE = { chorus505: 'JS-505', js2: 'JS-2', js550a: 'JS-550A' };
+const ID_RE = /^(chorus505|js2|js550a)\/\d{13}-[a-z0-9]{6}$/;
 
 function store() { return getStore('plugin-reviews'); }
 

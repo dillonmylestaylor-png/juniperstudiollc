@@ -70,11 +70,11 @@ const PLUGINS = {
     name: 'JS-550A',
     prefix: 'JS550A',  // matches LicenseClient { "js550a", "JS550A" } in the JS-550A plugin
     code: 'j55a',
-    stripeProductId: null, // create at launch
-    description: 'Analog-style EQ. Donation-based.',
+    stripeProductId: 'prod_VUX84LVgmvSD2u', // scripts/create-js550a.js: $10 min, $20 suggested, $1,000 max
+    description: '3-band program EQ. Donation-based, $10 minimum.',
     page: 'js550a',
     noun: 'plugin',
-    live: false,
+    live: true,
     effect: true,
   },
   jsdelay: {

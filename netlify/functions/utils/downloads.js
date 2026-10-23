@@ -6,6 +6,8 @@ const FILES = {
   'JS-2-Windows.exe': { plugin: 'js2', os: 'Windows' },
   'IR-Deconvolver-Mac.dmg': { plugin: 'irdeconvolver', os: 'Mac' },
   'IR-Deconvolver-Windows.exe': { plugin: 'irdeconvolver', os: 'Windows' },
+  'JS-550A-Mac.pkg': { plugin: 'js550a', os: 'Mac' },
+  'JS-550A-Windows.exe': { plugin: 'js550a', os: 'Windows' },
   'NAMwich-Mac.pkg': { plugin: 'namwich', os: 'Mac' },
   'NAMwich-Windows.exe': { plugin: 'namwich', os: 'Windows' },
 };
